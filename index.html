@@ -8,7 +8,7 @@
 <meta name="keywords" content="Level Seven Pictures, level7pictures, Level 7 Pictures, Said El Marouk, Monsters, وحوش, Crime of Love, جناية حب, The Deep State, Shasha, Netflix, Abu Dhabi, Beirut" />
 <meta name="author" content="Level Seven Pictures" />
 <meta name="robots" content="index, follow" />
-<meta name="theme-color" content="#003a63" />
+<meta name="theme-color" content="#030c16" />
 <link rel="canonical" href="https://level7pictures.com/" />
 
 <meta property="og:type" content="website" />
@@ -41,102 +41,90 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Manrope:wght@300;400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Alexandria:wght@300;500&display=swap" rel="stylesheet" />
 
 <style>
   :root {
     --blue: #005088;
-    --blue-deep: #003a63;
-    --blue-night: #021a2e;
-    --blue-bright: #2890d8;
-    --blue-ice: #e9f1f8;
-    --blue-wash: #f4f8fb;
-    --ink: #0b1420;
-    --ink-soft: #3a4655;
-    --muted: #6d7887;
-    --line: #e1e7ee;
+    --blue-b: #2890d8;
+    --blue-soft: #9fcbee;
+    --night: #030c16;
+    --night-2: #08182a;
+    --night-3: #0e2236;
     --white: #ffffff;
-    --display: "Michroma", "Eurostile", Arial, sans-serif;
-    --body: "Manrope", "Helvetica Neue", Arial, sans-serif;
-    --arabic: "Noto Kufi Arabic", "Manrope", sans-serif;
-    --wrap: 1320px;
-    --gutter: clamp(20px, 5vw, 64px);
+    --ice: #eef4f9;
+    --ink: #0b131d;
+    --soft: #3a4655;
+    --muted: #7d8a99;
+    --line: #dfe6ee;
+    --line-d: rgba(255,255,255,.12);
+    --disp: "Unbounded", Arial, sans-serif;
+    --body: "Hanken Grotesk", Arial, sans-serif;
+    --ar: "Alexandria", sans-serif;
+    --g: clamp(18px, 4.5vw, 64px);
+    --wrap: 1360px;
     --ease: cubic-bezier(.2,.7,.2,1);
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body {
-    background: var(--white); color: var(--ink);
-    font-family: var(--body); font-size: 16px; line-height: 1.7;
-    -webkit-font-smoothing: antialiased; overflow-x: hidden;
-  }
+  body { background: var(--white); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
   em { font-style: italic; }
-  .ar { font-family: var(--arabic); direction: rtl; unicode-bidi: isolate; }
-  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ar { font-family: var(--ar); direction: rtl; unicode-bidi: isolate; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--g); }
 
-  /* Grain overlay — gives the white a photographic, printed feel */
+  /* Film grain */
   body::after {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 200; opacity: .035;
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 300; opacity: .045;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  /* ── Shared type ─────────────────────────────── */
-  .eyebrow {
-    font-family: var(--display); font-size: 10.5px; letter-spacing: .34em; text-transform: uppercase;
-    color: var(--blue); display: inline-flex; align-items: center; gap: 14px;
-  }
-  .eyebrow::before { content: ""; width: 30px; height: 1px; background: currentColor; }
-  .h-xl, .h-lg, .h-md { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .015em; line-height: 1.12; }
-  .h-xl { font-size: clamp(38px, 7.4vw, 112px); }
-  .h-lg { font-size: clamp(28px, 4.2vw, 58px); }
-  .h-md { font-size: clamp(22px, 2.6vw, 34px); line-height: 1.25; }
-  .blue { color: var(--blue); }
-  .lede { font-size: clamp(16px, 1.45vw, 19px); font-weight: 300; color: var(--ink-soft); max-width: 58ch; }
-  .wordmark .l, .wordmark .s { color: var(--blue); }
+  /* ── Type system ─────────────────────────────── */
+  .cap { font-family: var(--disp); font-weight: 300; font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; }
+  .label { color: var(--blue); display: inline-flex; align-items: center; gap: 14px; }
+  .label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+  .on-dark .label { color: var(--blue-soft); }
+  .t-xl, .t-lg, .t-md { font-family: var(--disp); text-transform: uppercase; letter-spacing: -.005em; }
+  .t-xl { font-weight: 700; font-size: clamp(40px, 7vw, 112px); line-height: .95; }
+  .t-lg { font-weight: 700; font-size: clamp(32px, 4.8vw, 72px); line-height: 1; }
+  .t-md { font-weight: 500; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.25; letter-spacing: .02em; }
+  .t-light { font-weight: 300; }
+  .arname { font-family: var(--ar); font-weight: 500; font-size: clamp(22px, 2.6vw, 36px); color: var(--blue); }
+  .on-dark .arname { color: var(--blue-soft); }
+  .lede { font-size: clamp(16px, 1.4vw, 19px); font-weight: 300; color: var(--soft); max-width: 52ch; }
+  .on-dark .lede { color: #b9c9d8; }
+  .on-dark { background: var(--night); color: var(--white); }
 
   .btn {
     display: inline-flex; align-items: center; gap: 14px; white-space: nowrap;
-    font-family: var(--display); font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase;
-    padding: 18px 26px; border: 1px solid currentColor; transition: background .3s, color .3s, border-color .3s;
+    font-family: var(--disp); font-weight: 400; font-size: 10.5px; letter-spacing: .24em; text-transform: uppercase;
+    padding: 17px 26px; border: 1px solid currentColor; transition: background .3s, color .3s, border-color .3s;
   }
   .btn svg { width: 15px; height: 15px; transition: transform .3s var(--ease); }
   .btn:hover svg { transform: translateX(4px); }
-  .btn-solid { background: var(--blue); border-color: var(--blue); color: var(--white); }
-  .btn-solid:hover { background: var(--blue-deep); border-color: var(--blue-deep); }
-  .btn-white { background: var(--white); border-color: var(--white); color: var(--blue-deep); }
-  .btn-white:hover { background: transparent; color: var(--white); }
-  .btn-line-w { color: var(--white); border-color: rgba(255,255,255,.5); }
-  .btn-line-w:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
-
-  /* Viewfinder corner brackets — a recurring camera motif */
-  .vf { position: relative; }
-  .vf > i { position: absolute; width: 22px; height: 22px; border-color: var(--blue); border-style: solid; border-width: 0; z-index: 3; pointer-events: none; }
-  .vf > i:nth-of-type(1) { top: -10px; left: -10px; border-top-width: 1.5px; border-left-width: 1.5px; }
-  .vf > i:nth-of-type(2) { top: -10px; right: -10px; border-top-width: 1.5px; border-right-width: 1.5px; }
-  .vf > i:nth-of-type(3) { bottom: -10px; left: -10px; border-bottom-width: 1.5px; border-left-width: 1.5px; }
-  .vf > i:nth-of-type(4) { bottom: -10px; right: -10px; border-bottom-width: 1.5px; border-right-width: 1.5px; }
+  .btn-w { background: var(--white); border-color: var(--white); color: var(--night); }
+  .btn-w:hover { background: transparent; color: var(--white); }
+  .btn-b { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  .btn-b:hover { background: var(--night); border-color: var(--night); }
+  .btn-o { color: var(--white); border-color: rgba(255,255,255,.4); }
+  .btn-o:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
 
   /* ── Header ──────────────────────────────────── */
-  .header { position: fixed; inset: 0 0 auto 0; z-index: 100; transition: background .4s, box-shadow .4s, color .4s; color: var(--white); }
-  .header .wrap { display: flex; align-items: center; justify-content: space-between; height: 88px; }
-  .header.solid { background: rgba(255,255,255,.94); color: var(--ink); box-shadow: 0 1px 0 var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-  .mark { position: relative; display: block; width: 78px; height: 34px; }
-  .mark img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transition: opacity .4s; }
-  .mark .dark { opacity: 0; }
-  .header.solid .mark .dark, .header.menu-open .mark .dark { opacity: 1; }
-  .header.solid .mark .light, .header.menu-open .mark .light { opacity: 0; }
-  .nav { display: flex; align-items: center; gap: clamp(22px, 2.8vw, 44px); }
-  .nav a { font-family: var(--display); font-size: 10px; letter-spacing: .26em; text-transform: uppercase; position: relative; padding: 8px 0; opacity: .9; }
-  .nav a::after { content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
+  .header { position: fixed; inset: 0 0 auto 0; z-index: 100; color: var(--white); transition: background .4s, color .4s, box-shadow .4s; }
+  .header .bar { display: flex; justify-content: space-between; align-items: center; height: 84px; padding: 0 var(--g); }
+  .header.solid { background: rgba(3,12,22,.9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line-d); }
+  .mark img { height: 32px; width: auto; }
+  .nav { display: flex; align-items: center; gap: clamp(20px, 2.6vw, 40px); }
+  .nav a { font-family: var(--disp); font-weight: 300; font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase; opacity: .75; transition: opacity .3s; position: relative; padding: 6px 0; }
+  .nav a:hover { opacity: 1; }
+  .nav a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .4s var(--ease); }
   .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
-  .nav .cta { border: 1px solid currentColor; padding: 12px 18px; }
+  .nav .cta { opacity: 1; border: 1px solid rgba(255,255,255,.45); padding: 11px 18px; }
   .nav .cta::after { display: none; }
-  .header.solid .nav .cta { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  .nav .cta:hover { background: var(--white); color: var(--night); }
   .menu-btn { display: none; width: 44px; height: 44px; position: relative; }
   .menu-btn span { position: absolute; left: 10px; right: 10px; height: 1.5px; background: currentColor; transition: transform .3s, opacity .3s; }
   .menu-btn span:nth-child(1) { top: 16px; } .menu-btn span:nth-child(2) { top: 22px; } .menu-btn span:nth-child(3) { top: 28px; }
@@ -144,269 +132,275 @@
   .menu-open .menu-btn span:nth-child(2) { opacity: 0; }
   .menu-open .menu-btn span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* ── Hero carousel ───────────────────────────── */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 640px; background: var(--blue-night); color: var(--white); overflow: hidden; }
-  .slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1.1s ease, visibility 1.1s; }
-  .slide.active { opacity: 1; visibility: visible; z-index: 1; }
-  .slide .bg { position: absolute; inset: 0; }
-  .slide .bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 9s linear; }
-  .slide.active .bg img { transform: scale(1.02); }
-  .slide .bg::after {
-    content: ""; position: absolute; inset: 0;
-    background:
-      linear-gradient(90deg, rgba(2,26,46,.94) 0%, rgba(2,26,46,.72) 38%, rgba(2,26,46,.15) 72%, rgba(2,26,46,.35) 100%),
-      linear-gradient(0deg, rgba(2,26,46,.9) 0%, transparent 38%);
-  }
-  .slide .bg.blur img { filter: blur(18px) saturate(1.1); transform: scale(1.25); }
-  .slide.active .bg.blur img { transform: scale(1.15); }
-  .slide .inner { position: relative; z-index: 2; height: 100%; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; padding-top: 70px; padding-bottom: 150px; }
-  .slide .copy > * { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-  .slide.active .copy > * { opacity: 1; transform: none; }
-  .slide.active .copy > *:nth-child(2) { transition-delay: .12s; }
-  .slide.active .copy > *:nth-child(3) { transition-delay: .24s; }
-  .slide.active .copy > *:nth-child(4) { transition-delay: .36s; }
-  .slide.active .copy > *:nth-child(5) { transition-delay: .48s; }
-  .slide .kicker { font-family: var(--display); font-size: 10.5px; letter-spacing: .34em; text-transform: uppercase; color: #9fcbee; display: flex; align-items: center; gap: 14px; }
-  .slide .kicker::before { content: ""; width: 30px; height: 1px; background: currentColor; }
-  .slide h1, .slide h2 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(34px, 5.6vw, 92px); line-height: 1.06; letter-spacing: .01em; margin: 22px 0 6px; }
-  .slide .arabic { font-family: var(--arabic); font-size: clamp(20px, 2.4vw, 32px); color: #cfe3f3; font-weight: 400; }
-  .slide .desc { max-width: 50ch; color: #d6e3ee; font-weight: 300; font-size: clamp(15px, 1.3vw, 18px); margin: 22px 0 34px; }
-  .slide .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-  .chip { font-family: var(--display); font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; padding: 8px 12px; border: 1px solid rgba(255,255,255,.35); color: #e6f0f8; }
-  .chip.red { border-color: #e50914; color: #fff; background: #e50914; }
-  .slide .actions { display: flex; flex-wrap: wrap; gap: 14px; }
-
-  /* Poster fan on the Monsters slide */
-  .fan { position: relative; height: min(64vh, 560px); justify-self: center; width: 100%; max-width: 520px; }
-  .fan img { position: absolute; top: 50%; left: 50%; width: 54%; aspect-ratio: 2/3; object-fit: cover; box-shadow: 0 40px 80px -20px rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.15);
-    opacity: 0; transition: transform 1.2s var(--ease), opacity 1s ease; transform: translate(-50%,-44%) rotate(0); }
-  .slide.active .fan img { opacity: 1; }
-  .slide.active .fan img:nth-child(1) { transform: translate(-88%,-47%) rotate(-7deg); transition-delay: .25s; }
-  .slide.active .fan img:nth-child(2) { transform: translate(-12%,-47%) rotate(7deg); transition-delay: .35s; }
-  .slide.active .fan img:nth-child(3) { transform: translate(-50%,-52%) rotate(0); z-index: 2; transition-delay: .15s; }
-  .single-poster { justify-self: center; width: min(78%, 360px); }
-  .single-poster img { width: 100%; aspect-ratio: 2/3; object-fit: cover; box-shadow: 0 40px 90px -20px rgba(0,0,0,.75); opacity: 0; transform: translateY(30px) scale(.97); transition: transform 1.2s var(--ease) .2s, opacity 1s ease .2s; }
-  .slide.active .single-poster img { opacity: 1; transform: none; }
-  .single-poster.vf > i { border-color: #9fcbee; }
-
-  .hero-ui { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; }
-  .hero-ui .wrap { display: flex; align-items: flex-end; gap: 28px; padding-bottom: 34px; }
-  .tabs { flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-  .tab { text-align: left; padding-top: 16px; position: relative; color: rgba(255,255,255,.55); transition: color .3s; }
-  .tab::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,.18); }
-  .tab .bar { position: absolute; top: 0; left: 0; height: 2px; width: 0; background: var(--white); }
-  .tab .n { font-family: var(--display); font-size: 10px; letter-spacing: .2em; display: block; }
-  .tab .t { font-family: var(--display); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; display: block; margin-top: 6px; }
-  .tab.active, .tab:hover { color: var(--white); }
-  .arrows { display: flex; gap: 8px; }
-  .arrow { width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.35); display: grid; place-items: center; transition: background .3s, border-color .3s; color: var(--white); }
-  .arrow:hover { background: rgba(255,255,255,.12); border-color: var(--white); }
-  .arrow svg { width: 18px; height: 18px; }
-  .rec { position: absolute; top: 112px; right: var(--gutter); z-index: 5; display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 10px; letter-spacing: .22em; color: rgba(255,255,255,.8); }
-  .rec b { width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; animation: blink 1.6s steps(2, start) infinite; }
+  /* ── Hero: letterboxed title card ────────────── */
+  .hero { min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: 84px 1fr auto; position: relative; overflow: hidden; }
+  .screen { position: relative; align-self: center; justify-self: center; width: calc(100% - 2 * var(--g)); max-width: 1500px; aspect-ratio: 2.39 / 1; max-height: 64vh; overflow: hidden; }
+  .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.08); transition: opacity 1.4s ease, transform 9s linear; }
+  .shot.on { opacity: 1; transform: scale(1); }
+  .shot.blur { filter: blur(3px) saturate(1.05); }
+  .screen::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(3,12,22,.25) 30%, rgba(3,12,22,.82) 100%); pointer-events: none; }
+  .scan { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(3,12,22,.12) 0 1px, transparent 1px 3px); }
+  .titles { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; text-align: center; padding: 0 20px; pointer-events: none; }
+  .titles .pre { opacity: 0; animation: fade 1.4s ease .2s forwards; }
+  .titles .ttl { font-family: var(--disp); font-weight: 700; font-size: clamp(30px, 6.4vw, 104px); letter-spacing: .02em; line-height: 1; text-transform: uppercase; margin: 18px 0 12px; text-shadow: 0 10px 50px rgba(0,0,0,.55); opacity: 0; animation: fade 1.6s ease .55s forwards; }
+  .titles .sub { font-family: var(--ar); font-size: clamp(17px, 2.2vw, 30px); opacity: 0; animation: fade 1.4s ease .95s forwards; }
+  @keyframes fade { from { opacity: 0; letter-spacing: .32em; filter: blur(6px); } to { opacity: 1; filter: blur(0); } }
+  .corner { position: absolute; z-index: 3; width: 22px; height: 22px; border: 0 solid rgba(255,255,255,.6); pointer-events: none; }
+  .corner.tl { top: 14px; left: 14px; border-top-width: 1px; border-left-width: 1px; }
+  .corner.tr { top: 14px; right: 14px; border-top-width: 1px; border-right-width: 1px; }
+  .corner.bl { bottom: 14px; left: 14px; border-bottom-width: 1px; border-left-width: 1px; }
+  .corner.br { bottom: 14px; right: 14px; border-bottom-width: 1px; border-right-width: 1px; }
+  .rec { position: absolute; top: 22px; right: 46px; z-index: 3; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.85); }
+  .rec b { width: 7px; height: 7px; border-radius: 50%; background: #ff3b30; animation: blink 1.6s steps(2, start) infinite; }
   @keyframes blink { to { visibility: hidden; } }
+  .ratio { position: absolute; bottom: 22px; left: 46px; z-index: 3; color: rgba(255,255,255,.6); }
 
-  /* ── Partners marquee ────────────────────────── */
-  .partners { background: var(--blue-deep); color: #bcd3e7; overflow: hidden; border-top: 1px solid rgba(255,255,255,.08); }
-  .partners .row { display: flex; align-items: center; }
-  .partners .label { flex: none; padding: 0 40px 0 var(--gutter); font-family: var(--display); font-size: 9.5px; letter-spacing: .3em; text-transform: uppercase; line-height: 1.8; border-right: 1px solid rgba(255,255,255,.14); max-width: 220px; }
-  .marquee { overflow: hidden; flex: 1; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .marquee .track { display: flex; width: max-content; animation: scroll 38s linear infinite; }
-  .marquee:hover .track { animation-play-state: paused; }
-  @keyframes scroll { to { transform: translateX(-50%); } }
-  .logo-item { display: flex; align-items: center; justify-content: center; height: 120px; padding: 0 clamp(36px, 5vw, 72px); }
-  .logo-item img { height: 34px; width: auto; opacity: .95; transition: opacity .3s, transform .3s; }
-  .logo-item img.tall { height: 54px; }
-  .logo-item:hover img { opacity: 1; transform: scale(1.05); }
-  .logo-text { font-family: var(--display); font-size: 17px; letter-spacing: .24em; color: var(--white); text-transform: uppercase; line-height: 1.1; text-align: center; }
-  .logo-text small { display: block; font-size: 8.5px; letter-spacing: .5em; color: #9fcbee; margin-top: 6px; }
-  .logo-sep { width: 6px; height: 6px; transform: rotate(45deg); background: var(--blue-bright); opacity: .7; flex: none; }
+  .credits { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 22px; align-items: start; padding: 24px var(--g) 30px; border-top: 1px solid var(--line-d); }
+  .credit { text-align: left; opacity: .45; transition: opacity .3s; align-self: start; }
+  .credit.on, .credit:hover { opacity: 1; }
+  .credit:focus { outline: none; }
+  .credit:focus-visible { outline: 1px solid var(--blue-soft); outline-offset: 6px; }
+  .credit .k .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #e50914; margin-right: 8px; vertical-align: 1px; animation: blink 1.6s steps(2, start) infinite; }
+
+  /* Coming-soon layer on the hero screen */
+  .soon { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .8s ease; }
+  .screen.is-soon .soon { opacity: 1; }
+  .screen.is-soon .ratio { opacity: 0; }
+  .ribbon { position: absolute; top: 22px; left: 46px; display: flex; align-items: center; gap: 12px; background: #e50914; color: #fff; padding: 9px 14px 9px 12px; font-family: var(--disp); font-weight: 500; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
+  .ribbon img { height: 13px; filter: brightness(0) invert(1); }
+  .soon-poster { position: absolute; right: 5%; top: 50%; width: 15%; aspect-ratio: 4/5; transform: translateY(-46%) rotate(3deg); box-shadow: 0 30px 60px -10px rgba(0,0,0,.8); border: 1px solid rgba(255,255,255,.25); transition: transform 1.2s var(--ease); }
+  .screen.is-soon .soon-poster { transform: translateY(-50%) rotate(3deg); }
+  .soon-poster img { width: 100%; height: 100%; object-fit: cover; }
+  .countdown { display: none; justify-content: center; gap: clamp(10px, 2vw, 26px); margin-top: clamp(14px, 2vw, 26px); opacity: 0; animation: fade 1.4s ease 1.25s forwards; }
+  .screen.is-soon .countdown { display: flex; }
+  .countdown div { min-width: clamp(46px, 5vw, 74px); text-align: center; text-shadow: 0 2px 18px rgba(0,0,0,.85), 0 0 4px rgba(0,0,0,.6); }
+  .countdown b { display: block; font-family: var(--disp); font-weight: 500; font-size: clamp(18px, 2.4vw, 36px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .countdown span { display: block; margin-top: 8px; color: rgba(255,255,255,.65); font-size: 8.5px; }
+  .countdown .sep { min-width: 0; font-family: var(--disp); font-size: clamp(16px, 2vw, 30px); opacity: .4; line-height: 1; }
+  .credit .ln { display: block; height: 2px; background: rgba(255,255,255,.16); margin-bottom: 14px; position: relative; overflow: hidden; }
+  .credit .ln i { position: absolute; inset: 0; background: var(--white); transform-origin: left; transform: scaleX(0); }
+  .credit .k { display: block; color: var(--blue-soft); }
+  .credit .v { display: block; font-family: var(--disp); font-weight: 500; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-top: 8px; }
+  .hero-cta { display: flex; gap: 8px; }
+  .arrow { width: 50px; height: 50px; border: 1px solid rgba(255,255,255,.3); display: grid; place-items: center; transition: background .3s, border-color .3s; }
+  .arrow:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+  .arrow svg { width: 17px; height: 17px; }
+  .hero-link { position: absolute; left: 50%; transform: translateX(-50%); bottom: calc(100% + 18px); z-index: 4; }
 
   /* ── Sections ────────────────────────────────── */
-  section { scroll-margin-top: 80px; }
-  .section { padding: clamp(80px, 11vw, 160px) 0; position: relative; }
+  section { scroll-margin-top: 76px; position: relative; }
+  .sec { padding: clamp(80px, 11vw, 160px) 0; }
   .head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px 48px; margin-bottom: clamp(44px, 6vw, 80px); }
-  .head .h-lg { margin-top: 22px; }
-  .head .lede { max-width: 46ch; font-size: 16px; }
+  .head .t-lg { margin-top: 20px; }
+  .head .lede { max-width: 44ch; font-size: 16px; }
 
-  /* Intro / manifesto */
-  .intro { overflow: hidden; }
-  .intro .ghost {
-    position: absolute; right: -4%; top: 50%; transform: translateY(-50%); width: min(62vw, 900px); opacity: .055; pointer-events: none;
-  }
-  .intro .grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: end; position: relative; }
-  .intro .statement { font-family: var(--display); font-size: clamp(20px, 2.2vw, 31px); line-height: 1.42; text-transform: uppercase; letter-spacing: .01em; margin-top: 28px; }
-  .intro .statement .blue { color: var(--blue); }
-  .counters { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-  .counter { padding: 30px 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .counter .num { font-family: var(--display); font-size: clamp(30px, 3.4vw, 46px); color: var(--blue); line-height: 1; }
-  .counter .lbl { font-size: 12.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+  /* Obsess — coming soon */
+  .obsess { background: #050505; color: var(--white); overflow: hidden; }
+  .obsess::before { content: ""; position: absolute; inset: 0; background: url("assets/img/obsess-candles.jpg") center/cover; opacity: .18; filter: blur(30px) saturate(1.2); transform: scale(1.2); pointer-events: none; }
+  .obsess .grid { position: relative; display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
+  .obsess .poster { position: relative; }
+  .obsess .poster img { width: 100%; aspect-ratio: 4/5; object-fit: cover; box-shadow: 0 50px 100px -30px rgba(0,0,0,.9); }
+  .obsess .poster .date { position: absolute; left: -1px; top: 24px; background: #e50914; color: #fff; padding: 12px 18px; font-family: var(--disp); font-weight: 500; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
+  .obsess .label { color: #ff6b6b; }
+  .obsess h2 { margin: 20px 0 8px; }
+  .obsess .arname { color: #e9d7c3; }
+  .obsess .lede { color: #c9c2ba; margin: 24px 0 30px; }
+  .obsess .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .chip { font-family: var(--disp); font-weight: 400; font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; padding: 8px 12px; border: 1px solid rgba(255,255,255,.3); }
+  .chip.red { background: #e50914; border-color: #e50914; }
+  .stills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 34px; }
+  .stills img { width: 100%; aspect-ratio: 16/10; object-fit: cover; filter: saturate(.9); transition: transform .6s var(--ease), filter .6s; }
+  .stills img:hover { transform: translateY(-4px); filter: saturate(1.1); }
+  .obsess .cast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; }
+  .obsess .cast .k { display: block; color: #8d8680; }
+  .obsess .cast .v { display: block; margin-top: 6px; font-weight: 500; }
+  .cd-big { display: flex; gap: clamp(14px, 2.4vw, 34px); margin-top: 34px; }
+  .cd-big div { text-align: left; }
+  .cd-big b { display: block; font-family: var(--disp); font-weight: 700; font-size: clamp(30px, 4vw, 58px); line-height: 1; font-variant-numeric: tabular-nums; }
+  .cd-big span { display: block; color: #8d8680; margin-top: 10px; }
 
-  /* Monsters feature */
-  .monsters { background: var(--blue-wash); overflow: hidden; }
-  .monsters .bigword {
-    position: absolute; left: 50%; top: clamp(40px, 6vw, 90px); transform: translateX(-50%);
-    font-family: var(--display); font-size: clamp(70px, 17vw, 270px); line-height: 1; color: transparent;
-    -webkit-text-stroke: 1px rgba(0,80,136,.16); white-space: nowrap; pointer-events: none; letter-spacing: .02em;
-  }
-  .monsters .grid { position: relative; display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
-  .stage { position: relative; aspect-ratio: 1 / 1; background: var(--blue-night); }
-  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity .8s ease, transform 1.4s var(--ease); }
-  .stage img.on { opacity: 1; transform: none; }
-  .stage .badge { position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--white); padding: 14px 20px; font-family: var(--display); font-size: 9.5px; letter-spacing: .24em; text-transform: uppercase; color: var(--blue); }
-  .monsters h2 { margin: 22px 0 4px; }
-  .monsters .arabic { font-family: var(--arabic); font-size: clamp(22px, 2.4vw, 30px); color: var(--blue); }
-  .monsters .lede { margin: 24px 0 8px; }
-  .chapters { list-style: none; margin-top: 36px; border-top: 1px solid #d5e0ea; }
-  .chapter { width: 100%; display: grid; grid-template-columns: 54px 1fr auto; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid #d5e0ea; text-align: left; position: relative; transition: padding .4s var(--ease); }
-  .chapter::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0; background: var(--blue); transition: width .6s var(--ease); }
-  .chapter .n { font-family: var(--display); font-size: 11px; letter-spacing: .16em; color: var(--muted); }
-  .chapter .t { font-family: var(--display); font-size: clamp(13px, 1.25vw, 16px); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-soft); transition: color .3s; }
-  .chapter .s { display: block; font-family: var(--body); text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--muted); margin-top: 4px; }
-  .chapter .a { font-family: var(--arabic); font-size: 15px; color: var(--muted); direction: rtl; }
-  .chapter.on .t, .chapter:hover .t { color: var(--blue); }
-  .chapter.on .n { color: var(--blue); }
-  .chapter.on::before { width: 100%; }
-  .chapter.on { padding-left: 10px; }
+  /* Transformers — international credit */
+  .tf { background: #000; color: var(--white); overflow: hidden; }
+  .tf .frame { position: relative; aspect-ratio: 2.39/1; overflow: hidden; background: #fff; }
+  .tf .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: grayscale(.15) contrast(1.05); transition: transform 8s linear; }
+  .tf.in-view .frame img { transform: scale(1.06); }
+  .tf .frame .corner { border-color: rgba(0,0,0,.45); }
+  .tf .frame .badge { position: absolute; left: 46px; bottom: 22px; z-index: 3; color: #111; }
+  .tf .cols { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 6vw, 96px); margin-top: clamp(44px, 5vw, 72px); align-items: start; }
+  .tf h2 { margin-top: 18px; }
+  .tf .lede { color: #b9c9d8; }
+  .tf .ec2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line-d); }
+  .tf .ec2 div { padding: 20px 18px 20px 0; border-bottom: 1px solid var(--line-d); }
+  .tf .ec2 div:nth-child(even) { padding-left: 22px; border-left: 1px solid var(--line-d); }
+  .tf .ec2 dt { color: var(--muted); }
+  .tf .ec2 dd { margin-top: 6px; font-family: var(--disp); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: .03em; }
+
+  /* Presents */
+  .presents { text-align: center; }
+  .presents .big { font-family: var(--disp); font-weight: 300; font-size: clamp(24px, 3.4vw, 50px); line-height: 1.3; max-width: 24ch; margin: 26px auto 0; letter-spacing: -.01em; }
+  .presents .big b { font-weight: 700; color: var(--blue); }
+  .logos { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(30px, 6vw, 84px); margin-top: clamp(50px, 6vw, 80px); padding: 40px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .logos img { height: 28px; transition: transform .3s; }
+  .logos img.t { height: 46px; }
+  .logos img:hover { transform: scale(1.06); }
+  .logos .txt { font-family: var(--disp); font-weight: 500; font-size: 15px; letter-spacing: .22em; text-transform: uppercase; line-height: 1.2; }
+  .logos .txt small { display: block; font-weight: 300; font-size: 8.5px; letter-spacing: .5em; color: var(--muted); margin-top: 4px; }
+  .billing { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(50px, 6vw, 80px); }
+  .billing div { padding: 0 16px; }
+  .billing div + div { border-left: 1px solid var(--line); }
+  .billing b { display: block; font-family: var(--disp); font-weight: 700; font-size: clamp(34px, 4.2vw, 62px); color: var(--blue); line-height: 1; }
+  .billing span { display: block; margin-top: 14px; color: var(--muted); }
+
+  /* Monsters split */
+  .split { display: grid; grid-template-columns: 1fr 1fr; min-height: 92vh; background: var(--ice); }
+  .split .img { position: relative; overflow: hidden; background: var(--night); min-height: 520px; }
+  .split .img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.05); transition: opacity .9s ease, transform 1.6s var(--ease); }
+  .split .img img.on { opacity: 1; transform: none; }
+  .split .img .scan { z-index: 1; }
+  .split .img .tagline { position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--white); padding: 16px 22px; color: var(--blue); }
+  .split .img .nf { position: absolute; top: 20px; left: 20px; z-index: 2; background: #e50914; color: #fff; padding: 7px 11px; letter-spacing: .2em; font-weight: 500; }
+  .split .txt { padding: clamp(56px, 7vw, 110px) var(--g); display: flex; flex-direction: column; justify-content: center; }
+  .split h2 { margin: 22px 0 8px; }
+  .split .lede { margin: 26px 0 36px; }
+  .eps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ep { text-align: left; display: flex; flex-direction: column; align-items: stretch; height: auto; }
+  .ep .p { aspect-ratio: 3/4; overflow: hidden; position: relative; outline: 2px solid transparent; outline-offset: 3px; transition: outline-color .3s; }
+  .ep .p img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .ep:hover .p img { transform: scale(1.05); }
+  .ep.on .p { outline-color: var(--blue); }
+  .ep .nm { display: block; font-family: var(--disp); font-weight: 500; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; margin-top: 12px; line-height: 1.4; }
+  .ep .meta { display: block; font-size: 12.5px; color: var(--muted); }
+  .ep .ar { display: block; font-size: 13px; color: var(--blue); margin-top: 2px; text-align: left; direction: rtl; }
 
   /* Crime of Love */
-  .col { background: var(--white); }
-  .player { position: relative; aspect-ratio: 16 / 9; background: var(--blue-night); overflow: hidden; }
-  .player img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
-  .player:hover img { transform: scale(1.03); }
-  .player .play { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(0deg, rgba(2,26,46,.55), rgba(2,26,46,.05) 60%); }
-  .play .ring { width: clamp(76px, 9vw, 112px); aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.95); display: grid; place-items: center; box-shadow: 0 0 0 0 rgba(255,255,255,.5); animation: pulse 2.4s infinite; transition: transform .4s var(--ease); }
-  .player:hover .ring { transform: scale(1.08); }
-  .play .ring svg { width: 30%; height: 30%; color: var(--blue); margin-left: 6%; }
-  @keyframes pulse { 70% { box-shadow: 0 0 0 26px rgba(255,255,255,0); } 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); } }
-  .play .cap { position: absolute; left: 24px; bottom: 20px; font-family: var(--display); font-size: 10px; letter-spacing: .24em; text-transform: uppercase; color: var(--white); }
-  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .col .details { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(36px, 6vw, 96px); margin-top: clamp(44px, 5vw, 72px); }
-  .col .arabic { font-family: var(--arabic); font-size: clamp(22px, 2.4vw, 30px); color: var(--blue); margin-top: 6px; }
-  .facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
-  .fact { padding: 22px 18px 22px 0; border-bottom: 1px solid var(--line); }
-  .fact:nth-child(odd) { border-right: 1px solid var(--line); }
-  .fact:nth-child(even) { padding-left: 22px; }
-  .fact dt { font-family: var(--display); font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
-  .fact dd { font-size: 15px; font-weight: 500; margin-top: 6px; }
+  .col .player { position: relative; aspect-ratio: 2.39 / 1; overflow: hidden; background: var(--night-2); }
+  .col .player > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; transition: transform 1.4s var(--ease); }
+  .col .player:hover > img { transform: scale(1.03); }
+  .play { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; background: linear-gradient(0deg, rgba(3,12,22,.6), rgba(3,12,22,.05) 60%); }
+  .play .ring { width: clamp(74px, 8vw, 108px); aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(255,255,255,.7); display: grid; place-items: center; position: relative; transition: transform .4s var(--ease), background .4s; }
+  .play .ring::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 1px solid rgba(255,255,255,.25); animation: ripple 2.6s infinite; }
+  @keyframes ripple { from { transform: scale(.85); opacity: 1; } to { transform: scale(1.3); opacity: 0; } }
+  .play:hover .ring { transform: scale(1.06); background: var(--white); }
+  .play .ring svg { width: 28%; color: var(--white); margin-left: 6%; transition: color .4s; }
+  .play:hover .ring svg { color: var(--night); }
+  .play .cap { position: absolute; left: 24px; bottom: 20px; color: var(--white); }
+  .col .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 5; }
+  .endcredits { margin: clamp(60px, 7vw, 100px) auto 0; max-width: 760px; text-align: center; }
+  .endcredits .lede { margin: 0 auto; max-width: 56ch; }
+  .ec { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; margin-top: 50px; }
+  .ec div { display: contents; }
+  .ec dt { text-align: right; color: var(--muted); padding-top: 6px; }
+  .ec dd { text-align: left; font-family: var(--disp); font-weight: 500; font-size: clamp(13px, 1.3vw, 16px); text-transform: uppercase; letter-spacing: .04em; }
 
-  /* Filmography rail */
-  .work { background: var(--blue-night); color: var(--white); overflow: hidden; }
-  .work .eyebrow { color: #9fcbee; }
-  .work .lede { color: #c3d6e6; }
-  .rail-ctrl { display: flex; gap: 8px; }
-  .rail-ctrl .arrow { border-color: rgba(255,255,255,.3); }
-  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(220px, 23vw, 320px); gap: clamp(18px, 2.4vw, 32px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 10px var(--gutter) 30px; margin: 0 calc(var(--gutter) * -1); cursor: grab; }
+  /* Work rail */
+  .work .ctrl { display: flex; gap: 8px; }
+  .work .ctrl .arrow { border-color: var(--line); color: var(--ink); }
+  .work .ctrl .arrow:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .rail { display: grid; grid-auto-flow: column; grid-auto-columns: clamp(220px, 23vw, 320px); gap: clamp(18px, 2.4vw, 30px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 6px var(--g) 30px; margin: 0 calc(var(--g) * -1); cursor: grab; }
   .rail::-webkit-scrollbar { display: none; }
   .rail.drag { cursor: grabbing; scroll-snap-type: none; }
   .card { scroll-snap-align: start; }
-  .card .p { position: relative; aspect-ratio: 2/3; overflow: hidden; background: #0b2a44; }
-  .card .p img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease), filter .6s; pointer-events: none; }
-  .card .p::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(2,26,46,.85), transparent 45%); opacity: 0; transition: opacity .5s; }
-  .card .p .yr { position: absolute; top: 14px; left: 14px; z-index: 2; font-family: var(--display); font-size: 10px; letter-spacing: .2em; background: var(--white); color: var(--blue); padding: 6px 9px; }
+  .card .p { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--ice); }
+  .card .p img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); pointer-events: none; }
+  .card .p .ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,12,22,.92), rgba(3,12,22,.2) 55%, transparent); color: var(--white); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; opacity: 0; transition: opacity .5s; }
+  .card .p .ov .cap { color: var(--blue-soft); }
+  .card .p .ov p { font-size: 13.5px; margin-top: 6px; color: #d5e1ec; }
   .card:hover .p img { transform: scale(1.06); }
-  .card:hover .p::after { opacity: 1; }
-  .card h3 { font-family: var(--display); font-weight: 400; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin-top: 20px; }
-  .card .a { font-family: var(--arabic); color: #9fb7cc; font-size: 14px; margin-top: 4px; }
-  .card .i { font-size: 13px; color: #8ea8bf; margin-top: 4px; }
+  .card:hover .ov { opacity: 1; }
+  .card .yr { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--white); color: var(--blue); padding: 6px 9px; font-weight: 500; letter-spacing: .16em; }
+  .card h3 { font-family: var(--disp); font-weight: 500; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-top: 18px; }
+  .card .a { font-family: var(--ar); color: var(--blue); font-size: 14px; margin-top: 2px; }
 
   /* Founder */
-  .founder .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
-  .portrait { position: sticky; top: 120px; }
-  .portrait .frame { aspect-ratio: 4/5; overflow: hidden; }
-  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 35%; }
-  .portrait .inset { position: absolute; right: -28px; bottom: -36px; width: 42%; border: 8px solid var(--white); box-shadow: 0 30px 60px -20px rgba(11,20,32,.35); }
-  .portrait .inset img { aspect-ratio: 1; }
-  .founder .quote { font-weight: 300; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.42; color: var(--blue); margin: 32px 0; position: relative; padding-top: 44px; }
-  .founder .quote::before { content: "“"; position: absolute; top: -10px; left: -4px; font-family: var(--display); font-size: 80px; line-height: 1; color: var(--blue-ice); }
-  .founder .body p { color: var(--ink-soft); }
+  .founder .grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(40px, 7vw, 120px); align-items: start; }
+  .portrait { position: sticky; top: 110px; }
+  .portrait .frame { aspect-ratio: 4/5; overflow: hidden; position: relative; }
+  .portrait .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 58% 35%; }
+  .portrait .inset { position: absolute; right: -28px; bottom: -36px; width: 40%; border: 8px solid var(--night); }
+  .portrait .inset img { aspect-ratio: 1; object-fit: cover; }
+  .founder h2 { margin: 20px 0 0; }
+  .quote { font-family: var(--disp); font-weight: 300; font-size: clamp(20px, 2.2vw, 30px); line-height: 1.38; margin: 34px 0; color: var(--white); }
+  .quote em { font-style: normal; color: var(--blue-soft); }
+  .founder .body p { color: #b9c9d8; }
   .founder .body p + p { margin-top: 18px; }
-  .credit { margin-top: 40px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; padding: 26px 28px; background: var(--blue-wash); border-left: 2px solid var(--blue); }
-  .credit svg { width: 46px; height: 46px; color: var(--blue); }
-  .credit .k { font-family: var(--display); font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--muted); }
-  .credit .v { font-weight: 600; margin-top: 4px; }
-  .credit .v em { font-weight: 500; }
+  .intl { margin-top: 42px; border: 1px solid var(--line-d); padding: 28px 30px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; position: relative; }
+  .intl .head2 { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid var(--line-d); }
+  .intl .head2 strong { font-family: var(--disp); font-weight: 500; font-size: 15px; text-transform: uppercase; letter-spacing: .03em; }
+  .intl .k { display: block; color: var(--muted); }
+  .intl .v { display: block; margin-top: 6px; font-weight: 500; }
 
-  /* Film-strip timeline */
-  .strip-wrap { margin-top: clamp(80px, 9vw, 130px); }
-  .strip { background: var(--ink); overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--blue) var(--ink); }
-  .frames { position: relative; display: flex; gap: 10px; padding: 34px var(--gutter); width: max-content; min-width: 100%; }
-  .frames::before, .frames::after {
-    content: ""; position: absolute; left: 0; right: 0; height: 12px; opacity: .9;
-    background: repeating-linear-gradient(90deg, transparent 0 14px, #f4f8fb 14px 30px, transparent 30px 44px);
-  }
+  /* Film strip timeline */
+  .strip-wrap { margin-top: clamp(90px, 10vw, 140px); }
+  .strip { background: #000; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--blue) #000; }
+  .frames { position: relative; display: flex; gap: 10px; padding: 34px var(--g); width: max-content; min-width: 100%; }
+  .frames::before, .frames::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; opacity: .85; background: repeating-linear-gradient(90deg, transparent 0 14px, #e9f1f8 14px 30px, transparent 30px 44px); }
   .frames::before { top: 11px; } .frames::after { bottom: 11px; }
-  .frame-cell { width: 270px; flex: none; background: #121e2c; border: 1px solid #1d2c3e; padding: 22px 22px 24px; color: #c9d6e3; transition: background .4s, transform .4s var(--ease); }
-  .frame-cell:hover { background: var(--blue); transform: translateY(-4px); color: var(--white); }
-  .frame-cell .y { font-family: var(--display); font-size: 18px; color: var(--white); letter-spacing: .04em; }
-  .frame-cell .y small { display: block; font-size: 9px; letter-spacing: .28em; color: #7fb3dd; margin-bottom: 10px; }
-  .frame-cell:hover .y small { color: #cfe3f3; }
-  .frame-cell p { font-size: 13.5px; line-height: 1.6; margin-top: 12px; }
+  .fc { width: 270px; flex: none; background: var(--night-2); border: 1px solid var(--night-3); padding: 22px 22px 24px; color: #b9c9d8; transition: background .4s, transform .4s var(--ease); }
+  .fc:hover { background: var(--blue); transform: translateY(-4px); color: var(--white); }
+  .fc .y { font-family: var(--disp); font-weight: 700; font-size: 20px; color: var(--white); }
+  .fc .y small { display: block; font-weight: 300; font-size: 9px; letter-spacing: .28em; color: var(--blue-soft); margin-bottom: 10px; text-transform: uppercase; }
+  .fc p { font-size: 13.5px; line-height: 1.6; margin-top: 12px; }
 
-  /* Services with line illustrations */
-  .services .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
-  .svc { padding: 40px 32px 44px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); position: relative; transition: background .4s; overflow: hidden; }
-  .svc:hover { background: var(--blue); color: var(--white); }
-  .svc svg { width: 84px; height: 84px; color: var(--blue); transition: color .4s, transform .6s var(--ease); }
-  .svc:hover svg { color: var(--white); transform: translateY(-4px) rotate(-3deg); }
-  .svc .n { position: absolute; top: 28px; right: 28px; font-family: var(--display); font-size: 11px; letter-spacing: .14em; color: var(--muted); transition: color .4s; }
-  .svc:hover .n { color: #b9d4ea; }
-  .svc h3 { font-family: var(--display); font-weight: 400; font-size: 14px; letter-spacing: .07em; text-transform: uppercase; margin: 34px 0 14px; line-height: 1.55; }
-  .svc p { font-size: 14px; color: var(--muted); line-height: 1.7; transition: color .4s; }
-  .svc:hover p { color: #d4e3f0; }
-  .svc .draw { stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset 2s var(--ease); }
-  .in .svc .draw, .svc.in .draw { stroke-dashoffset: 0; }
+  /* Services */
+  .services { background: var(--ice); }
+  .svc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .svc { background: var(--white); padding: 38px 30px 42px; position: relative; overflow: hidden; transition: background .4s, color .4s, transform .4s var(--ease); }
+  .svc:hover { background: var(--night); color: var(--white); transform: translateY(-4px); }
+  .svc svg { width: 76px; height: 76px; color: var(--blue); transition: color .4s; }
+  .svc:hover svg { color: var(--blue-soft); }
+  .svc .n { position: absolute; top: 26px; right: 26px; color: var(--muted); }
+  .svc h3 { font-family: var(--disp); font-weight: 500; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin: 30px 0 12px; line-height: 1.5; }
+  .svc p { font-size: 14px; color: var(--muted); transition: color .4s; }
+  .svc:hover p { color: #b9c9d8; }
+  .draw { stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset 2.2s var(--ease); }
+  .in .draw { stroke-dashoffset: 0; }
 
-  /* Music video marquee */
+  /* Music video */
   .mv { background: var(--blue); color: var(--white); overflow: hidden; padding: clamp(80px, 10vw, 140px) 0; }
-  .mv .eyebrow { color: #b9d4ea; }
-  .mv .head .lede { color: #d4e3f0; }
-  .names { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
-  .names .track { display: flex; width: max-content; gap: 0; animation: scroll 60s linear infinite; }
-  .names .row2 .track { animation-direction: reverse; animation-duration: 70s; }
-  .names span { font-family: var(--display); font-size: clamp(26px, 4vw, 56px); text-transform: uppercase; white-space: nowrap; padding: 0 28px; line-height: 1.3; letter-spacing: .02em; }
-  .names span.o { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.55); }
-  .names span.d { color: #7fb3dd; font-size: clamp(18px, 2.4vw, 32px); align-self: center; padding: 0 6px; }
-  .reel { margin-top: 56px; }
+  .mv .label { color: #cfe3f3; }
+  .mv .lede { color: #d4e3f0; }
+  .names { display: flex; flex-direction: column; gap: 10px; }
+  .names .track { display: flex; width: max-content; animation: scroll 60s linear infinite; }
+  .names .r2 .track { animation-direction: reverse; animation-duration: 72s; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  .names span { font-family: var(--disp); font-weight: 700; font-size: clamp(26px, 4.2vw, 60px); text-transform: uppercase; white-space: nowrap; padding: 0 26px; line-height: 1.25; }
+  .names span.o { color: rgba(255,255,255,.3); font-weight: 300; }
+  .names span.d { color: var(--blue-soft); font-size: clamp(14px, 1.6vw, 22px); align-self: center; padding: 0 4px; }
+  .mv .reel { margin-top: 56px; }
 
-  /* Range / Recognition */
-  .recog .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); }
-  .award { position: relative; padding: 40px 32px 42px; background: var(--white); border: 1px solid var(--line); overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s; }
+  /* Recognition */
+  .awards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.2vw, 28px); }
+  .award { border: 1px solid var(--line); padding: 38px 32px 40px; position: relative; overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s; }
   .award:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(0,58,99,.35); }
   .award::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--blue); transform: scaleX(.18); transform-origin: left; transition: transform .6s var(--ease); }
   .award:hover::before { transform: scaleX(1); }
-  .award svg { width: 44px; height: 44px; color: var(--blue); }
-  .award .yr { font-family: var(--display); font-size: 10.5px; letter-spacing: .22em; color: var(--blue); margin-top: 26px; display: block; }
-  .award h3 { font-family: var(--display); font-weight: 400; font-size: 15px; text-transform: uppercase; letter-spacing: .05em; margin: 12px 0 10px; line-height: 1.5; }
+  .award svg { width: 42px; height: 42px; color: var(--blue); }
+  .award .yr { display: block; color: var(--blue); margin-top: 24px; }
+  .award h3 { font-family: var(--disp); font-weight: 500; font-size: 15px; text-transform: uppercase; letter-spacing: .03em; margin: 12px 0 10px; line-height: 1.45; }
   .award p { font-size: 14px; color: var(--muted); }
-  .disciplines { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: clamp(56px, 7vw, 96px); border-top: 1px solid var(--line); }
-  .disc { padding: 30px 28px 0 0; }
-  .disc + .disc { padding-left: 28px; border-left: 1px solid var(--line); }
-  .disc strong { font-family: var(--display); font-weight: 400; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
-  .disc p { font-size: 14px; color: var(--muted); margin-top: 8px; }
-  .houses { margin-top: clamp(56px, 7vw, 96px); display: grid; grid-template-columns: 220px 1fr; gap: 24px 40px; align-items: start; }
-  .houses .lbl { font-family: var(--display); font-size: 9.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); padding-top: 4px; }
-  .houses ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .houses strong { display: block; font-weight: 600; }
-  .houses span { font-size: 13px; color: var(--muted); }
+  .bill2 { margin-top: clamp(56px, 7vw, 96px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); }
+  .bill2 h4 { color: var(--muted); margin-bottom: 20px; }
+  .bill2 ul { list-style: none; border-top: 1px solid var(--line); }
+  .bill2 li { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .bill2 li strong { font-family: var(--disp); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  .bill2 li span { font-size: 13.5px; color: var(--muted); text-align: right; }
 
-  /* Contact */
-  .contact { background: var(--blue-deep); color: var(--white); overflow: hidden; }
-  .contact .ghost { position: absolute; right: -6%; bottom: -12%; width: min(70vw, 980px); opacity: .07; pointer-events: none; }
+  /* Contact — end card */
+  .contact { overflow: hidden; }
+  .contact .ghost { position: absolute; right: -6%; bottom: -14%; width: min(70vw, 980px); opacity: .06; pointer-events: none; }
   .contact .grid { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(40px, 7vw, 120px); align-items: end; }
-  .contact .eyebrow { color: #9fcbee; }
-  .contact .h-xl { margin-top: 26px; font-size: clamp(40px, 7vw, 104px); }
-  .contact .lede { color: #c3d6e6; margin: 26px 0 40px; }
-  .clist { list-style: none; border-top: 1px solid rgba(255,255,255,.18); }
-  .clist li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
-  .clist .k { font-family: var(--display); font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: #8fb6d6; padding-top: 5px; }
+  .contact .t-xl { margin-top: 24px; }
+  .contact .lede { margin: 26px 0 38px; }
+  .clist { list-style: none; border-top: 1px solid var(--line-d); }
+  .clist li { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line-d); }
+  .clist .k { color: var(--muted); padding-top: 5px; }
   .clist .v { font-size: 16px; overflow-wrap: anywhere; }
-  .clist a.v:hover { color: #9fcbee; }
+  .clist a.v:hover { color: var(--blue-soft); }
 
-  .footer { background: var(--blue-night); color: #8ea8bf; }
-  .footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 28px; padding-top: 52px; padding-bottom: 52px; }
-  .footer .lock { height: 64px; width: auto; }
-  .footer .fine { font-size: 12px; text-align: right; line-height: 1.9; }
+  .footer { background: #000; color: #7d8a99; }
+  .footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 26px; padding-top: 48px; padding-bottom: 48px; }
+  .footer .lock { height: 60px; width: auto; }
+  .footer .fine { font-size: 12.5px; text-align: right; line-height: 1.9; }
   .footer a:hover { color: var(--white); }
 
   /* Reveal */
@@ -417,383 +411,349 @@
 
   /* ── Responsive ──────────────────────────────── */
   @media (max-width: 1100px) {
-    .services .grid { grid-template-columns: 1fr 1fr; }
-    .houses ul { grid-template-columns: 1fr 1fr; }
-    .houses { grid-template-columns: 1fr; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 900px) {
     .menu-btn { display: block; }
-    .nav {
-      position: fixed; inset: 88px 0 auto 0; background: var(--white); color: var(--ink);
-      flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--gutter) 28px; box-shadow: 0 1px 0 var(--line);
-      opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .3s, transform .3s, visibility .3s;
-    }
-    .header.menu-open { background: var(--white); color: var(--ink); }
+    .nav { position: fixed; inset: 84px 0 auto 0; background: var(--night); flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--g) 28px; border-bottom: 1px solid var(--line-d);
+      opacity: 0; visibility: hidden; transform: translateY(-10px); transition: opacity .3s, transform .3s, visibility .3s; }
+    .header.menu-open { background: var(--night); }
     .menu-open .nav { opacity: 1; visibility: visible; transform: none; }
-    .nav a { padding: 18px 0; font-size: 12px; border-bottom: 1px solid var(--line); }
+    .nav a { padding: 18px 0; font-size: 12px; border-bottom: 1px solid var(--line-d); opacity: 1; }
     .nav a::after { display: none; }
-    .nav .cta { margin-top: 20px; text-align: center; background: var(--blue); color: var(--white); border-color: var(--blue); }
-    .slide .inner { grid-template-columns: 1fr; padding-bottom: 190px; align-content: end; }
-    .slide .visual { display: none; }
-    .slide .bg::after { background: linear-gradient(0deg, rgba(2,26,46,.97) 8%, rgba(2,26,46,.6) 55%, rgba(2,26,46,.3) 100%); }
-    .tabs { grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .tab .t { display: none; }
-    .arrows { display: none; }
-    .rec { top: 104px; }
-    .intro .grid, .monsters .grid, .col .details, .founder .grid, .contact .grid { grid-template-columns: 1fr; }
-    .portrait { position: relative; top: 0; margin-right: 28px; margin-bottom: 36px; }
-    .recog .grid { grid-template-columns: 1fr; }
-    .disciplines { grid-template-columns: 1fr; }
-    .disc + .disc { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); margin-top: 28px; }
-    .partners .label { display: none; }
+    .nav .cta { margin-top: 20px; text-align: center; background: var(--white); color: var(--night); }
+    .screen { aspect-ratio: 4 / 5; max-height: 66vh; }
+    .rec { right: 34px; } .ratio { display: none; }
+    .credits { grid-template-columns: repeat(5, 1fr); gap: 8px; padding-top: 18px; padding-bottom: 22px; }
+    .credit .k { display: none; }
+    .credit .ln { margin-bottom: 10px; }
+    .credit .v { font-size: 8px; letter-spacing: 0; line-height: 1.35; margin-top: 0; min-height: 2.7em; }
+    .hero-cta { display: none; }
+    .soon-poster { display: none; }
+    .ribbon { top: 16px; left: 16px; padding: 7px 10px; font-size: 8.5px; }
+    .rec { top: 52px; right: auto; left: 16px; }
+    .obsess .grid, .tf .cols { grid-template-columns: 1fr; }
+    .obsess .poster { max-width: 420px; }
+    .billing { grid-template-columns: 1fr 1fr; gap: 34px 0; }
+    .billing div:nth-child(3) { border-left: 0; }
+    .split, .founder .grid, .contact .grid, .bill2 { grid-template-columns: 1fr; }
+    .split .img { min-height: 62vh; }
+    .portrait { position: relative; top: 0; margin-right: 28px; margin-bottom: 40px; }
+    .awards { grid-template-columns: 1fr; }
+    .intl { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 560px) {
-    .header .wrap { height: 72px; }
+    .header .bar { height: 72px; }
     .nav { inset: 72px 0 auto 0; }
-    .hero { min-height: 600px; }
-    .slide .desc { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 26px; }
-    .slide .actions .btn { flex: 1 1 100%; justify-content: center; }
-    .counters { grid-template-columns: 1fr 1fr; }
-    .counter { padding: 22px 16px; }
-    .services .grid { grid-template-columns: 1fr; }
-    .facts { grid-template-columns: 1fr; }
-    .fact:nth-child(odd) { border-right: 0; }
-    .fact:nth-child(even) { padding-left: 0; }
-    .chapter { grid-template-columns: 40px 1fr; }
-    .chapter .a { display: none; }
-    .houses ul { grid-template-columns: 1fr; }
+    .hero { grid-template-rows: 72px 1fr auto; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .eps { gap: 10px; }
+    .ep .nm { font-size: 9.5px; }
+    .ep .meta { display: none; }
+    .ec { grid-template-columns: 1fr; gap: 4px; }
+    .ec dt { text-align: center; padding-top: 18px; }
+    .ec dd { text-align: center; }
     .clist li { grid-template-columns: 1fr; gap: 4px; }
     .footer .wrap { flex-direction: column; align-items: flex-start; }
     .footer .fine { text-align: left; }
-    .logo-item { height: 96px; }
     .portrait .inset { right: -20px; bottom: -28px; }
-    .frame-cell { width: 230px; }
+    .fc { width: 230px; }
+    .intl { grid-template-columns: 1fr; padding: 24px 22px; }
+    .obsess .cast { grid-template-columns: 1fr 1fr; }
+    .stills { grid-template-columns: 1fr 1fr; } .stills img:last-child { display: none; }
+    .tf .ec2 { grid-template-columns: 1fr; }
+    .tf .ec2 div:nth-child(even) { padding-left: 0; border-left: 0; }
+    .tf .frame .badge { display: none; }
+    .countdown span { font-size: 7px; letter-spacing: .2em; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
-    .reveal { opacity: 1; transform: none; }
+    .reveal, .titles * { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
 <body class="no-js">
 
 <header class="header" id="header">
-  <div class="wrap">
-    <a href="#top" class="mark" aria-label="Level Seven Pictures — home">
-      <img class="light" src="assets/brand/l7-mark-light.png" alt="" width="390" height="168" />
-      <img class="dark" src="assets/brand/l7-mark-dark.png" alt="Level Seven Pictures" width="390" height="168" />
-    </a>
+  <div class="bar">
+    <a href="#top" class="mark" aria-label="Level Seven Pictures — home"><img src="assets/brand/l7-mark-light.png" alt="Level Seven Pictures" width="390" height="168" /></a>
     <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="Main">
+      <a href="#obsess">Obsess</a>
       <a href="#monsters">Monsters</a>
       <a href="#crime-of-love">Crime of Love</a>
       <a href="#work">Work</a>
       <a href="#founder">Founder</a>
-      <a href="#services">Services</a>
       <a href="#contact" class="cta">Contact</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
-  <!-- ═══ Hero carousel ═══ -->
-  <section class="hero" aria-roledescription="carousel" aria-label="Featured productions">
-    <div class="rec" aria-hidden="true"><b></b><span id="tc">REC 00:00:00:00</span></div>
-
-    <article class="slide active" aria-roledescription="slide" aria-label="1 of 4">
-      <div class="bg blur"><img src="assets/img/monster-bank.jpg" alt="" /></div>
-      <div class="wrap inner">
-        <div class="copy">
-          <p class="kicker">Featured series · Anthology</p>
-          <h1>Monsters</h1>
-          <p class="arabic" lang="ar">وحوش</p>
-          <p class="desc">An anthology of true crime that shook Kuwait — each chapter a different monster. Directed by Said El Marouk, from <em>Monster of the Bank</em> to <em>Amina’s Monster</em> on Netflix.</p>
-          <div class="actions">
-            <a href="#monsters" class="btn btn-white">Explore the series <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
-            <span class="meta" style="margin:0;align-items:center"><span class="chip red">Netflix</span><span class="chip">Shasha</span><span class="chip">2025</span></span>
-          </div>
-        </div>
-        <div class="visual fan" aria-hidden="true">
-          <img src="assets/img/monster-amina.jpg" alt="" />
-          <img src="assets/posters/djinn-wedding.jpg" alt="" />
-          <img src="assets/img/monsters-poster.jpg" alt="" />
-        </div>
+  <!-- ═══ Hero ═══ -->
+  <section class="hero on-dark" aria-roledescription="carousel" aria-label="Featured productions">
+    <div></div>
+    <div class="screen is-soon" id="screen">
+      <img class="shot on" src="assets/img/obsess-candles.jpg" alt="" style="object-position:50% 40%" />
+      <img class="shot" src="assets/img/crime-of-love-still.jpg" alt="" />
+      <img class="shot" src="assets/img/monster-bank.jpg" alt="" style="object-position:50% 38%" />
+      <img class="shot" src="assets/img/deep-state-key.jpg" alt="" style="object-position:50% 42%" />
+      <img class="shot" src="assets/img/said-hero.jpg" alt="" style="object-position:60% 34%" />
+      <span class="scan"></span>
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span class="rec cap"><b></b><span id="tc">REC 00:00:00:00</span></span>
+      <span class="ratio cap" id="ratio">2.39 : 1 — Netflix · 30 October 2026</span>
+      <div class="soon" aria-hidden="true">
+        <span class="ribbon">Coming soon <img src="assets/partners/netflix.svg" alt="" /></span>
+        <div class="soon-poster"><img src="assets/posters/obsess.jpg" alt="" /></div>
       </div>
-    </article>
-
-    <article class="slide" aria-roledescription="slide" aria-label="2 of 4">
-      <div class="bg"><img src="assets/img/crime-of-love-still.jpg" alt="" /></div>
-      <div class="wrap inner">
-        <div class="copy">
-          <p class="kicker">Shasha Originals · Ramadan 2026</p>
-          <h2>Crime<br />of Love</h2>
-          <p class="arabic" lang="ar">جناية حب</p>
-          <p class="desc">One death on a Kuwaiti shore, told seven times — each episode through the eyes of a different member of the family. Adapted from Buthaina Al-Essa’s novel <em>The Blind Sinbad</em>.</p>
-          <div class="actions">
-            <a href="#crime-of-love" class="btn btn-white">Watch the opening <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
-            <span class="meta" style="margin:0;align-items:center"><span class="chip">7 episodes</span><span class="chip">Shasha</span></span>
-          </div>
+      <div class="titles" aria-live="polite"><div>
+        <p class="cap pre" id="pre">A Netflix series by Said El Marouk</p>
+        <p class="ttl" id="ttl">Obsess</p>
+        <p class="sub ar" id="sub">النفس المطمئنة</p>
+        <div class="countdown cd" aria-label="Countdown to premiere">
+          <div><b data-u="d">00</b><span class="cap">Days</span></div><div class="sep">:</div>
+          <div><b data-u="h">00</b><span class="cap">Hours</span></div><div class="sep">:</div>
+          <div><b data-u="m">00</b><span class="cap">Min</span></div><div class="sep">:</div>
+          <div><b data-u="s">00</b><span class="cap">Sec</span></div>
         </div>
+      </div></div>
+    </div>
+    <div class="credits">
+      <button class="credit on" data-soon="1" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October 2026" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
+      <button class="credit" data-pre="Level Seven Pictures presents" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha · 2026" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha · 2026</span><span class="v">Crime of Love</span></button>
+      <button class="credit" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha · 2025" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix · 2025</span><span class="v">Monsters</span></button>
+      <button class="credit" data-pre="Directed by Said El Marouk" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 eps · 2023" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series · 2023</span><span class="v">The Deep State</span></button>
+      <button class="credit" data-pre="A Said El Marouk Film Factory" data-t="Level Seven" data-s="Pictures — Abu Dhabi · Beirut" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
+      <div class="hero-cta">
+        <button class="arrow" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
+        <button class="arrow" data-dir="1" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
       </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="slide" aria-roledescription="slide" aria-label="3 of 4">
-      <div class="bg blur"><img src="assets/img/deep-state-key.jpg" alt="" /></div>
-      <div class="wrap inner">
-        <div class="copy">
-          <p class="kicker">Series · 8 episodes · 2023</p>
-          <h2>The Deep<br />State</h2>
-          <p class="arabic" lang="ar">الدولة العميقة</p>
-          <p class="desc">A pan-Arab political thriller and Said El Marouk’s most widely seen work to date — the scale of a commercial eye, brought to long-form drama.</p>
-          <div class="actions">
-            <a href="#work" class="btn btn-white">Full filmography <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
-          </div>
-        </div>
-        <div class="visual single-poster vf" aria-hidden="true"><i></i><i></i><i></i><i></i><img src="assets/posters/the-deep-state.jpg" alt="" /></div>
+  <!-- ═══ Obsess — coming soon ═══ -->
+  <section class="sec obsess" id="obsess">
+    <div class="wrap grid">
+      <div class="poster reveal">
+        <img src="assets/posters/obsess.jpg" alt="Obsess — A Netflix series, 30 October" />
+        <span class="date">On Netflix · 30 Oct</span>
       </div>
-    </article>
-
-    <article class="slide" aria-roledescription="slide" aria-label="4 of 4">
-      <div class="bg"><img src="assets/img/said-hero.jpg" alt="" style="object-position:62% 30%" /></div>
-      <div class="wrap inner">
-        <div class="copy">
-          <p class="kicker">A Said El Marouk Film Factory</p>
-          <h2>Level<br />Se7en</h2>
-          <p class="arabic">Pictures — Abu Dhabi · Beirut</p>
-          <p class="desc">Thirty years behind the camera, four countries, seventy music videos and a slate of features and series for regional and international platforms.</p>
-          <div class="actions">
-            <a href="#founder" class="btn btn-white">Meet the founder <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
-            <a href="#contact" class="btn btn-line-w">Work with us</a>
-          </div>
+      <div class="reveal d2">
+        <p class="cap label">Coming soon · A Netflix series</p>
+        <h2 class="t-xl">Obsess</h2>
+        <p class="arname ar" style="text-align:left">النفس المطمئنة</p>
+        <p class="lede">A man returns to Kuwait to mourn his father — and is drawn, without knowing it, back into the cursed grip of an obsessive love. Guilt, desire and black magic blur until he can no longer tell memory from fear.</p>
+        <div class="meta"><span class="chip red">Netflix</span><span class="chip">Psychological horror</span><span class="chip">Shasha</span></div>
+        <div class="cast">
+          <div><span class="cap k">Directed by</span><span class="v">Said El Marouk</span></div>
+          <div><span class="cap k">Written by</span><span class="v">Eyad Saleh</span></div>
+          <div><span class="cap k">Starring</span><span class="v">Haya Abdulsalam, Yaqoub Al-Farhan, Laila Abdallah</span></div>
         </div>
-      </div>
-    </article>
-
-    <div class="hero-ui">
-      <div class="wrap">
-        <div class="tabs" role="tablist" aria-label="Choose slide">
-          <button class="tab active" role="tab" aria-selected="true"><span class="bar"></span><span class="n">01</span><span class="t">Monsters</span></button>
-          <button class="tab" role="tab" aria-selected="false"><span class="bar"></span><span class="n">02</span><span class="t">Crime of Love</span></button>
-          <button class="tab" role="tab" aria-selected="false"><span class="bar"></span><span class="n">03</span><span class="t">The Deep State</span></button>
-          <button class="tab" role="tab" aria-selected="false"><span class="bar"></span><span class="n">04</span><span class="t">The Studio</span></button>
+        <div class="cd-big cd" aria-label="Countdown to premiere">
+          <div><b data-u="d">00</b><span class="cap">Days</span></div>
+          <div><b data-u="h">00</b><span class="cap">Hours</span></div>
+          <div><b data-u="m">00</b><span class="cap">Minutes</span></div>
+          <div><b data-u="s">00</b><span class="cap">Seconds</span></div>
         </div>
-        <div class="arrows">
-          <button class="arrow" data-dir="-1" aria-label="Previous slide"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
-          <button class="arrow" data-dir="1" aria-label="Next slide"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+        <div class="stills">
+          <img src="assets/img/obsess-candles.jpg" alt="Obsess — still" loading="lazy" />
+          <img src="assets/img/obsess-night.jpg" alt="Obsess — still" loading="lazy" />
+          <img src="assets/img/obsess-room.jpg" alt="Obsess — still" loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Partners ═══ -->
-  <div class="partners">
-    <div class="row">
-      <p class="label">Productions with</p>
-      <div class="marquee" aria-label="Partners: Netflix, Shasha, New Century Production, Arabica Movies">
-        <div class="track">
-          <!-- set A -->
-          <div class="logo-item"><img src="assets/partners/netflix.svg" alt="Netflix" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><img class="tall" src="assets/partners/shasha.png" alt="Shasha" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><img class="tall" src="assets/partners/newcentury.png" alt="New Century Production" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><span class="logo-text">Arabica<small>Movies</small></span></div><span class="logo-sep"></span>
-          <div class="logo-item"><img src="assets/partners/netflix.svg" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><img class="tall" src="assets/partners/shasha.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><img class="tall" src="assets/partners/newcentury.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item"><span class="logo-text">Arabica<small>Movies</small></span></div><span class="logo-sep"></span>
-          <!-- set B (duplicate for seamless loop) -->
-          <div class="logo-item" aria-hidden="true"><img src="assets/partners/netflix.svg" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><img class="tall" src="assets/partners/shasha.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><img class="tall" src="assets/partners/newcentury.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><span class="logo-text">Arabica<small>Movies</small></span></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><img src="assets/partners/netflix.svg" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><img class="tall" src="assets/partners/shasha.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><img class="tall" src="assets/partners/newcentury.png" alt="" /></div><span class="logo-sep"></span>
-          <div class="logo-item" aria-hidden="true"><span class="logo-text">Arabica<small>Movies</small></span></div><span class="logo-sep"></span>
-        </div>
+  <!-- ═══ Presents ═══ -->
+  <section class="sec presents">
+    <div class="wrap">
+      <p class="cap label reveal">The studio</p>
+      <p class="big reveal d1">Feature films and series by <b>Said El Marouk</b> — for the Arab world and every screen beyond it.</p>
+      <div class="logos reveal d2" aria-label="Partners">
+        <img src="assets/partners/netflix.svg" alt="Netflix" />
+        <img class="t" src="assets/partners/shasha.png" alt="Shasha" style="filter:invert(1)" />
+        <img class="t" src="assets/partners/newcentury.png" alt="New Century Production" />
+        <span class="txt">Arabica<small>Movies</small></span>
       </div>
-    </div>
-  </div>
-
-  <!-- ═══ Intro ═══ -->
-  <section class="section intro">
-    <img class="ghost" src="assets/brand/l7-mark-dark.png" alt="" aria-hidden="true" />
-    <div class="wrap grid">
-      <div class="reveal">
-        <p class="eyebrow">The studio</p>
-        <p class="statement"><span class="wordmark"><span class="l">L</span>evel Se<span class="s">7</span>en</span> Pictures develops and produces <span class="blue">feature films and series</span> for regional and international platforms — across Lebanon, the Gulf and Egypt.</p>
-      </div>
-      <div class="counters reveal d2">
-        <div class="counter"><div class="num" data-count="30">0</div><div class="lbl">Years behind the camera</div></div>
-        <div class="counter"><div class="num" data-count="70" data-suffix="+">0</div><div class="lbl">Music videos directed</div></div>
-        <div class="counter"><div class="num" data-count="4">0</div><div class="lbl">Production houses founded</div></div>
-        <div class="counter"><div class="num" data-count="4">0</div><div class="lbl">Countries of production</div></div>
+      <div class="billing reveal d3">
+        <div><b data-count="30">0</b><span class="cap">Years behind the camera</span></div>
+        <div><b data-count="70" data-suffix="+">0</b><span class="cap">Music videos</span></div>
+        <div><b data-count="4">0</b><span class="cap">Production houses</span></div>
+        <div><b data-count="4">0</b><span class="cap">Countries</span></div>
       </div>
     </div>
   </section>
 
   <!-- ═══ Monsters ═══ -->
-  <section class="section monsters" id="monsters">
-    <div class="bigword" aria-hidden="true">MONSTERS</div>
-    <div class="wrap grid">
-      <div class="stage vf reveal" id="stage"><i></i><i></i><i></i><i></i>
-        <img class="on" src="assets/img/monster-bank.jpg" alt="Monster of the Bank key art" />
-        <img src="assets/img/monster-amina.jpg" alt="Amina’s Monster key art" />
-        <img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" />
-        <span class="badge" id="stage-badge">Chapter 01</span>
-      </div>
-      <div class="reveal d2">
-        <p class="eyebrow">Featured series</p>
-        <h2 class="h-lg">Monsters</h2>
-        <p class="arabic" lang="ar">وحوش</p>
-        <p class="lede">An anthology inspired by real crimes in Kuwait. Every chapter stands alone — its own monster, its own city streets, its own terror. Produced with Shasha; <em>Amina’s Monster</em> took the anthology to Netflix.</p>
-        <ul class="chapters" role="tablist" aria-label="Monsters chapters">
-          <li><button class="chapter on" role="tab" aria-selected="true" data-i="0"><span class="n">01</span><span class="t">Monster of the Bank<span class="s">With Ali Kakuli &amp; Abdullah Alturkumani · Shasha</span></span><span class="a">وحش البنوك</span></button></li>
-          <li><button class="chapter" role="tab" aria-selected="false" data-i="1"><span class="n">02</span><span class="t">Amina’s Monster<span class="s">Netflix · from the Wohoosh anthology</span></span><span class="a">وحش أمينة</span></button></li>
-          <li><button class="chapter" role="tab" aria-selected="false" data-i="2"><span class="n">03</span><span class="t">Djinn Wedding<span class="s">Monsters 2 · 2026</span></span><span class="a">عرس الجن</span></button></li>
-        </ul>
+  <section class="split" id="monsters">
+    <div class="img" id="m-img">
+      <img class="on" src="assets/img/monster-bank.jpg" alt="Monster of the Bank key art" style="object-position:40% 50%" />
+      <img src="assets/img/monster-amina.jpg" alt="Amina’s Monster key art" />
+      <img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" />
+      <span class="scan"></span>
+      <span class="nf cap">Netflix</span>
+      <span class="tagline cap" id="m-tag">Chapter 01 — Monster of the Bank</span>
+    </div>
+    <div class="txt">
+      <p class="cap label reveal">Featured series · Anthology</p>
+      <h2 class="t-xl reveal">Monsters</h2>
+      <p class="arname ar reveal" style="text-align:left">وحوش</p>
+      <p class="lede reveal d1">An anthology inspired by real crimes in Kuwait. Every chapter stands alone — its own monster, its own streets, its own terror. Produced with Shasha; <em>Amina’s Monster</em> took the anthology to Netflix.</p>
+      <div class="eps reveal d2" role="tablist" aria-label="Chapters">
+        <button class="ep on" role="tab" aria-selected="true" data-i="0" data-tag="Chapter 01 — Monster of the Bank"><span class="p"><img src="assets/img/monsters-poster.jpg" alt="" /></span><span class="nm">Monster of the Bank</span><span class="ar">وحش البنوك</span><span class="meta">With Ali Kakuli &amp; Abdullah Alturkumani</span></button>
+        <button class="ep" role="tab" aria-selected="false" data-i="1" data-tag="Chapter 02 — Amina’s Monster"><span class="p"><img src="assets/img/monster-amina.jpg" alt="" /></span><span class="nm">Amina’s Monster</span><span class="ar">وحش أمينة</span><span class="meta">Netflix</span></button>
+        <button class="ep" role="tab" aria-selected="false" data-i="2" data-tag="Monsters 2 — Djinn Wedding"><span class="p"><img src="assets/posters/djinn-wedding.jpg" alt="" /></span><span class="nm">Djinn Wedding</span><span class="ar">عرس الجن</span><span class="meta">Monsters 2 · 2026</span></button>
       </div>
     </div>
   </section>
 
   <!-- ═══ Crime of Love ═══ -->
-  <section class="section col" id="crime-of-love">
+  <section class="sec col on-dark" id="crime-of-love">
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <p class="eyebrow">Shasha Originals · 2026</p>
-          <h2 class="h-lg">Crime of Love</h2>
-          <p class="arabic" lang="ar">جناية حب</p>
+          <p class="cap label">Shasha Originals · Ramadan 2026</p>
+          <h2 class="t-lg">Crime of Love</h2>
+          <p class="arname ar" style="text-align:left;margin-top:8px">جناية حب</p>
         </div>
         <p class="lede">A family, a fatal day by the sea, and four decades of consequence — from the 1980s to today.</p>
       </div>
-      <div class="player vf reveal" id="player"><i></i><i></i><i></i><i></i>
+      <div class="player reveal" id="player">
         <img src="assets/img/crime-of-love-still.jpg" alt="Crime of Love — cast key art" loading="lazy" />
+        <span class="scan"></span>
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
         <button class="play" aria-label="Play the Crime of Love opening titles">
           <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
           <span class="cap">Opening titles · 2:07</span>
         </button>
       </div>
-      <div class="details">
-        <div class="reveal">
-          <p class="lede" style="max-width:none">The same event, retold from a new perspective in every episode. Adapted from <em>The Blind Sinbad</em>, the acclaimed novel by Kuwaiti author Buthaina Al-Essa, with a screenplay by Bilal Fadl and dialogue in Kuwaiti dialect by the novelist herself.</p>
-        </div>
-        <dl class="facts reveal d2">
-          <div class="fact"><dt>Format</dt><dd>Mini-series, 7 eps</dd></div>
-          <div class="fact"><dt>Platform</dt><dd>Shasha Originals</dd></div>
-          <div class="fact"><dt>Director</dt><dd>Said El Marouk</dd></div>
-          <div class="fact"><dt>Premiere</dt><dd>Ramadan 2026</dd></div>
-          <div class="fact"><dt>Screenplay</dt><dd>Bilal Fadl</dd></div>
-          <div class="fact"><dt>Music</dt><dd>Khaled El Sheikh &amp; Walid Sultan</dd></div>
+      <div class="endcredits reveal">
+        <p class="lede">The same event, retold from a new perspective in every episode. Adapted from <em>The Blind Sinbad</em>, the acclaimed novel by Kuwaiti author Buthaina Al-Essa.</p>
+        <dl class="ec">
+          <div><dt class="cap">Directed by</dt><dd>Said El Marouk</dd></div>
+          <div><dt class="cap">Based on the novel by</dt><dd>Buthaina Al-Essa</dd></div>
+          <div><dt class="cap">Screenplay</dt><dd>Bilal Fadl</dd></div>
+          <div><dt class="cap">Music</dt><dd>Khaled El Sheikh &amp; Walid Sultan</dd></div>
+          <div><dt class="cap">Format</dt><dd>Mini-series · 7 episodes</dd></div>
+          <div><dt class="cap">A production for</dt><dd>Shasha Originals</dd></div>
         </dl>
       </div>
     </div>
   </section>
 
-  <!-- ═══ Filmography rail ═══ -->
-  <section class="section work" id="work">
+  <!-- ═══ Work ═══ -->
+  <section class="sec work" id="work">
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <p class="eyebrow">Selected work</p>
-          <h2 class="h-lg">Filmography</h2>
+          <p class="cap label">Selected work</p>
+          <h2 class="t-lg">Filmography</h2>
         </div>
-        <div class="rail-ctrl">
+        <div class="ctrl">
           <button class="arrow" data-rail="-1" aria-label="Scroll back"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
           <button class="arrow" data-rail="1" aria-label="Scroll forward"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
         </div>
       </div>
       <div class="rail reveal" id="rail">
-        <article class="card"><div class="p"><span class="yr">2026</span><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p><p class="i">Series · Monsters 2</p></article>
-        <article class="card"><div class="p"><span class="yr">2026</span><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p><p class="i">Mini-series, 7 eps · Shasha</p></article>
-        <article class="card"><div class="p"><span class="yr">2025</span><img src="assets/posters/monsters.jpg" alt="Monsters poster" loading="lazy" draggable="false" /></div><h3>Monsters</h3><p class="a" lang="ar">وحوش</p><p class="i">Anthology series · Netflix</p></article>
-        <article class="card"><div class="p"><span class="yr">2023</span><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><p class="i">Series, 8 eps</p></article>
-        <article class="card"><div class="p"><span class="yr">2019</span><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p><p class="i">Feature</p></article>
-        <article class="card"><div class="p"><span class="yr">2011</span><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p><p class="i">Feature debut · Egypt</p></article>
+        <article class="card"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Netflix · 30 October 2026</span><p>Psychological horror — an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2026</span><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2026</span><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Mini-series · Shasha</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2025</span><img src="assets/posters/monsters.jpg" alt="Monsters poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Anthology · Netflix</span><p>True crime from Kuwait, one monster at a time.</p></div></div><h3>Monsters</h3><p class="a" lang="ar">وحوش</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2023</span><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series · 8 eps</span><p>A pan-Arab political thriller — his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2019</span><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Feature</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2009</span><img src="assets/posters/transformers.jpg" alt="Transformers: Revenge of the Fallen poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">2nd Unit Director</span><p>Visual consultant to Michael Bay on the Egyptian shoot.</p></div></div><h3>Transformers: Revenge of the Fallen</h3><p class="a">Paramount · DreamWorks</p></article>
+        <article class="card"><div class="p"><span class="yr cap">2011</span><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Feature · Egypt</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Transformers ═══ -->
+  <section class="sec tf" id="transformers">
+    <div class="wrap">
+      <div class="frame reveal">
+        <img src="assets/img/transformers-wide.jpg" alt="Transformers: Revenge of the Fallen" loading="lazy" />
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="badge cap">Paramount · DreamWorks · 2009</span>
+      </div>
+      <div class="cols">
+        <div class="reveal">
+          <p class="cap label">International · Hollywood</p>
+          <h2 class="t-lg">Transformers:<br />Revenge of the Fallen</h2>
+          <p class="lede" style="margin-top:26px">Second unit director and visual consultant to Michael Bay on the Egyptian shoot — the credit that opened the international market, and the point where a commercial eye met a studio production of the largest scale.</p>
+        </div>
+        <dl class="ec2 reveal d2">
+          <div><dt class="cap">Role</dt><dd>2nd Unit Director</dd></div>
+          <div><dt class="cap">Also</dt><dd>Visual Consultant</dd></div>
+          <div><dt class="cap">Director</dt><dd>Michael Bay</dd></div>
+          <div><dt class="cap">Location</dt><dd>Egypt</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
   <!-- ═══ Founder ═══ -->
-  <section class="section founder" id="founder">
+  <section class="sec founder on-dark" id="founder">
     <div class="wrap grid">
       <div class="portrait reveal">
-        <div class="frame vf"><i></i><i></i><i></i><i></i><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /></div>
+        <div class="frame"><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>
         <div class="inset"><img src="assets/img/on-set-beirut.jpg" alt="Said El Marouk on set in Beirut" loading="lazy" /></div>
       </div>
       <div class="reveal d2">
-        <p class="eyebrow">Founder &amp; Director</p>
-        <h2 class="h-lg" style="margin-top:22px">Said El Marouk</h2>
-        <p class="quote">A director who learned to read a room before he learned to read a script.</p>
+        <p class="cap label">Founder &amp; Director</p>
+        <h2 class="t-lg">Said El<br />Marouk</h2>
+        <p class="quote">“A director who learned to read a room <em>before he learned to read a script.</em>”</p>
         <div class="body">
           <p>Born in Beirut in 1969 to deaf parents, Said El Marouk grew up fluent in a language made entirely of image and gesture. Three decades later, that is still the language he directs in.</p>
           <p>He trained at the University Film Academy of Belgrade and in Düsseldorf, then spent the nineties in Germany as a first AD, editor and cameraman, and as a director and reporter for German and Arab broadcasters — from Cannes to the 1998 World Cup.</p>
           <p>Back in Beirut from 2003, he directed more than seventy music videos for the biggest names in Arabic music, before moving into long form: his Egyptian feature debut, and a run of high-profile pan-Arab dramas.</p>
         </div>
-        <div class="credit">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="4" y="16" width="28" height="20" rx="2"/><path d="M32 22l12-6v16l-12-6"/><circle cx="12" cy="10" r="5"/><circle cx="25" cy="10" r="5"/></svg>
-          <div><p class="k">International · 2009</p><p class="v">2nd Unit Director &amp; Visual Consultant to Michael Bay — <em>Transformers: Revenge of the Fallen</em></p></div>
-        </div>
       </div>
     </div>
 
     <div class="strip-wrap reveal">
-      <div class="wrap" style="margin-bottom:28px"><p class="eyebrow">Timeline · Thirty years, four countries</p></div>
-      <div class="strip" id="strip">
+      <div class="wrap" style="margin-bottom:28px"><p class="cap label">Timeline · Thirty years, four countries</p></div>
+      <div class="strip">
         <div class="frames">
-          <div class="frame-cell"><div class="y"><small>Beirut</small>1969</div><p>Born in Beirut, Lebanon, to deaf parents.</p></div>
-          <div class="frame-cell"><div class="y"><small>Belgrade · Düsseldorf</small>1988–92</div><p>University Film Academy of Belgrade, then Düsseldorf. Graduates in 1992.</p></div>
-          <div class="frame-cell"><div class="y"><small>Germany · Europe</small>1992–2000</div><p>First AD, editor and cameraman; reporter for German and Arab TV; live concerts across Western Europe.</p></div>
-          <div class="frame-cell"><div class="y"><small>Beirut</small>2000–04</div><p>More than seventy music videos. Best Special Effects, 2000.</p></div>
-          <div class="frame-cell"><div class="y"><small>Beirut · Dubai</small>2005–09</div><p>Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11.</p></div>
-          <div class="frame-cell"><div class="y"><small>Egypt</small>2009</div><p>2nd unit director to Michael Bay on <em>Transformers: Revenge of the Fallen</em>.</p></div>
-          <div class="frame-cell"><div class="y"><small>Cairo</small>2011</div><p>Feature debut, <em>365 Days of Happiness</em>.</p></div>
-          <div class="frame-cell"><div class="y"><small>Pan-Arab</small>2019–23</div><p><em>The Money</em>, <em>The Role — Dor El Omor</em>, <em>The Deep State</em>.</p></div>
-          <div class="frame-cell"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
-          <div class="frame-cell"><div class="y"><small>Kuwait · Netflix</small>2025–26</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
+          <div class="fc"><div class="y"><small>Beirut</small>1969</div><p>Born in Beirut, Lebanon, to deaf parents.</p></div>
+          <div class="fc"><div class="y"><small>Belgrade · Düsseldorf</small>1988–92</div><p>University Film Academy of Belgrade, then Düsseldorf. Graduates in 1992.</p></div>
+          <div class="fc"><div class="y"><small>Germany · Europe</small>1992–2000</div><p>First AD, editor and cameraman; reporter for German and Arab TV; live concerts across Western Europe.</p></div>
+          <div class="fc"><div class="y"><small>Beirut</small>2000–04</div><p>More than seventy music videos. Best Special Effects, 2000.</p></div>
+          <div class="fc"><div class="y"><small>Beirut · Dubai</small>2005–09</div><p>Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11.</p></div>
+          <div class="fc"><div class="y"><small>Egypt</small>2009</div><p>2nd unit director to Michael Bay on <em>Transformers: Revenge of the Fallen</em>.</p></div>
+          <div class="fc"><div class="y"><small>Cairo</small>2011</div><p>Feature debut, <em>365 Days of Happiness</em>.</p></div>
+          <div class="fc"><div class="y"><small>Pan-Arab</small>2019–23</div><p><em>The Money</em>, <em>The Role — Dor El Omor</em>, <em>The Deep State</em>.</p></div>
+          <div class="fc"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
+          <div class="fc"><div class="y"><small>Kuwait · Netflix</small>2025–26</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
+          <div class="fc"><div class="y"><small>Netflix · Coming soon</small>Oct 2026</div><p><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ═══ Services ═══ -->
-  <section class="section services" id="services" style="padding-top:0">
+  <section class="sec services" id="services">
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <p class="eyebrow">Services</p>
-          <h2 class="h-lg">What we do</h2>
+          <p class="cap label">Services</p>
+          <h2 class="t-lg">What we do</h2>
         </div>
         <p class="lede">A production house built around a director — from the first page of development to the final delivery file.</p>
       </div>
-      <div class="grid reveal">
-        <div class="svc">
-          <span class="n">01</span>
-          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path class="draw" d="M10 34h52v36H10z"/><path class="draw" d="M10 34l6-12 52-8 4 12z"/><path class="draw" d="M24 21l8 11M40 18l8 11M56 16l8 11"/><path class="draw" d="M22 48h28M22 56h18"/>
-          </svg>
-          <h3>Film &amp; series production</h3><p>Features and episodic drama for regional broadcasters and international streaming platforms.</p>
-        </div>
-        <div class="svc">
-          <span class="n">02</span>
-          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path class="draw" d="M20 10h34l12 12v52H20z"/><path class="draw" d="M54 10v12h12"/><path class="draw" d="M30 34h26M30 42h26M30 50h18"/><path class="draw" d="M14 18v60h44"/>
-          </svg>
-          <h3>Development &amp; packaging</h3><p>Shaping concepts, scripts and talent into projects ready for financing and commissioning.</p>
-        </div>
-        <div class="svc">
-          <span class="n">03</span>
-          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle class="draw" cx="42" cy="42" r="30"/><path class="draw" d="M42 22v20l14 10"/><path class="draw" d="M42 6v6M42 72v6M6 42h6M72 42h6"/>
-          </svg>
-          <h3>Production management</h3><p>Crews, schedules and budgets run across Lebanon, the Gulf and Egypt.</p>
-        </div>
-        <div class="svc">
-          <span class="n">04</span>
-          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle class="draw" cx="30" cy="34" r="20"/><circle class="draw" cx="30" cy="34" r="5"/><circle class="draw" cx="30" cy="20" r="4"/><circle class="draw" cx="42" cy="40" r="4"/><circle class="draw" cx="18" cy="40" r="4"/><path class="draw" d="M30 54h44M58 46l16 8-16 8"/>
-          </svg>
-          <h3>Post-production &amp; delivery</h3><p>Editorial, finishing and platform-ready delivery to broadcast and streaming specifications.</p>
-        </div>
+      <div class="svc-grid reveal">
+        <div class="svc"><span class="n cap">01</span>
+          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="draw" d="M10 34h52v36H10z"/><path class="draw" d="M10 34l6-12 52-8 4 12z"/><path class="draw" d="M24 21l8 11M40 18l8 11M56 16l8 11"/><path class="draw" d="M22 48h28M22 56h18"/></svg>
+          <h3>Film &amp; series production</h3><p>Features and episodic drama for regional broadcasters and international streaming platforms.</p></div>
+        <div class="svc"><span class="n cap">02</span>
+          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path class="draw" d="M20 10h34l12 12v52H20z"/><path class="draw" d="M54 10v12h12"/><path class="draw" d="M30 34h26M30 42h26M30 50h18"/><path class="draw" d="M14 18v60h44"/></svg>
+          <h3>Development &amp; packaging</h3><p>Shaping concepts, scripts and talent into projects ready for financing and commissioning.</p></div>
+        <div class="svc"><span class="n cap">03</span>
+          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="draw" cx="42" cy="42" r="30"/><path class="draw" d="M42 22v20l14 10"/><path class="draw" d="M42 6v6M42 72v6M6 42h6M72 42h6"/></svg>
+          <h3>Production management</h3><p>Crews, schedules and budgets run across Lebanon, the Gulf and Egypt.</p></div>
+        <div class="svc"><span class="n cap">04</span>
+          <svg viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle class="draw" cx="30" cy="34" r="20"/><circle class="draw" cx="30" cy="34" r="5"/><circle class="draw" cx="30" cy="20" r="4"/><circle class="draw" cx="42" cy="40" r="4"/><circle class="draw" cx="18" cy="40" r="4"/><path class="draw" d="M30 54h44M58 46l16 8-16 8"/></svg>
+          <h3>Post-production &amp; delivery</h3><p>Editorial, finishing and platform-ready delivery to broadcast and streaming specifications.</p></div>
       </div>
     </div>
   </section>
@@ -803,84 +763,84 @@
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <p class="eyebrow">Music video</p>
-          <h2 class="h-lg" id="mv-title">Seventy videos.<br />One generation.</h2>
+          <p class="cap label">Music video</p>
+          <h2 class="t-lg" id="mv-title">Seventy videos.<br />One generation.</h2>
         </div>
         <p class="lede">Between 2000 and 2004 he directed more than seventy music videos for the biggest names in Arabic music — and has continued since.</p>
       </div>
     </div>
     <div class="names" aria-label="Artists">
-      <div class="row1"><div class="track">
+      <div class="r1"><div class="track">
         <span>Kadim El Saher</span><span class="d">◆</span><span class="o">Elissa</span><span class="d">◆</span><span>Najwa Karam</span><span class="d">◆</span><span class="o">Haifa Wehbe</span><span class="d">◆</span><span>Nawal El Zoghby</span><span class="d">◆</span><span class="o">Sherine</span><span class="d">◆</span><span>Magida El Roumy</span><span class="d">◆</span><span class="o">Mohamad Mounir</span><span class="d">◆</span><span>Wael Kfoury</span><span class="d">◆</span><span class="o">Fadel Shaker</span><span class="d">◆</span><span>Assala</span><span class="d">◆</span><span class="o">Nawal El Kuwaitiya</span><span class="d">◆</span>
         <span aria-hidden="true">Kadim El Saher</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Elissa</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Najwa Karam</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Haifa Wehbe</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Nawal El Zoghby</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Sherine</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Magida El Roumy</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Mohamad Mounir</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Wael Kfoury</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Fadel Shaker</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Assala</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Nawal El Kuwaitiya</span><span class="d" aria-hidden="true">◆</span>
       </div></div>
-      <div class="row2"><div class="track">
+      <div class="r2"><div class="track">
         <span class="o">Assi El Hellany</span><span class="d">◆</span><span>Rami Ayach</span><span class="d">◆</span><span class="o">Fares Karam</span><span class="d">◆</span><span>Suzanne Tamim</span><span class="d">◆</span><span class="o">Madeleine Matar</span><span class="d">◆</span><span>Moein Shreif</span><span class="d">◆</span><span class="o">Rouwaida El Mahrouki</span><span class="d">◆</span><span>Samo Zein</span><span class="d">◆</span><span class="o">Houwaida</span><span class="d">◆</span><span>Ahmad Al Abdallah</span><span class="d">◆</span><span class="o">Abdallah Rashad</span><span class="d">◆</span><span>Melhem Zein</span><span class="d">◆</span>
         <span class="o" aria-hidden="true">Assi El Hellany</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Rami Ayach</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Fares Karam</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Suzanne Tamim</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Madeleine Matar</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Moein Shreif</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Rouwaida El Mahrouki</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Samo Zein</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Houwaida</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Ahmad Al Abdallah</span><span class="d" aria-hidden="true">◆</span><span class="o" aria-hidden="true">Abdallah Rashad</span><span class="d" aria-hidden="true">◆</span><span aria-hidden="true">Melhem Zein</span><span class="d" aria-hidden="true">◆</span>
       </div></div>
     </div>
     <div class="wrap reel">
-      <a href="https://vimeo.com/saidelmarouk" target="_blank" rel="noopener" class="btn btn-white">Watch the full reel on Vimeo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+      <a href="https://vimeo.com/saidelmarouk" target="_blank" rel="noopener" class="btn btn-w">Watch the full reel on Vimeo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
     </div>
   </section>
 
   <!-- ═══ Recognition ═══ -->
-  <section class="section recog" id="recognition">
+  <section class="sec" id="recognition">
     <div class="wrap">
       <div class="head reveal">
         <div>
-          <p class="eyebrow">Recognition</p>
-          <h2 class="h-lg">Awards &amp; standing</h2>
+          <p class="cap label">Recognition</p>
+          <h2 class="t-lg">Awards &amp; standing</h2>
         </div>
       </div>
-      <div class="grid">
+      <div class="awards">
         <div class="award reveal">
           <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M14 6h16v10a8 8 0 01-16 0z"/><path d="M14 9H8a6 6 0 006 7M30 9h6a6 6 0 01-6 7M22 24v8M15 38h14l-2-6H17z"/></svg>
-          <span class="yr">2024</span><h3>The Lebanese Achievement</h3><p>Honoured at BIAF, Beirut, in July 2024.</p>
-        </div>
+          <span class="yr cap">2024</span><h3>The Lebanese Achievement</h3><p>Honoured at BIAF, Beirut, in July 2024.</p></div>
         <div class="award reveal d1">
           <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="22" cy="14" r="6"/><circle cx="9" cy="20" r="4"/><circle cx="35" cy="20" r="4"/><path d="M12 38c0-6 4.5-10 10-10s10 4 10 10M2 36c0-4 3-7 7-7M42 36c0-4-3-7-7-7"/></svg>
-          <span class="yr">Ongoing</span><h3>Jury — Mentor Arabia</h3><p>Repeated service on the animation and film jury panels.</p>
-        </div>
+          <span class="yr cap">Ongoing</span><h3>Jury — Mentor Arabia</h3><p>Repeated service on the animation and film jury panels.</p></div>
         <div class="award reveal d2">
           <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M22 4l4.5 11.5L38 16l-9 7.5 3 12L22 29l-10 6.5 3-12L6 16l11.5-.5z"/></svg>
-          <span class="yr">2000</span><h3>Best Special Effects</h3><p>For the Mohamad Mounir music video.</p>
+          <span class="yr cap">2000</span><h3>Best Special Effects</h3><p>For the Mohamad Mounir music video.</p></div>
+      </div>
+      <div class="bill2 reveal">
+        <div>
+          <h4 class="cap">Disciplines</h4>
+          <ul>
+            <li><strong>Film &amp; Drama</strong><span>Features and pan-Arab television series</span></li>
+            <li><strong>Commercials</strong><span>El Abd Patisserie for Saatchi &amp; Saatchi Egypt, and more</span></li>
+            <li><strong>Music Video</strong><span>Seventy-plus videos since 2000</span></li>
+          </ul>
         </div>
-      </div>
-
-      <div class="disciplines reveal">
-        <div class="disc"><strong>Film &amp; Drama</strong><p>Features and pan-Arab television series.</p></div>
-        <div class="disc"><strong>Commercials</strong><p>Regional and international brand campaigns — including El Abd Patisserie for Saatchi &amp; Saatchi Egypt.</p></div>
-        <div class="disc"><strong>Music Video</strong><p>Seventy-plus videos since 2000.</p></div>
-      </div>
-
-      <div class="houses reveal">
-        <p class="lbl">Production houses founded</p>
-        <ul>
-          <li><strong>S.M Production</strong><span>Beirut · 2005</span></li>
-          <li><strong>Seven Entertainments</strong><span>Dubai · 2008</span></li>
-          <li><strong>Beywood Pictures</strong><span>Beirut · 2009</span></li>
-          <li><strong>Room 11</strong><span>Post-production · Beirut</span></li>
-        </ul>
+        <div>
+          <h4 class="cap">Production houses founded</h4>
+          <ul>
+            <li><strong>S.M Production</strong><span>Beirut · 2005</span></li>
+            <li><strong>Seven Entertainments</strong><span>Dubai · 2008</span></li>
+            <li><strong>Beywood Pictures</strong><span>Beirut · 2009</span></li>
+            <li><strong>Room 11</strong><span>Post-production · Beirut</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ═══ Contact ═══ -->
-  <section class="section contact" id="contact">
+  <section class="sec contact on-dark" id="contact">
     <img class="ghost" src="assets/brand/l7-mark-light.png" alt="" aria-hidden="true" />
     <div class="wrap grid">
       <div class="reveal">
-        <p class="eyebrow">Contact</p>
-        <h2 class="h-xl">Let’s<br />talk.</h2>
-        <p class="lede">Co-productions, commissions and commercial work — write to us directly.</p>
-        <a href="mailto:saidelmarouk@level7p.com" class="btn btn-white">Email the studio <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
+        <p class="cap label">Contact</p>
+        <h2 class="t-xl">Your story.<br /><span style="color:var(--blue-b)">Next.</span></h2>
+        <p class="lede">Co-productions, commissions and commercial work — write to the studio directly.</p>
+        <a href="mailto:saidelmarouk@level7p.com" class="btn btn-w">Email the studio <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
       </div>
       <ul class="clist reveal d2">
-        <li><span class="k">Email</span><a class="v" href="mailto:saidelmarouk@level7p.com">saidelmarouk@level7p.com</a></li>
-        <li><span class="k">Studio</span><span class="v">Twofour54, PO Box 769490<br />Abu Dhabi, UAE</span></li>
-        <li><span class="k">Reel</span><a class="v" href="https://vimeo.com/saidelmarouk" target="_blank" rel="noopener">vimeo.com/saidelmarouk</a></li>
-        <li><span class="k">Credits</span><a class="v" href="https://www.imdb.com/name/nm3656010/" target="_blank" rel="noopener">IMDb — Said El Marouk</a></li>
+        <li><span class="cap k">Email</span><a class="v" href="mailto:saidelmarouk@level7p.com">saidelmarouk@level7p.com</a></li>
+        <li><span class="cap k">Studio</span><span class="v">Twofour54, PO Box 769490<br />Abu Dhabi, UAE</span></li>
+        <li><span class="cap k">Reel</span><a class="v" href="https://vimeo.com/saidelmarouk" target="_blank" rel="noopener">vimeo.com/saidelmarouk</a></li>
+        <li><span class="cap k">Credits</span><a class="v" href="https://www.imdb.com/name/nm3656010/" target="_blank" rel="noopener">IMDb — Said El Marouk</a></li>
       </ul>
     </div>
   </section>
@@ -906,75 +866,90 @@
   /* Header */
   const header = document.getElementById("header");
   const hero = document.querySelector(".hero");
-  const onScroll = () => header.classList.toggle("solid", scrollY > hero.offsetHeight - 90);
+  const onScroll = () => header.classList.toggle("solid", scrollY > 40);
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
   const menuBtn = header.querySelector(".menu-btn");
   const setMenu = (o) => { header.classList.toggle("menu-open", o); menuBtn.setAttribute("aria-expanded", o); menuBtn.setAttribute("aria-label", o ? "Close menu" : "Open menu"); };
   menuBtn.addEventListener("click", () => setMenu(!header.classList.contains("menu-open")));
   header.querySelectorAll(".nav a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-
-  /* Smooth anchor scrolling that respects the fixed header */
   document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener("click", (e) => {
-    const id = a.getAttribute("href"); if (id.length < 2 && id !== "#top") return;
-    const el = id === "#top" ? document.body : document.querySelector(id); if (!el) return;
-    e.preventDefault();
-    scrollTo({ top: id === "#top" ? 0 : el.getBoundingClientRect().top + scrollY - 72, behavior: reduce ? "auto" : "smooth" });
+    const id = a.getAttribute("href"); const el = id === "#top" ? document.body : document.querySelector(id); if (!el) return;
+    e.preventDefault(); scrollTo({ top: id === "#top" ? 0 : el.getBoundingClientRect().top + scrollY - 70, behavior: reduce ? "auto" : "smooth" });
   }));
 
-  /* Hero carousel */
-  const slides = [...document.querySelectorAll(".slide")];
-  const tabs = [...document.querySelectorAll(".tab")];
-  const DURATION = 7000;
-  let cur = 0, start = performance.now(), paused = false, elapsed = 0;
-  const go = (i) => {
-    i = (i + slides.length) % slides.length;
-    slides[cur].classList.remove("active"); tabs[cur].classList.remove("active"); tabs[cur].setAttribute("aria-selected", "false");
-    tabs[cur].querySelector(".bar").style.width = "0";
+  /* Hero title-card carousel */
+  const credits = [...document.querySelectorAll(".credit")];
+  const shots = [...document.querySelectorAll(".shot")];
+  const screen = document.getElementById("screen");
+  const pre = document.getElementById("pre"), ttl = document.getElementById("ttl"), sub = document.getElementById("sub"), ratio = document.getElementById("ratio");
+  const DURATION = 6500;
+  let cur = 0, start = performance.now(), paused = false, held = 0;
+  const show = (i) => {
+    i = (i + credits.length) % credits.length;
+    credits[cur].querySelector(".ln i").style.transform = "scaleX(0)";
     cur = i;
-    slides[cur].classList.add("active"); tabs[cur].classList.add("active"); tabs[cur].setAttribute("aria-selected", "true");
-    elapsed = 0; start = performance.now();
+    credits.forEach((c, k) => c.classList.toggle("on", k === i));
+    shots.forEach((s, k) => s.classList.toggle("on", k === i));
+    const d = credits[i].dataset;
+    [pre, ttl, sub].forEach((el) => { el.style.animation = "none"; void el.offsetHeight; el.style.animation = ""; });
+    pre.textContent = d.pre; ttl.textContent = d.t; sub.textContent = d.s; ratio.textContent = "2.39 : 1 — " + d.r;
+    screen.classList.toggle("is-soon", !!d.soon);
+    const cdHero = screen.querySelector(".countdown"); cdHero.style.animation = "none"; void cdHero.offsetHeight; cdHero.style.animation = "";
+    sub.classList.toggle("ar", /[؀-ۿ]/.test(d.s));
+    start = performance.now(); held = 0;
   };
-  tabs.forEach((t, i) => t.addEventListener("click", () => go(i)));
-  document.querySelectorAll(".arrow[data-dir]").forEach((b) => b.addEventListener("click", () => go(cur + Number(b.dataset.dir))));
-  hero.addEventListener("mouseenter", () => { paused = true; elapsed = performance.now() - start; });
-  hero.addEventListener("mouseleave", () => { paused = false; start = performance.now() - elapsed; });
+  credits.forEach((c, i) => c.addEventListener("click", () => {
+    if (i === cur && c.dataset.href) { const el = document.querySelector(c.dataset.href); scrollTo({ top: el.getBoundingClientRect().top + scrollY - 70, behavior: reduce ? "auto" : "smooth" }); }
+    else show(i);
+  }));
+  document.querySelectorAll(".arrow[data-dir]").forEach((b) => b.addEventListener("click", () => show(cur + Number(b.dataset.dir))));
+  screen.addEventListener("mouseenter", () => { paused = true; held = performance.now() - start; });
+  screen.addEventListener("mouseleave", () => { paused = false; start = performance.now() - held; });
   const tick = (now) => {
     if (!paused && !reduce) {
       const p = Math.min(1, (now - start) / DURATION);
-      tabs[cur].querySelector(".bar").style.width = p * 100 + "%";
-      if (p >= 1) go(cur + 1);
+      credits[cur].querySelector(".ln i").style.transform = `scaleX(${p})`;
+      if (p >= 1) show(cur + 1);
     }
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
   addEventListener("keydown", (e) => {
     if (hero.getBoundingClientRect().bottom < 0) return;
-    if (e.key === "ArrowRight") go(cur + 1); if (e.key === "ArrowLeft") go(cur - 1);
+    if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1);
   });
   let sx = null;
   hero.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
-  hero.addEventListener("touchend", (e) => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1)); sx = null; });
+  hero.addEventListener("touchend", (e) => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); sx = null; });
 
-  /* Running timecode */
-  const tc = document.getElementById("tc"); const t0 = performance.now();
-  const pad = (n) => String(n).padStart(2, "0");
+  /* Timecode */
+  const tc = document.getElementById("tc"); const t0 = performance.now(); const pad = (n) => String(n).padStart(2, "0");
   setInterval(() => { const f = Math.floor((performance.now() - t0) / 40); tc.textContent = `REC ${pad(Math.floor(f / 90000) % 24)}:${pad(Math.floor(f / 1500) % 60)}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`; }, 40);
 
+  /* Obsess premiere countdown — 30 Oct 2026, Kuwait time */
+  const PREMIERE = new Date("2026-10-30T00:00:00+03:00").getTime();
+  const cds = [...document.querySelectorAll(".cd")];
+  const tickCd = () => {
+    const ms = Math.max(0, PREMIERE - Date.now());
+    const v = { d: Math.floor(ms / 864e5), h: Math.floor(ms / 36e5) % 24, m: Math.floor(ms / 6e4) % 60, s: Math.floor(ms / 1e3) % 60 };
+    cds.forEach((c) => c.querySelectorAll("[data-u]").forEach((b) => { b.textContent = String(v[b.dataset.u]).padStart(2, "0"); }));
+    if (ms === 0) {
+      document.querySelectorAll(".ribbon").forEach((r) => r.firstChild.textContent = "Now streaming ");
+      document.querySelectorAll(".obsess .label").forEach((l) => l.textContent = "Now streaming · A Netflix series");
+      cds.forEach((c) => c.style.display = "none");
+    }
+  };
+  tickCd(); setInterval(tickCd, 1000);
+
   /* Monsters chapters */
-  const stageImgs = [...document.querySelectorAll("#stage img")];
-  const badge = document.getElementById("stage-badge");
-  const chapters = [...document.querySelectorAll(".chapter")];
-  chapters.forEach((c) => {
-    const show = () => {
-      const i = Number(c.dataset.i);
-      chapters.forEach((x) => { x.classList.toggle("on", x === c); x.setAttribute("aria-selected", x === c); });
-      stageImgs.forEach((im, k) => im.classList.toggle("on", k === i));
-      badge.textContent = "Chapter 0" + (i + 1);
-    };
-    c.addEventListener("click", show); c.addEventListener("mouseenter", show); c.addEventListener("focus", show);
+  const mImgs = [...document.querySelectorAll("#m-img img")], mTag = document.getElementById("m-tag");
+  const eps = [...document.querySelectorAll(".ep")];
+  eps.forEach((ep) => {
+    const f = () => { eps.forEach((x) => { x.classList.toggle("on", x === ep); x.setAttribute("aria-selected", x === ep); }); mImgs.forEach((im, k) => im.classList.toggle("on", k == ep.dataset.i)); mTag.textContent = ep.dataset.tag; };
+    ep.addEventListener("click", f); ep.addEventListener("mouseenter", f); ep.addEventListener("focus", f);
   });
 
-  /* Crime of Love player — loads YouTube only on click */
+  /* Crime of Love player */
   const player = document.getElementById("player");
   player.querySelector(".play").addEventListener("click", () => {
     const f = document.createElement("iframe");
@@ -983,12 +958,12 @@
     player.querySelector(".play").remove(); player.appendChild(f);
   });
 
-  /* Filmography rail: arrows + drag */
+  /* Work rail */
   const rail = document.getElementById("rail");
   document.querySelectorAll("[data-rail]").forEach((b) => b.addEventListener("click", () => rail.scrollBy({ left: Number(b.dataset.rail) * rail.clientWidth * 0.8, behavior: "smooth" })));
-  let down = false, x0 = 0, s0 = 0, moved = false;
-  rail.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; down = true; moved = false; x0 = e.clientX; s0 = rail.scrollLeft; });
-  addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) { moved = true; rail.classList.add("drag"); } rail.scrollLeft = s0 - dx; });
+  let down = false, x0 = 0, s0 = 0;
+  rail.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") return; down = true; x0 = e.clientX; s0 = rail.scrollLeft; });
+  addEventListener("pointermove", (e) => { if (!down) return; const dx = e.clientX - x0; if (Math.abs(dx) > 4) rail.classList.add("drag"); rail.scrollLeft = s0 - dx; });
   addEventListener("pointerup", () => { if (!down) return; down = false; rail.classList.remove("drag"); });
 
   /* Reveal + counters */
@@ -999,9 +974,7 @@
   };
   const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => {
     if (!e.isIntersecting) return;
-    e.target.classList.add("in");
-    e.target.querySelectorAll("[data-count]").forEach(count);
-    io.unobserve(e.target);
+    e.target.classList.add("in"); e.target.querySelectorAll("[data-count]").forEach(count); io.unobserve(e.target);
   }), { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }) : null;
   document.querySelectorAll(".reveal").forEach((el) => io ? io.observe(el) : el.classList.add("in"));
   if (!io) document.querySelectorAll("[data-count]").forEach((el) => el.textContent = el.dataset.count + (el.dataset.suffix || ""));
