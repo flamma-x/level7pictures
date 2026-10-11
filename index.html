@@ -39,6 +39,14 @@
 }
 </script>
 
+<script>
+  /* Show the brand splash once per session; skip it for reduced-motion users. */
+  (function () {
+    var seen = false;
+    try { seen = sessionStorage.getItem("l7-splash") === "1"; } catch (e) {}
+    if (seen || (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) document.documentElement.classList.add("no-splash");
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Alexandria:wght@300;500&display=swap" rel="stylesheet" />
@@ -162,6 +170,26 @@
   .credit:focus-visible { outline: 1px solid var(--blue-soft); outline-offset: 6px; }
   .credit .k .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #e50914; margin-right: 8px; vertical-align: 1px; animation: blink 1.6s steps(2, start) infinite; }
 
+  /* Splash (L7 brand animation) */
+  .splash { position: fixed; inset: 0; z-index: 500; background: #0b151e; display: grid; place-items: center; transition: opacity .8s ease, visibility .8s; }
+  .splash video { width: min(92vw, 1100px); height: auto; aspect-ratio: 16/9; object-fit: contain; }
+  .splash.out { opacity: 0; visibility: hidden; }
+  .splash .skip { position: absolute; right: var(--g); bottom: 28px; color: rgba(255,255,255,.45); transition: color .3s; }
+  .splash .skip:hover { color: var(--white); }
+  .splash .bar { position: absolute; left: 50%; bottom: 34px; width: 120px; height: 1px; background: rgba(255,255,255,.12); transform: translateX(-50%); overflow: hidden; }
+  .splash .bar i { position: absolute; inset: 0; background: var(--blue-b); transform-origin: left; animation: splashbar 3.6s linear forwards; }
+  @keyframes splashbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  html.no-splash .splash { display: none; }
+  body.splashing { overflow: hidden; }
+
+  /* L7 loader — the splash animation cropped to the mark, looped */
+  .l7-loader { position: absolute; left: 50%; top: 50%; width: calc(var(--lw, 96px) * 1.3); aspect-ratio: 796 / 372; transform: translate(-50%, -50%); overflow: hidden; pointer-events: none; z-index: 6; mix-blend-mode: screen; transition: opacity .4s;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent), linear-gradient(0deg, transparent, #000 20%, #000 80%, transparent);
+    -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 13%, #000 87%, transparent), linear-gradient(0deg, transparent, #000 20%, #000 80%, transparent); mask-composite: intersect; }
+  .l7-loader video { position: absolute; width: 241.2%; left: -70.35%; top: -88.7%; max-width: none; }
+  .l7-loader.done { opacity: 0; }
+  .card .p .l7-loader, .ep .p .l7-loader { --lw: 64px; }
+
   /* Coming-soon layer on the hero screen */
   .soon { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .8s ease; }
   .screen.is-soon .soon { opacity: 1; }
@@ -195,7 +223,7 @@
   .head .lede { max-width: 44ch; font-size: 16px; }
 
   /* Obsess — coming soon */
-  .obsess { background: #050505; color: var(--white); overflow: hidden; }
+  .obsess { background: var(--night-2); color: var(--white); overflow: hidden; }
   .obsess::before { content: ""; position: absolute; inset: 0; background: url("assets/img/obsess-candles.jpg") center/cover; opacity: .18; filter: blur(30px) saturate(1.2); transform: scale(1.2); pointer-events: none; }
   .obsess .grid { position: relative; display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
   .obsess .poster { position: relative; }
@@ -220,7 +248,7 @@
   .cd-big span { display: block; color: #8d8680; margin-top: 10px; }
 
   /* Transformers — international credit */
-  .tf { background: #000; color: var(--white); overflow: hidden; }
+  .tf { background: var(--night-2); color: var(--white); overflow: hidden; }
   .tf .frame { position: relative; aspect-ratio: 2.39/1; overflow: hidden; background: #fff; }
   .tf .frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: grayscale(.15) contrast(1.05); transition: transform 8s linear; }
   .tf.in-view .frame img { transform: scale(1.06); }
@@ -264,7 +292,7 @@
   .split .lede { margin: 26px 0 36px; }
   .eps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .ep { text-align: left; display: flex; flex-direction: column; align-items: stretch; height: auto; }
-  .ep .p { aspect-ratio: 3/4; overflow: hidden; position: relative; outline: 2px solid transparent; outline-offset: 3px; transition: outline-color .3s; }
+  .ep .p { aspect-ratio: 3/4; overflow: hidden; position: relative; background: #0b151e; outline: 2px solid transparent; outline-offset: 3px; transition: outline-color .3s; }
   .ep .p img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
   .ep:hover .p img { transform: scale(1.05); }
   .ep.on .p { outline-color: var(--blue); }
@@ -300,7 +328,7 @@
   .rail::-webkit-scrollbar { display: none; }
   .rail.drag { cursor: grabbing; scroll-snap-type: none; }
   .card { scroll-snap-align: start; }
-  .card .p { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--ice); }
+  .card .p { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #0b151e; }
   .card .p img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); pointer-events: none; }
   .card .p .ov { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(3,12,22,.92), rgba(3,12,22,.2) 55%, transparent); color: var(--white); display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; opacity: 0; transition: opacity .5s; }
   .card .p .ov .cap { color: var(--blue-soft); }
@@ -331,7 +359,7 @@
 
   /* Film strip timeline */
   .strip-wrap { margin-top: clamp(90px, 10vw, 140px); }
-  .strip { background: #000; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--blue) #000; }
+  .strip { background: #020812; overflow-x: auto; scrollbar-width: thin; scrollbar-color: var(--blue) #020812; }
   .frames { position: relative; display: flex; gap: 10px; padding: 34px var(--g); width: max-content; min-width: 100%; }
   .frames::before, .frames::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; opacity: .85; background: repeating-linear-gradient(90deg, transparent 0 14px, #e9f1f8 14px 30px, transparent 30px 44px); }
   .frames::before { top: 11px; } .frames::after { bottom: 11px; }
@@ -356,16 +384,16 @@
   .in .draw { stroke-dashoffset: 0; }
 
   /* Music video */
-  .mv { background: var(--blue); color: var(--white); overflow: hidden; padding: clamp(80px, 10vw, 140px) 0; }
-  .mv .label { color: #cfe3f3; }
-  .mv .lede { color: #d4e3f0; }
+  .mv { background: var(--night); color: var(--white); overflow: hidden; padding: clamp(80px, 10vw, 140px) 0; border-top: 1px solid var(--line-d); border-bottom: 1px solid var(--line-d); }
+  .mv .label { color: var(--blue-soft); }
+  .mv .lede { color: #b9c9d8; }
   .names { display: flex; flex-direction: column; gap: 10px; }
   .names .track { display: flex; width: max-content; animation: scroll 60s linear infinite; }
   .names .r2 .track { animation-direction: reverse; animation-duration: 72s; }
   @keyframes scroll { to { transform: translateX(-50%); } }
   .names span { font-family: var(--disp); font-weight: 700; font-size: clamp(26px, 4.2vw, 60px); text-transform: uppercase; white-space: nowrap; padding: 0 26px; line-height: 1.25; }
-  .names span.o { color: rgba(255,255,255,.3); font-weight: 300; }
-  .names span.d { color: var(--blue-soft); font-size: clamp(14px, 1.6vw, 22px); align-self: center; padding: 0 4px; }
+  .names span.o { color: rgba(159,203,238,.32); font-weight: 300; }
+  .names span.d { color: var(--blue-b); font-size: clamp(14px, 1.6vw, 22px); align-self: center; padding: 0 4px; }
   .mv .reel { margin-top: 56px; }
 
   /* Recognition */
@@ -397,7 +425,7 @@
   .clist .v { font-size: 16px; overflow-wrap: anywhere; }
   .clist a.v:hover { color: var(--blue-soft); }
 
-  .footer { background: #000; color: #7d8a99; }
+  .footer { background: #020812; color: #7d8a99; border-top: 1px solid var(--line-d); }
   .footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 26px; padding-top: 48px; padding-bottom: 48px; }
   .footer .lock { height: 60px; width: auto; }
   .footer .fine { font-size: 12.5px; text-align: right; line-height: 1.9; }
@@ -473,6 +501,12 @@
 </style>
 </head>
 <body class="no-js">
+
+<div class="splash" id="splash" role="presentation">
+  <video id="splash-video" src="assets/video/l7-splash.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
+  <span class="bar"><i></i></span>
+  <button class="skip cap" id="splash-skip" type="button">Skip</button>
+</div>
 
 <header class="header" id="header">
   <div class="bar">
@@ -863,6 +897,42 @@
   document.getElementById("yr").textContent = new Date().getFullYear();
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* L7 loader factory — the splash animation, cropped to the mark and looped */
+  const SPLASH_SRC = "assets/video/l7-splash.mp4";
+  const makeLoader = () => {
+    const el = document.createElement("div");
+    el.className = "l7-loader";
+    if (!reduce) el.innerHTML = `<video src="${SPLASH_SRC}" muted playsinline autoplay loop aria-hidden="true"></video>`;
+    return el;
+  };
+  const dropLoader = (el) => { if (!el) return; el.classList.add("done"); setTimeout(() => { const v = el.querySelector("video"); if (v) v.pause(); el.remove(); }, 450); };
+
+  /* Splash */
+  const splash = document.getElementById("splash");
+  let splashOn = !document.documentElement.classList.contains("no-splash");
+  const onSplashDone = [];
+  const endSplash = () => {
+    if (!splashOn) return;
+    splashOn = false;
+    try { sessionStorage.setItem("l7-splash", "1"); } catch (e) {}
+    splash.classList.add("out");
+    document.body.classList.remove("splashing");
+    onSplashDone.forEach((f) => f());
+    setTimeout(() => { const v = splash.querySelector("video"); if (v) v.pause(); splash.remove(); }, 900);
+  };
+  if (splashOn) {
+    document.body.classList.add("splashing");
+    const sv = document.getElementById("splash-video");
+    sv.addEventListener("timeupdate", () => { if (sv.duration && sv.currentTime >= sv.duration - 0.45) endSplash(); });
+    sv.addEventListener("ended", endSplash);
+    sv.addEventListener("error", endSplash);
+    const p = sv.play(); if (p && p.catch) p.catch(() => setTimeout(endSplash, 600));
+    document.getElementById("splash-skip").addEventListener("click", endSplash);
+    splash.addEventListener("click", endSplash);
+    addEventListener("keydown", endSplash, { once: true });
+    setTimeout(endSplash, 6000); // safety net
+  } else if (splash) { splash.remove(); }
+
   /* Header */
   const header = document.getElementById("header");
   const hero = document.querySelector(".hero");
@@ -906,7 +976,8 @@
   screen.addEventListener("mouseenter", () => { paused = true; held = performance.now() - start; });
   screen.addEventListener("mouseleave", () => { paused = false; start = performance.now() - held; });
   const tick = (now) => {
-    if (!paused && !reduce) {
+    if (splashOn) start = now;
+    if (!paused && !reduce && !splashOn) {
       const p = Math.min(1, (now - start) / DURATION);
       credits[cur].querySelector(".ln i").style.transform = `scaleX(${p})`;
       if (p >= 1) show(cur + 1);
@@ -914,6 +985,7 @@
     requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
+  onSplashDone.push(() => show(cur)); // replay the title-card reveal once the splash lifts
   addEventListener("keydown", (e) => {
     if (hero.getBoundingClientRect().bottom < 0) return;
     if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1);
@@ -955,7 +1027,19 @@
     const f = document.createElement("iframe");
     f.src = "https://www.youtube-nocookie.com/embed/lnFVU7XaArY?autoplay=1&rel=0&modestbranding=1";
     f.title = "Crime of Love — opening titles"; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
-    player.querySelector(".play").remove(); player.appendChild(f);
+    const ld = makeLoader(); ld.style.setProperty("--lw", "140px");
+    f.addEventListener("load", () => setTimeout(() => dropLoader(ld), 400));
+    player.querySelector(".play").remove(); player.appendChild(ld); player.appendChild(f);
+    f.style.opacity = "0"; f.style.transition = "opacity .6s"; f.addEventListener("load", () => { f.style.opacity = "1"; });
+  });
+
+  /* Poster loaders — show the L7 mark until each poster has decoded */
+  document.querySelectorAll(".card .p img, .ep .p img").forEach((img) => {
+    if (img.complete && img.naturalWidth) return;
+    img.style.opacity = "0"; img.style.transition = "opacity .6s, transform 1s var(--ease)";
+    const ld = makeLoader(); img.parentElement.appendChild(ld);
+    const done = () => { img.style.opacity = "1"; dropLoader(ld); };
+    img.addEventListener("load", done, { once: true }); img.addEventListener("error", done, { once: true });
   });
 
   /* Work rail */
