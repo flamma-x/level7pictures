@@ -152,7 +152,9 @@
   .titles { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; text-align: center; padding: 0 20px; pointer-events: none; }
   .titles .pre { opacity: 0; animation: fade 1.4s ease .2s forwards; }
   .titles .ttl { font-family: var(--disp); font-weight: 700; font-size: clamp(34px, 8.2vw, 150px); letter-spacing: .02em; line-height: 1; text-transform: uppercase; margin: 22px 0 14px; text-shadow: 0 10px 50px rgba(0,0,0,.55); opacity: 0; animation: fade 1.6s ease .55s forwards; }
-  .titles .sub { font-family: var(--ar); font-size: clamp(17px, 2.2vw, 30px); opacity: 0; animation: fade 1.4s ease .95s forwards; }
+  .titles .sub { display: block; width: 100%; text-align: center; unicode-bidi: plaintext; font-family: var(--ar); font-size: clamp(17px, 2.2vw, 30px); letter-spacing: 0; opacity: 0; animation: fadeAr 1.4s ease .95s forwards; }
+  /* Arabic must not be letter-spaced (it breaks the joins), so it gets its own fade */
+  @keyframes fadeAr { from { opacity: 0; transform: translateY(8px); filter: blur(6px); } to { opacity: 1; transform: none; filter: blur(0); } }
   @keyframes fade { from { opacity: 0; letter-spacing: .32em; filter: blur(6px); } to { opacity: 1; filter: blur(0); } }
   .corner { position: absolute; z-index: 3; width: 22px; height: 22px; border: 0 solid rgba(255,255,255,.6); pointer-events: none; }
   .corner.tl { top: 14px; left: 14px; border-top-width: 1px; border-left-width: 1px; }
@@ -164,7 +166,7 @@
   @keyframes blink { to { visibility: hidden; } }
   .ratio { position: absolute; bottom: 22px; left: 46px; z-index: 3; color: rgba(255,255,255,.6); }
 
-  .credits { display: grid; grid-template-columns: repeat(5, 1fr) auto; gap: 22px; align-items: start; padding: 24px var(--g) 30px; border-top: 1px solid var(--line-d); }
+  .credits { display: grid; grid-template-columns: repeat(6, 1fr) auto; gap: 22px; align-items: start; padding: 24px var(--g) 30px; border-top: 1px solid var(--line-d); }
   .credit { text-align: left; opacity: .45; transition: opacity .3s; align-self: start; }
   .credit.on, .credit:hover { opacity: 1; }
   .credit:focus { outline: none; }
@@ -194,6 +196,16 @@
   /* Coming-soon layer on the hero screen */
   .soon { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .8s ease; }
   .screen.is-soon .soon { opacity: 1; }
+  /* Beit Hadam — in post, coming Ramadan 2027 (no poster yet: BTS footage + title card) */
+  .bhd { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0; transition: opacity .8s ease; }
+  .screen.is-bhd .bhd { opacity: 1; }
+  .screen.is-bhd .ratio { opacity: 0; }
+  .bhd .ribbon { background: var(--white); color: var(--night); }
+  .bhd .ribbon b { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #ff3b30; animation: blink 1.6s steps(2, start) infinite; }
+  .bhd .bts { position: absolute; right: 46px; bottom: 22px; color: rgba(255,255,255,.75); text-align: right; line-height: 2; }
+  .bhd .crescent { position: absolute; left: 46px; bottom: 20px; width: 34px; height: 34px; color: #e9d7a8; opacity: .85; }
+  .shot.bhd-bg { background: radial-gradient(ellipse at 30% 40%, #2a2118 0%, #120d09 45%, #030c16 100%); }
+  .screen.is-bhd::after { background: radial-gradient(ellipse at center, rgba(3,12,22,.15) 30%, rgba(3,12,22,.75) 100%), linear-gradient(0deg, rgba(3,12,22,.55), transparent 40%); }
   .screen.is-soon::after { background: radial-gradient(ellipse at center, rgba(3,12,22,.05) 35%, rgba(3,12,22,.6) 100%); }
   .screen.is-soon .ratio { opacity: 0; }
   .ribbon { position: absolute; top: 22px; left: 46px; display: flex; align-items: center; gap: 12px; background: #e50914; color: #fff; padding: 9px 14px 9px 12px; font-family: var(--disp); font-weight: 500; font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
@@ -475,12 +487,13 @@
     .nav .cta { margin-top: 20px; text-align: center; background: var(--white); color: var(--night); }
     .screen { margin: 4px 10px 10px; }
     .rec { right: 34px; } .ratio { display: none; }
-    .credits { grid-template-columns: repeat(5, 1fr); gap: 8px; padding-top: 18px; padding-bottom: 22px; }
+    .credits { grid-template-columns: repeat(6, 1fr); gap: 6px; padding-top: 18px; padding-bottom: 22px; }
     .credit .k { display: none; }
     .credit .ln { margin-bottom: 10px; }
     .credit .v { font-size: 8px; letter-spacing: 0; line-height: 1.35; margin-top: 0; min-height: 2.7em; }
     .hero-cta { display: none; }
     .soon-poster { display: none; }
+    .bhd .bts, .bhd .crescent { display: none; }
     .ribbon { top: 16px; left: 16px; padding: 7px 10px; font-size: 8.5px; }
     .rec { top: 52px; right: auto; left: 16px; }
     .obsess .grid, .tf .cols { grid-template-columns: 1fr; }
@@ -553,6 +566,7 @@
     <div></div>
     <div class="screen is-soon" id="screen">
       <video class="shot on" id="obsess-loop" src="assets/video/obsess-loop.mp4" poster="assets/img/obsess-candles.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true" style="object-position:50% 45%"></video>
+      <video class="shot bhd-bg" id="bhd-loop" src="assets/video/bhd-loop.mp4" poster="assets/img/bhd-still.jpg" muted loop playsinline preload="metadata" aria-hidden="true" style="object-position:50% 45%"></video>
       <img class="shot" src="assets/img/crime-of-love-still.jpg" alt="" />
       <img class="shot" src="assets/img/monster-bank.jpg" alt="" style="object-position:50% 38%" />
       <img class="shot" src="assets/img/deep-state-key.jpg" alt="" style="object-position:50% 42%" />
@@ -564,6 +578,11 @@
       <div class="soon" aria-hidden="true">
         <span class="ribbon">Coming soon <img src="assets/partners/netflix.svg" alt="" /></span>
         <div class="soon-poster"><img src="assets/posters/obsess.jpg" alt="" /></div>
+      </div>
+      <div class="bhd" aria-hidden="true">
+        <span class="ribbon"><b></b> Wrapped · In post-production</span>
+        <svg class="crescent" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M27 6a15 15 0 1 0 7 22A12 12 0 1 1 27 6z"/><path d="M31 9l1 2.5 2.5.5-2 1.6.6 2.6L31 14.8 28.9 16.2l.6-2.6-2-1.6 2.5-.5z" stroke-width="1"/></svg>
+        <span class="bts cap">Behind the scenes<br />Kuwait · Bahrain · 2026</span>
       </div>
       <div class="titles" aria-live="polite"><div>
         <p class="cap pre" id="pre">A Netflix series by Said El Marouk</p>
@@ -579,6 +598,7 @@
     </div>
     <div class="credits">
       <button class="credit on" data-soon="1" data-dur="14000"data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October 2026" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
+      <button class="credit" data-bhd="1" data-dur="9000" data-pre="Coming Ramadan 2027 · A Shasha series" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan 2027" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan 2027</span><span class="v">Beit Hadam</span></button>
       <button class="credit" data-pre="Level Seven Pictures presents" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha · 2026" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha · 2026</span><span class="v">Crime of Love</span></button>
       <button class="credit" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha · 2025" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix · 2025</span><span class="v">Monsters</span></button>
       <button class="credit" data-pre="Directed by Said El Marouk" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 eps · 2023" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series · 2023</span><span class="v">The Deep State</span></button>
@@ -715,6 +735,7 @@
       </div>
       <div class="rail reveal" id="rail">
         <article class="card"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Netflix · 30 October 2026</span><p>Psychological horror — an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p></article>
+        <article class="card"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09">Ramadan 2027</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap">Shasha · 7 episodes · Wrapped</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em> — a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar">بيت هدام</p></article>
         <article class="card"><div class="p"><span class="yr cap">2026</span><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p></article>
         <article class="card"><div class="p"><span class="yr cap">2026</span><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Mini-series · Shasha</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p></article>
         <article class="card"><div class="p"><span class="yr cap">2025</span><img src="assets/posters/monsters.jpg" alt="Monsters poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Anthology · Netflix</span><p>True crime from Kuwait, one monster at a time.</p></div></div><h3>Monsters</h3><p class="a" lang="ar">وحوش</p></article>
@@ -784,6 +805,7 @@
           <div class="fc"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
           <div class="fc"><div class="y"><small>Kuwait · Netflix</small>2025–26</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
           <div class="fc"><div class="y"><small>Netflix · Coming soon</small>Oct 2026</div><p><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
+          <div class="fc"><div class="y"><small>Shasha · Kuwait · Bahrain</small>Ramadan 2027</div><p><em>Beit Hadam</em>, from Buthaina Al-Essa’s novel <em>All the Things</em> — wrapped, now in post.</p></div>
         </div>
       </div>
     </div>
@@ -1008,11 +1030,14 @@
   const screen = document.getElementById("screen");
   /* Obsess hero loop — muted Netflix clip; paused off-slide, off-screen, or for reduced motion */
   const heroVid = document.getElementById("obsess-loop");
+  const bhdVid = document.getElementById("bhd-loop");
   if (heroVid) {
     if (reduce) { heroVid.removeAttribute("autoplay"); heroVid.pause(); }
     if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) heroVid.pause();
       else if (screen.classList.contains("is-soon") && !reduce) heroVid.play().catch(() => {});
+      if (!e.isIntersecting && bhdVid) bhdVid.pause();
+      else if (bhdVid && screen.classList.contains("is-bhd") && !reduce) bhdVid.play().catch(() => {});
     }).observe(screen);
   }
   const pre = document.getElementById("pre"), ttl = document.getElementById("ttl"), sub = document.getElementById("sub"), ratio = document.getElementById("ratio");
@@ -1029,6 +1054,8 @@
     pre.textContent = d.pre; ttl.textContent = d.t; sub.textContent = d.s; ratio.textContent = "2.39 : 1 — " + d.r;
     screen.classList.toggle("is-soon", !!d.soon);
     if (heroVid) { if (d.soon && !reduce) { heroVid.currentTime = 0; heroVid.play().catch(() => {}); } else heroVid.pause(); }
+    screen.classList.toggle("is-bhd", !!d.bhd);
+    if (bhdVid) { if (d.bhd && !reduce) { bhdVid.currentTime = 0; bhdVid.play().catch(() => {}); } else bhdVid.pause(); }
     const cdHero = screen.querySelector(".countdown"); cdHero.style.animation = "none"; void cdHero.offsetHeight; cdHero.style.animation = "";
     sub.classList.toggle("ar", /[؀-ۿ]/.test(d.s));
     start = performance.now(); held = 0;
