@@ -665,6 +665,30 @@
     body::after { display: none; }
     .header, .header.solid, .header.menu-open { background: #030c16; box-shadow: none; }
   }
+
+  /* Obsess as a framed card, continuing the hero */
+  .obsess-band { background: var(--night); padding: 0 clamp(12px, 1.6vw, 28px) clamp(12px, 1.6vw, 28px); }
+  .obsess-band .obsess { border-radius: 22px; background: #08182a; isolation: isolate; }
+  .obsess-band .obsess::before { z-index: -1; }
+  .obsess-band .obsess > .corner { z-index: 3; }
+  .obsess-cap { position: absolute; left: 46px; bottom: 22px; z-index: 3; color: rgba(255,255,255,.6); }
+  @media (max-width: 900px) {
+    .obsess-band { padding: 0 10px 10px; }
+    .obsess-band .obsess { border-radius: 18px; padding-bottom: 72px; }
+    .obsess-cap { left: 34px; bottom: 20px; }
+    .obsess .cast > div:last-child { grid-column: 1 / -1; }
+  }
+
+  /* Stacked director credit:  DIRECTED / by / SAID EL MAROUK */
+  .cr-role, .cr-by, .cr-name { display: block; }
+  .titles .pre.credit-stack { display: flex; flex-direction: column; align-items: center; gap: 5px; letter-spacing: 0; }
+  .credit-stack .cr-role { font-family: var(--disp); font-weight: 300; font-size: clamp(10px, 1vw, 13px); letter-spacing: .36em; text-transform: uppercase; opacity: .85; }
+  .credit-stack .cr-by { font-family: var(--body); font-style: italic; font-weight: 300; font-size: clamp(14px, 1.3vw, 19px); text-transform: none; letter-spacing: .02em; opacity: .7; }
+  .credit-stack .cr-name { font-family: var(--disp); font-weight: 500; font-size: clamp(13px, 1.35vw, 19px); letter-spacing: .28em; text-transform: uppercase; }
+  .dirby { margin-top: 12px; display: grid; gap: 2px; }
+  .dirby .cr-role { font-family: var(--disp); font-weight: 300; font-size: 8.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+  .dirby .cr-by { font-style: italic; font-size: 12px; color: var(--muted); }
+  .dirby .cr-name { font-family: var(--disp); font-weight: 500; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
 </style>
 </head>
 <body class="no-js">
@@ -729,9 +753,9 @@
     <div class="credits">
       <button class="credit on" data-soon="1" data-dur="14000"data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
       <button class="credit" data-bhd="1" data-dur="16000" data-pre="Coming Ramadan 2027 · A Shasha series" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
-      <button class="credit" data-pre="Level Seven Pictures presents" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
+      <button class="credit" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
       <button class="credit" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
-      <button class="credit" data-pre="Directed by Said El Marouk" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
+      <button class="credit" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
       <button class="credit" data-pre="A Said El Marouk Film Factory" data-t="Level Seven" data-s="Pictures · Abu Dhabi · Beirut" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
       <div class="hero-cta">
         <button class="arrow" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
@@ -741,7 +765,10 @@
   </section>
 
   <!-- ═══ Obsess — coming soon ═══ -->
+  <div class="obsess-band">
   <section class="sec obsess" id="obsess">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <span class="ratio cap obsess-cap">2.39 : 1 · Netflix · Featured</span>
     <div class="wrap grid">
       <div class="poster reveal">
         <img src="assets/posters/obsess.jpg" alt="Obsess, a Netflix series, 30 October" />
@@ -772,6 +799,8 @@
       </div>
     </div>
   </section>
+
+  </div>
 
   <!-- ═══ Presents ═══ -->
   <section class="sec presents">
@@ -866,10 +895,10 @@
       <div class="rail reveal" id="rail">
         <article class="card"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Netflix · 30 October 2026</span><p>Psychological horror, an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p></article>
         <article class="card"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09">Coming soon</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap">Shasha · 7 episodes · Wrapped</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em>, a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar">بيت هدام</p></article>
-        <article class="card"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p></article>
-        <article class="card"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Mini-series · Shasha</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p></article>
+        <article class="card"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Mini-series · Shasha</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
         <article class="card"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap">Monsters · Netflix</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar">وحش البنوك</p></article>
-        <article class="card"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series · 8 eps</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p></article>
+        <article class="card"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Series · 8 eps</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
         <article class="card"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Feature</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p></article>
         <article class="card"><div class="p"><img src="assets/posters/transformers.jpg" alt="Transformers: Revenge of the Fallen poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">2nd Unit Director</span><p>Visual consultant to Michael Bay on the Egyptian shoot.</p></div></div><h3>Transformers: Revenge of the Fallen</h3><p class="a">Paramount · DreamWorks</p></article>
         <article class="card"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Feature · Egypt</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p></article>
@@ -1195,7 +1224,9 @@
     shots.forEach((s, k) => s.classList.toggle("on", k === i));
     const d = credits[i].dataset;
     [pre, ttl, sub].forEach((el) => { el.style.animation = "none"; void el.offsetHeight; el.style.animation = ""; });
-    pre.textContent = d.pre; ttl.textContent = d.t; sub.textContent = d.s; ratio.textContent = "2.39 : 1 · " + d.r;
+    if (d.credit) { pre.innerHTML = `<span class="cr-role">${d.credit}</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span>`; pre.classList.add("credit-stack"); }
+    else { pre.textContent = d.pre; pre.classList.remove("credit-stack"); }
+    ttl.textContent = d.t; sub.textContent = d.s; ratio.textContent = "2.39 : 1 · " + d.r;
     screen.classList.toggle("is-soon", !!d.soon);
     const dock = credits[i].parentElement; // keep the active pill visible when the dock scrolls (phones)
     if (dock.scrollWidth > dock.clientWidth) dock.scrollTo({ left: credits[i].offsetLeft - 14, behavior: reduce ? "auto" : "smooth" });
