@@ -741,6 +741,9 @@
   @media (max-width: 560px) { .screen.is-bhd .titles { padding-bottom: 88px; } }
   /* Card / tile titles: one pattern, bold Hanken (approved) */
   .card h3, .svc h3, .award h3, .ep .nm, .bill2 li strong, .tf .ec2 dd, .ec dd, .fc .y { font-weight: var(--fw-title); }
+  .obsess .watch { margin: 0 0 22px; }
+  [data-status-hidden] { display: none !important; }
+  [hidden] { display: none !important; }   /* component display rules must never override hidden */
 </style>
 </head>
 <body class="no-js">
@@ -782,11 +785,11 @@
       <span class="rec cap"><b></b><span id="tc">REC 00:00:00:00</span></span>
       <span class="ratio cap" id="ratio"> 2.39 : 1 · Netflix</span>
       <div class="soon" aria-hidden="true">
-        <span class="ribbon">Coming soon <img src="assets/partners/netflix.svg" alt="" /></span>
+        <span class="ribbon" data-project="obsess"><span data-slot="ribbon">Coming soon</span> <img src="assets/partners/netflix.svg" alt="" /></span>
         <div class="soon-poster"><img src="assets/posters/obsess.jpg" alt="" /></div>
       </div>
       <div class="bhd" aria-hidden="true">
-        <span class="ribbon"><b></b> In post-production<span class="rx"> · Ramadan 2027</span></span>
+        <span class="ribbon" data-project="beit-hadam"><b></b> <span data-slot="badge">In post-production</span><span class="rx"> · <span data-slot="window">Ramadan 2027</span></span></span>
         <svg class="crescent" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M27 6a15 15 0 1 0 7 22A12 12 0 1 1 27 6z"/><path d="M31 9l1 2.5 2.5.5-2 1.6.6 2.6L31 14.8 28.9 16.2l.6-2.6-2-1.6 2.5-.5z" stroke-width="1"/></svg>
         <span class="bts cap">Behind the scenes<br />Kuwait · Bahrain · 2026</span>
       </div>
@@ -794,7 +797,7 @@
         <p class="cap pre" id="pre">A Netflix series by Said El Marouk</p>
         <p class="ttl" id="ttl">Obsess</p>
         <p class="sub ar" id="sub">النفس المطمئنة</p>
-        <div class="countdown cd" aria-label="Countdown to premiere">
+        <div class="countdown cd" data-project="obsess" aria-label="Countdown to premiere">
           <div><b data-u="d">00</b><span class="cap" data-l="d">Days</span></div><div class="sep">:</div>
           <div><b data-u="h">00</b><span class="cap" data-l="h">Hours</span></div><div class="sep">:</div>
           <div><b data-u="m">00</b><span class="cap" data-l="m">Minutes</span></div><div class="sep">:</div>
@@ -803,8 +806,8 @@
       </div></div>
     </div>
     <div class="credits">
-      <button class="credit on" data-soon="1" data-dur="14000"data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
-      <button class="credit" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
+      <button class="credit on" data-project="obsess" data-soon="1" data-dur="14000" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
+      <button class="credit" data-project="beit-hadam" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
       <button class="credit" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
       <button class="credit" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
       <button class="credit" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
@@ -824,20 +827,21 @@
     <div class="wrap grid">
       <div class="poster reveal">
         <img src="assets/posters/obsess.jpg" alt="Obsess, a Netflix series, 30 October" />
-        <span class="date">On Netflix · 30 Oct</span>
+        <span class="date" data-project="obsess" data-slot="date">On Netflix · 30 Oct</span>
       </div>
       <div class="reveal d2">
-        <p class="cap label">Coming soon · A Netflix series</p>
+        <p class="cap label" data-project="obsess" data-slot="label">Coming soon · A Netflix series</p>
         <h2 class="t-xl">Obsess</h2>
         <p class="arname ar" style="text-align:left">النفس المطمئنة</p>
         <p class="lede">A man returns to Kuwait to mourn his father, and is drawn, without knowing it, back into the cursed grip of an obsessive love. Guilt, desire and black magic blur until he can no longer tell memory from fear.</p>
+        <a class="btn btn-w watch" data-project="obsess" data-slot="cta" hidden target="_blank" rel="noopener">Watch on Netflix</a>
         <div class="meta"><span class="chip red">Netflix</span><span class="chip">Psychological horror</span><span class="chip">Shasha</span></div>
         <div class="cast">
           <div><span class="cap k">Directed by</span><span class="v">Said El Marouk</span></div>
           <div><span class="cap k">Written by</span><span class="v">Eyad Saleh</span></div>
           <div><span class="cap k">Starring</span><span class="v">Haya Abdulsalam, Yaqoub Al-Farhan, Laila Abdallah</span></div>
         </div>
-        <div class="cd-big cd" aria-label="Countdown to premiere">
+        <div class="cd-big cd" data-project="obsess" aria-label="Countdown to premiere">
           <div><b data-u="d">00</b><span class="cap" data-l="d">Days</span></div>
           <div><b data-u="h">00</b><span class="cap" data-l="h">Hours</span></div>
           <div><b data-u="m">00</b><span class="cap" data-l="m">Minutes</span></div>
@@ -945,15 +949,15 @@
         </div>
       </div>
       <div class="rail reveal" id="rail">
-        <article class="card"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Netflix · Series · Coming 30 October 2026</span><p>Psychological horror, an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09">In post-production</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap">Shasha · Series · 7 episodes · In post-production · Ramadan 2027</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em>, a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar">بيت هدام</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Shasha · Series · Released</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Shasha · Mini-series · 7 episodes · Released</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap">Netflix · Anthology · Released</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar">وحش البنوك</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Shasha · Series · 8 episodes · Released</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">New Century · Feature · Released</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/transformers.jpg" alt="Transformers: Revenge of the Fallen poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Paramount · Feature · Released</span><p>Visual consultant to Michael Bay on the Egyptian shoot.</p></div></div><h3>Transformers: Revenge of the Fallen</h3><p class="a">Paramount · DreamWorks</p><div class="dirby"><span class="cr-role">2nd Unit Director</span></div></article>
-        <article class="card"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap">Arabica Movies · Feature · Released</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="obsess"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff" data-slot="badge">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Series · Coming 30 October 2026</span><p>Psychological horror, an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="beit-hadam"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09" data-slot="badge">In post-production</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap" data-slot="caption">Shasha · Series · 7 episodes · In post-production · Ramadan 2027</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em>, a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar">بيت هدام</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="djinn-wedding"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · Released</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="crime-of-love"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Mini-series · 7 episodes · Released</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="monster-of-the-bank"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Anthology · Released</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar">وحش البنوك</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="the-deep-state"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · 8 episodes · Released</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="the-money"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">New Century · Feature · Released</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="transformers"><div class="p"><img src="assets/posters/transformers.jpg" alt="Transformers: Revenge of the Fallen poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Paramount · Feature · Released</span><p>Visual consultant to Michael Bay on the Egyptian shoot.</p></div></div><h3>Transformers: Revenge of the Fallen</h3><p class="a">Paramount · DreamWorks</p><div class="dirby"><span class="cr-role">2nd Unit Director</span></div></article>
+        <article class="card" data-project="365-days"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Arabica Movies · Feature · Released</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
       </div>
     </div>
   </section>
@@ -1015,8 +1019,8 @@
           <div class="fc"><div class="y"><small>Pan-Arab</small>2019 to 2023</div><p><em>The Money</em>, <em>The Role (Dor El Omor)</em>, <em>The Deep State</em>.</p></div>
           <div class="fc"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
           <div class="fc"><div class="y"><small>Kuwait · Netflix</small>2025 to 2026</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
-          <div class="fc"><div class="y"><small>Netflix · Coming soon</small>Oct 2026</div><p><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
-          <div class="fc"><div class="y"><small>Shasha · Kuwait · Bahrain</small>Ramadan 2027</div><p><em>Beit Hadam</em>, from Buthaina Al-Essa’s novel <em>All the Things</em>. In post-production · Ramadan 2027.</p></div>
+          <div class="fc" data-project="obsess"><div class="y"><small data-slot="tl-small">Netflix · Coming soon</small>Oct 2026</div><p data-slot="tl-text"><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
+          <div class="fc"><div class="y"><small>Shasha · Kuwait · Bahrain</small>Ramadan 2027</div><p><em>Beit Hadam</em>, from Buthaina Al-Essa’s novel <em>All the Things</em>. <span data-project="beit-hadam" data-slot="status">In post-production · Ramadan 2027</span>.</p></div>
         </div>
       </div>
     </div>
@@ -1319,20 +1323,76 @@
   const tc = document.getElementById("tc"); const t0 = performance.now(); const pad = (n) => String(n).padStart(2, "0");
   setInterval(() => { const f = Math.floor((performance.now() - t0) / 40); tc.textContent = `REC ${pad(Math.floor(f / 90000) % 24)}:${pad(Math.floor(f / 1500) % 60)}:${pad(Math.floor(f / 25) % 60)}:${pad(f % 25)}`; }, 40);
 
-  /* Obsess premiere countdown — 30 Oct 2026, Kuwait time */
-  const PREMIERE = new Date("2026-10-30T00:00:00+03:00").getTime();
+  /* ═══ Projects: the single source of truth for status, platform and dates ═══
+     status: "coming" | "post" | "streaming" | "released". A "coming" project with a premiere date
+     switches itself to "streaming" at that moment (on load, and live if the page is open). */
+  const PROJECTS = {
+    "obsess":              { status: "coming",   premiere: "2026-10-30T00:00:00+03:00", platform: "Netflix", format: "Series", link: null },
+    "beit-hadam":          { status: "post",     window: "Ramadan 2027", platform: "Shasha", format: "Series", episodes: 7 },
+    "djinn-wedding":       { status: "released", platform: "Shasha", format: "Series" },
+    "crime-of-love":       { status: "released", platform: "Shasha", format: "Mini-series", episodes: 7 },
+    "monster-of-the-bank": { status: "released", platform: "Netflix", format: "Anthology" }, // platform flagged for confirmation (6b)
+    "the-deep-state":      { status: "released", platform: "Shasha", format: "Series", episodes: 8 },
+    "the-money":           { status: "released", platform: "New Century", format: "Feature" },
+    "transformers":        { status: "released", platform: "Paramount", format: "Feature" },
+    "365-days":            { status: "released", platform: "Arabica Movies", format: "Feature" },
+  };
+  const STATUS = { coming: "Coming soon", post: "In post-production", streaming: "Now streaming", released: "Released" };
+  /* Local preview only: ?now=2026-10-31 simulates a date (ignored on the live site). */
+  const NOW_OVERRIDE = (() => {
+    if (!/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) return 0;
+    const q = new URLSearchParams(location.search).get("now");
+    return q ? new Date(q).getTime() - Date.now() : 0;
+  })();
+  const now = () => Date.now() + NOW_OVERRIDE;
+  const statusOf = (p) => (p.status === "coming" && p.premiere && now() >= new Date(p.premiere).getTime() ? "streaming" : p.status);
+  const fmtDay = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kuwait" });
+  const dayMonth = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "Asia/Kuwait" });
+  const shortDay = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "Asia/Kuwait" });
+  const slotText = (p, s, slot) => ({
+    badge: STATUS[s],
+    window: p.window || "",
+    status: s === "post" ? `${STATUS.post} · ${p.window}` : s === "coming" ? `Coming ${fmtDay(p.premiere)}` : s === "streaming" ? `Now streaming on ${p.platform}` : STATUS.released,
+    caption: [p.platform, p.format, p.episodes ? `${p.episodes} episodes` : "", s === "coming" ? `Coming ${fmtDay(p.premiere)}` : s === "post" ? `${STATUS.post} · ${p.window}` : STATUS[s]].filter(Boolean).join(" · "),
+    ribbon: s === "streaming" ? "Now streaming on" : STATUS[s],
+    label: `${STATUS[s]} · A ${p.platform} ${p.format.toLowerCase()}`,
+    date: s === "streaming" ? `Now on ${p.platform}` : `On ${p.platform} · ${shortDay(p.premiere)}`,
+    "tl-small": `${p.platform} · ${STATUS[s]}`,
+    "tl-text": s === "streaming" ? "<em>Obsess</em> is now streaming on Netflix." : `<em>Obsess</em> premieres on ${p.platform}, ${dayMonth(p.premiere)}.`,
+  })[slot];
+  const renderStatus = () => {
+    document.querySelectorAll("[data-project]").forEach((el) => {
+      const p = PROJECTS[el.dataset.project]; if (!p) return;
+      const s = statusOf(p);
+      const slots = el.matches("[data-slot]") ? [el] : [...el.querySelectorAll("[data-slot]")].filter((x) => x.closest("[data-project]") === el);
+      slots.forEach((x) => {
+        const slot = x.dataset.slot;
+        if (slot === "cta") { x.hidden = !(s === "streaming" && p.link); if (p.link) x.href = p.link; return; }
+        if (slot === "badge" && x.classList.contains("yr") && s === "released") { x.hidden = true; return; }
+        const t = slotText(p, s, slot); if (t == null) return;
+        if (slot === "tl-text") x.innerHTML = t; else x.textContent = t;
+      });
+      if (el.classList.contains("cd")) el.toggleAttribute("data-status-hidden", s !== "coming");
+      if (el.classList.contains("credit")) {
+        if (p.window) el.dataset.pre = `A ${p.platform} series · ${STATUS[s]} · ${p.window}`;
+        if (p.premiere) el.dataset.r = s === "streaming" ? `${p.platform} · ${STATUS.streaming}` : `${p.platform} · ${dayMonth(p.premiere)}`;
+      }
+    });
+    if (typeof ratio !== "undefined" && credits[cur]) ratio.textContent = "2.39 : 1 · " + credits[cur].dataset.r;
+  };
+  renderStatus();
+
+  /* Obsess premiere countdown, driven by the same data */
+  const PREMIERE = new Date(PROJECTS.obsess.premiere).getTime();
   const cds = [...document.querySelectorAll(".cd")];
   const CD_LABELS = { d: "Days", h: "Hours", m: "Minutes", s: "Seconds" }; // one format for every countdown
   cds.forEach((c) => c.querySelectorAll("[data-l]").forEach((l) => { l.textContent = CD_LABELS[l.dataset.l]; }));
+  let launched = statusOf(PROJECTS.obsess) === "streaming";
   const tickCd = () => {
-    const ms = Math.max(0, PREMIERE - Date.now());
+    const ms = Math.max(0, PREMIERE - now());
     const v = { d: Math.floor(ms / 864e5), h: Math.floor(ms / 36e5) % 24, m: Math.floor(ms / 6e4) % 60, s: Math.floor(ms / 1e3) % 60 };
     cds.forEach((c) => c.querySelectorAll("[data-u]").forEach((b) => { b.textContent = String(v[b.dataset.u]).padStart(2, "0"); }));
-    if (ms === 0) {
-      document.querySelectorAll(".ribbon").forEach((r) => r.firstChild.textContent = "Now streaming ");
-      document.querySelectorAll(".obsess .label").forEach((l) => l.textContent = "Now streaming · A Netflix series");
-      cds.forEach((c) => c.style.display = "none");
-    }
+    if (ms === 0 && !launched) { launched = true; renderStatus(); }
   };
   tickCd(); setInterval(tickCd, 1000);
 
