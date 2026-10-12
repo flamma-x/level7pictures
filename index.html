@@ -635,9 +635,35 @@
     .split .img { border-radius: 0 0 28px 28px; }
     .screen { border-radius: 18px; }
   }
+
+  /* iOS Safari fix: backdrop-filter on the fixed header clips its children (the status-bar cap),
+     so the header stays solid instead, and the cap is its own fixed element. */
+  html { background: var(--night); }
+  .header, .header.solid { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .header.solid, .header.menu-open { background: #030c16; }
+  .top-cap { position: fixed; left: 0; right: 0; bottom: 100%; height: 100vh; background: var(--night); z-index: 101; pointer-events: none; }
+
+  /* Mobile: compact pills + REC timecode top-right */
+  @media (max-width: 560px) {
+    .ribbon, .bhd .ribbon { top: 14px; left: 14px; gap: 6px; padding: 5px 9px; font-size: 7px; letter-spacing: .2em; }
+    .ribbon img { height: 8px; }
+    .bhd .ribbon b { width: 5px; height: 5px; }
+    .rec { top: 18px; right: 30px; left: auto; gap: 5px; font-size: 7px; letter-spacing: .14em; }
+    .rec b { width: 5px; height: 5px; }
+    .credits { gap: 5px; padding: 8px 12px 14px; }
+    .credit { padding: 5px 11px 5px 5px; column-gap: 6px; }
+    .credit .ln { width: 15px; height: 15px; }
+    .credit .ln::before { -webkit-mask: radial-gradient(circle, transparent 4.8px, #000 5.6px); mask: radial-gradient(circle, transparent 4.8px, #000 5.6px); }
+    .credit .v { font-size: 8.5px; }
+    .card .yr { top: 10px; left: 10px; font-size: 7.5px; padding: 4px 8px; letter-spacing: .14em; }
+    .obsess .poster .date { font-size: 8px; padding: 7px 11px; left: 12px; top: 12px; }
+    .chip { font-size: 7.5px; padding: 6px 10px; }
+    .svc .tags span { font-size: 7.5px; padding: 5px 9px; }
+  }
 </style>
 </head>
 <body class="no-js">
+<div class="top-cap" aria-hidden="true"></div>
 
 <div class="splash" id="splash" role="presentation">
   <video id="splash-video" src="assets/video/l7-splash.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
