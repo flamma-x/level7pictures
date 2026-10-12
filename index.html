@@ -734,6 +734,8 @@
   .svc .ph::after { background: linear-gradient(180deg, var(--scrim) 0%, rgba(3,12,22,0) 32%), linear-gradient(0deg, rgba(3,12,22,.85) 0%, transparent 45%); }
   .svc .hud .slate, .svc .hud .tc { color: var(--text-muted); }
   .screen .rec { background: var(--scrim); padding: 5px 10px; border-radius: var(--r-pill); }
+  /* 12px floor: on phones the REC chip moves to the free bottom-right corner so it never collides with the ribbon */
+  @media (max-width: 560px) { .screen .rec { top: auto; bottom: 34px; right: 28px; } }
 </style>
 </head>
 <body class="no-js">
