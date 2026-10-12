@@ -645,10 +645,11 @@
 
   /* Mobile: compact pills + REC timecode top-right */
   @media (max-width: 560px) {
-    .ribbon, .bhd .ribbon { top: 14px; left: 14px; gap: 6px; padding: 5px 9px; font-size: 7px; letter-spacing: .2em; }
+    .ribbon, .bhd .ribbon { top: 34px; left: 28px; gap: 6px; padding: 5px 9px; font-size: 7px; letter-spacing: .2em; }
     .ribbon img { height: 8px; }
+    .ribbon .rx { display: none; }
     .bhd .ribbon b { width: 5px; height: 5px; }
-    .rec { top: 18px; right: 30px; left: auto; gap: 5px; font-size: 7px; letter-spacing: .14em; }
+    .rec { top: 38px; right: 30px; left: auto; gap: 5px; font-size: 7px; letter-spacing: .14em; }
     .rec b { width: 5px; height: 5px; }
     .credits { gap: 5px; padding: 8px 12px 14px; }
     .credit { padding: 5px 11px 5px 5px; column-gap: 6px; }
@@ -706,7 +707,7 @@
         <div class="soon-poster"><img src="assets/posters/obsess.jpg" alt="" /></div>
       </div>
       <div class="bhd" aria-hidden="true">
-        <span class="ribbon"><b></b> Wrapped · In post-production</span>
+        <span class="ribbon"><b></b> Wrapped<span class="rx"> · In post-production</span></span>
         <svg class="crescent" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M27 6a15 15 0 1 0 7 22A12 12 0 1 1 27 6z"/><path d="M31 9l1 2.5 2.5.5-2 1.6.6 2.6L31 14.8 28.9 16.2l.6-2.6-2-1.6 2.5-.5z" stroke-width="1"/></svg>
         <span class="bts cap">Behind the scenes<br />Kuwait · Bahrain · 2026</span>
       </div>
