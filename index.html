@@ -744,6 +744,30 @@
   .obsess .watch { margin: 0 0 22px; }
   [data-status-hidden] { display: none !important; }
   [hidden] { display: none !important; }   /* component display rules must never override hidden */
+  /* === Hero carousel: dots + arrows (Section 4.4B) === */
+  .credits.dots { display: flex; justify-content: center; align-items: center; gap: 2px; padding: 14px var(--g) 24px; overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .credits.dots .credit { all: unset; box-sizing: border-box; cursor: pointer; display: grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 4px; }
+  .credits.dots .credit .k, .credits.dots .credit .v { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .credits.dots .credit .ln { display: block; position: relative; width: 8px; height: 8px; margin: 0; border-radius: var(--r-pill); background: var(--surface-4); overflow: hidden; transition: width .35s var(--ease), background .3s; }
+  .credits.dots .credit .ln::before { content: ""; position: absolute; inset: 0; border-radius: inherit; -webkit-mask: none; mask: none;
+    background: linear-gradient(90deg, var(--text) calc(var(--p, 0) * 100%), transparent 0); }
+  .credits.dots .credit:hover .ln { background: var(--text-subtle); }
+  .credits.dots .credit.on .ln { width: 34px; }
+  .credits.dots .credit:focus-visible .ln { outline: 2px solid var(--tint); outline-offset: 4px; }
+  .credits.dots .hero-cta { display: flex; margin-left: 14px; }
+  .credits.dots .credit.on { transform: none; background: none; }
+  /* Founder career: production houses */
+  .houses { margin-top: clamp(56px, 7vw, 96px); }
+  .houses-list { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 20px; }
+  .houses-list li { background: var(--surface-1); border-radius: var(--r-card); padding: 18px 20px; display: grid; gap: 4px; }
+  .houses-list strong { font-family: var(--body); font-weight: var(--fw-title); font-size: var(--fs-sm); letter-spacing: var(--ls-normal); text-transform: uppercase; }
+  .houses-list span { font-size: var(--fs-sm); color: var(--text-subtle); }
+  .bill2.single { grid-template-columns: 1fr; }
+  @media (max-width: 900px) {
+    .credits.dots .hero-cta { display: flex; }
+    .houses-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) { .houses-list { grid-template-columns: 1fr; } .credits.dots .hero-cta { display: none; } .credits.dots { padding-left: 8px; padding-right: 8px; } }
 </style>
 </head>
 <body class="no-js">
@@ -760,10 +784,10 @@
     <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <nav class="nav" id="nav" aria-label="Main">
       <a href="#obsess">Obsess</a>
-      <a href="#monsters">Monsters</a>
-      <a href="#crime-of-love">Crime of Love</a>
       <a href="#work">Filmography</a>
+      <a href="#services">Services</a>
       <a href="#founder">Founder</a>
+      <a href="#recognition">Recognition</a>
       <a href="#contact" class="cta">Contact</a>
     </nav>
   </div>
@@ -805,13 +829,13 @@
         </div>
       </div></div>
     </div>
-    <div class="credits">
-      <button class="credit on" data-project="obsess" data-soon="1" data-dur="14000" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
-      <button class="credit" data-project="beit-hadam" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
-      <button class="credit" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
-      <button class="credit" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
-      <button class="credit" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
-      <button class="credit" data-pre="Abu Dhabi · Beirut" data-t="Level Seven" data-s="Pictures" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
+    <div class="credits dots" role="tablist" aria-label="Featured productions">
+      <button class="credit on" role="tab" data-project="obsess" data-soon="1" data-dur="14000" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
+      <button class="credit" role="tab" data-project="beit-hadam" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
+      <button class="credit" role="tab" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
+      <button class="credit" role="tab" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
+      <button class="credit" role="tab" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
+      <button class="credit" role="tab" data-pre="Abu Dhabi · Beirut" data-t="Level Seven" data-s="Pictures" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
       <div class="hero-cta">
         <button class="arrow" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
         <button class="arrow" data-dir="1" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
@@ -857,26 +881,6 @@
   </section>
 
   </div>
-
-  <!-- ═══ Presents ═══ -->
-  <section class="sec presents">
-    <div class="wrap">
-      <p class="cap label reveal">The studio</p>
-      <p class="big reveal d1">Feature films and series by <b>Said El Marouk</b>, for the Arab world and every screen beyond it.</p>
-      <div class="logos reveal d2" aria-label="Partners">
-        <img src="assets/partners/netflix.svg" alt="Netflix" />
-        <img class="t" src="assets/partners/shasha.png" alt="Shasha" style="filter:invert(1)" />
-        <img class="t" src="assets/partners/newcentury.png" alt="New Century Production" />
-        <span class="txt">Arabica<small>Movies</small></span>
-      </div>
-      <div class="billing reveal d3">
-        <div><b data-count="30">0</b><span class="cap">Years behind the camera</span></div>
-        <div><b data-count="70" data-suffix="+">0</b><span class="cap">Music videos</span></div>
-        <div><b data-count="4">0</b><span class="cap">Production houses</span></div>
-        <div><b data-count="4">0</b><span class="cap">Countries</span></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══ Monsters ═══ -->
   <section class="split" id="monsters">
@@ -956,72 +960,7 @@
         <article class="card" data-project="monster-of-the-bank"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Anthology · Released</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar">وحش البنوك</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
         <article class="card" data-project="the-deep-state"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · 8 episodes · Released</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
         <article class="card" data-project="the-money"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">New Century · Feature · Released</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="transformers"><div class="p"><img src="assets/posters/transformers.jpg" alt="Transformers: Revenge of the Fallen poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Paramount · Feature · Released</span><p>Visual consultant to Michael Bay on the Egyptian shoot.</p></div></div><h3>Transformers: Revenge of the Fallen</h3><p class="a">Paramount · DreamWorks</p><div class="dirby"><span class="cr-role">2nd Unit Director</span></div></article>
         <article class="card" data-project="365-days"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Arabica Movies · Feature · Released</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Transformers ═══ -->
-  <section class="sec tf" id="transformers">
-    <div class="wrap">
-      <div class="frame reveal">
-        <img src="assets/img/transformers-wide.jpg" alt="Transformers: Revenge of the Fallen" loading="lazy" />
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <span class="badge cap">Paramount · DreamWorks</span>
-      </div>
-      <div class="cols">
-        <div class="reveal">
-          <p class="cap label">International · Hollywood</p>
-          <h2 class="t-lg">Transformers:<br />Revenge of the Fallen</h2>
-          <p class="lede" style="margin-top:26px">Second unit director and visual consultant to Michael Bay on the Egyptian shoot, the credit that opened the international market, and the point where a commercial eye met a studio production of the largest scale.</p>
-        </div>
-        <dl class="ec2 reveal d2">
-          <div><dt class="cap">Role</dt><dd>2nd Unit Director</dd></div>
-          <div><dt class="cap">Also</dt><dd>Visual Consultant</dd></div>
-          <div><dt class="cap">Director</dt><dd>Michael Bay</dd></div>
-          <div><dt class="cap">Location</dt><dd>Egypt</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ Founder ═══ -->
-  <section class="sec founder on-dark" id="founder">
-    <div class="wrap grid">
-      <div class="portrait reveal">
-        <div class="frame"><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>
-        <div class="inset"><img src="assets/img/on-set-beirut.jpg" alt="Said El Marouk on set in Beirut" loading="lazy" /></div>
-      </div>
-      <div class="reveal d2">
-        <p class="cap label">Founder &amp; Director</p>
-        <h2 class="t-lg">Said El<br />Marouk</h2>
-        <p class="quote">“A director who learned to read a room <em>before he learned to read a script.</em>”</p>
-        <div class="body">
-          <p>Born in Beirut in 1969 to deaf parents, Said El Marouk grew up fluent in a language made entirely of image and gesture. Three decades later, that is still the language he directs in.</p>
-          <p>He trained at the University Film Academy of Belgrade and in Düsseldorf, then spent the nineties in Germany as a first AD, editor and cameraman, and as a director and reporter for German and Arab broadcasters, from Cannes to the 1998 World Cup.</p>
-          <p>Back in Beirut from 2003, he directed more than seventy music videos for the biggest names in Arabic music, before moving into long form: his Egyptian feature debut, and a run of high-profile pan-Arab dramas.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="strip-wrap reveal">
-      <div class="wrap" style="margin-bottom:28px"><p class="cap label">Timeline · Thirty years, four countries</p></div>
-      <div class="strip">
-        <div class="frames">
-          <div class="fc"><div class="y"><small>Beirut</small>1969</div><p>Born in Beirut, Lebanon, to deaf parents.</p></div>
-          <div class="fc"><div class="y"><small>Belgrade · Düsseldorf</small>1988 to 1992</div><p>University Film Academy of Belgrade, then Düsseldorf. Graduates in 1992.</p></div>
-          <div class="fc"><div class="y"><small>Germany · Europe</small>1992 to 2000</div><p>First AD, editor and cameraman; reporter for German and Arab TV; live concerts across Western Europe.</p></div>
-          <div class="fc"><div class="y"><small>Beirut</small>2000 to 2004</div><p>More than seventy music videos. Best Special Effects, 2000.</p></div>
-          <div class="fc"><div class="y"><small>Beirut · Dubai</small>2005 to 2009</div><p>Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11.</p></div>
-          <div class="fc"><div class="y"><small>Egypt</small>2009</div><p>2nd unit director to Michael Bay on <em>Transformers: Revenge of the Fallen</em>.</p></div>
-          <div class="fc"><div class="y"><small>Cairo</small>2011</div><p>Feature debut, <em>365 Days of Happiness</em>.</p></div>
-          <div class="fc"><div class="y"><small>Pan-Arab</small>2019 to 2023</div><p><em>The Money</em>, <em>The Role (Dor El Omor)</em>, <em>The Deep State</em>.</p></div>
-          <div class="fc"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
-          <div class="fc"><div class="y"><small>Kuwait · Netflix</small>2025 to 2026</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
-          <div class="fc" data-project="obsess"><div class="y"><small data-slot="tl-small">Netflix · Coming soon</small>Oct 2026</div><p data-slot="tl-text"><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
-          <div class="fc"><div class="y"><small>Shasha · Kuwait · Bahrain</small>Ramadan 2027</div><p><em>Beit Hadam</em>, from Buthaina Al-Essa’s novel <em>All the Things</em>. <span data-project="beit-hadam" data-slot="status">In post-production · Ramadan 2027</span>.</p></div>
-        </div>
       </div>
     </div>
   </section>
@@ -1084,7 +1023,101 @@
     </div>
   </section>
 
-  <!-- ═══ Music video ═══ -->
+  <!-- ═══ Presents ═══ -->
+  <section class="sec presents">
+    <div class="wrap">
+      <p class="cap label reveal">The studio</p>
+      <p class="big reveal d1">Feature films and series by <b>Said El Marouk</b>, for the Arab world and every screen beyond it.</p>
+      <div class="logos reveal d2" aria-label="Partners">
+        <img src="assets/partners/netflix.svg" alt="Netflix" />
+        <img class="t" src="assets/partners/shasha.png" alt="Shasha" style="filter:invert(1)" />
+        <img class="t" src="assets/partners/newcentury.png" alt="New Century Production" />
+        <span class="txt">Arabica<small>Movies</small></span>
+      </div>
+      <div class="billing reveal d3">
+        <div><b data-count="30">0</b><span class="cap">Years behind the camera</span></div>
+        <div><b data-count="70" data-suffix="+">0</b><span class="cap">Music videos</span></div>
+        <div><b data-count="4">0</b><span class="cap">Production houses</span></div>
+        <div><b data-count="4">0</b><span class="cap">Countries</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Founder ═══ -->
+  <section class="sec founder on-dark" id="founder">
+    <div class="wrap grid">
+      <div class="portrait reveal">
+        <div class="frame"><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>
+        <div class="inset"><img src="assets/img/on-set-beirut.jpg" alt="Said El Marouk on set in Beirut" loading="lazy" /></div>
+      </div>
+      <div class="reveal d2">
+        <p class="cap label">Founder &amp; Director</p>
+        <h2 class="t-lg">Said El<br />Marouk</h2>
+        <p class="quote">“A director who learned to read a room <em>before he learned to read a script.</em>”</p>
+        <div class="body">
+          <p>Born in Beirut in 1969 to deaf parents, Said El Marouk grew up fluent in a language made entirely of image and gesture. Three decades later, that is still the language he directs in.</p>
+          <p>He trained at the University Film Academy of Belgrade and in Düsseldorf, then spent the nineties in Germany as a first AD, editor and cameraman, and as a director and reporter for German and Arab broadcasters, from Cannes to the 1998 World Cup.</p>
+          <p>Back in Beirut from 2003, he directed more than seventy music videos for the biggest names in Arabic music, before moving into long form: his Egyptian feature debut, and a run of high-profile pan-Arab dramas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap houses reveal">
+      <p class="cap label">Production houses founded</p>
+      <ul class="houses-list">
+        <li><strong>S.M Production</strong><span>Beirut</span></li>
+        <li><strong>Seven Entertainments</strong><span>Dubai</span></li>
+        <li><strong>Beywood Pictures</strong><span>Beirut</span></li>
+        <li><strong>Room 11</strong><span>Post-production · Beirut</span></li>
+      </ul>
+    </div>
+
+    <div class="strip-wrap reveal">
+      <div class="wrap" style="margin-bottom:28px"><p class="cap label">Timeline · Thirty years, four countries</p></div>
+      <div class="strip">
+        <div class="frames">
+          <div class="fc"><div class="y"><small>Beirut</small>1969</div><p>Born in Beirut, Lebanon, to deaf parents.</p></div>
+          <div class="fc"><div class="y"><small>Belgrade · Düsseldorf</small>1988 to 1992</div><p>University Film Academy of Belgrade, then Düsseldorf. Graduates in 1992.</p></div>
+          <div class="fc"><div class="y"><small>Germany · Europe</small>1992 to 2000</div><p>First AD, editor and cameraman; reporter for German and Arab TV; live concerts across Western Europe.</p></div>
+          <div class="fc"><div class="y"><small>Beirut</small>2000 to 2004</div><p>More than seventy music videos. Best Special Effects, 2000.</p></div>
+          <div class="fc"><div class="y"><small>Beirut · Dubai</small>2005 to 2009</div><p>Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11.</p></div>
+          <div class="fc"><div class="y"><small>Egypt</small>2009</div><p>2nd unit director to Michael Bay on <em>Transformers: Revenge of the Fallen</em>.</p></div>
+          <div class="fc"><div class="y"><small>Cairo</small>2011</div><p>Feature debut, <em>365 Days of Happiness</em>.</p></div>
+          <div class="fc"><div class="y"><small>Pan-Arab</small>2019 to 2023</div><p><em>The Money</em>, <em>The Role (Dor El Omor)</em>, <em>The Deep State</em>.</p></div>
+          <div class="fc"><div class="y"><small>Beirut</small>2024</div><p>The Lebanese Achievement award at BIAF.</p></div>
+          <div class="fc"><div class="y"><small>Kuwait · Netflix</small>2025 to 2026</div><p><em>Monsters</em>, <em>Crime of Love</em> and <em>Djinn Wedding</em>.</p></div>
+          <div class="fc" data-project="obsess"><div class="y"><small data-slot="tl-small">Netflix · Coming soon</small>Oct 2026</div><p data-slot="tl-text"><em>Obsess</em> premieres on Netflix, 30 October.</p></div>
+          <div class="fc"><div class="y"><small>Shasha · Kuwait · Bahrain</small>Ramadan 2027</div><p><em>Beit Hadam</em>, from Buthaina Al-Essa’s novel <em>All the Things</em>. <span data-project="beit-hadam" data-slot="status">In post-production · Ramadan 2027</span>.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Transformers (founder career) ═══ -->
+  <section class="sec tf" id="transformers">
+    <div class="wrap">
+      <div class="frame reveal">
+        <img src="assets/img/transformers-wide.jpg" alt="Transformers: Revenge of the Fallen" loading="lazy" />
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="badge cap">Paramount · DreamWorks</span>
+      </div>
+      <div class="cols">
+        <div class="reveal">
+          <p class="cap label">International · Hollywood</p>
+          <h2 class="t-lg">Transformers:<br />Revenge of the Fallen</h2>
+          <p class="lede" style="margin-top:26px">Second unit director and visual consultant to Michael Bay on the Egyptian shoot, the credit that opened the international market, and the point where a commercial eye met a studio production of the largest scale.</p>
+        </div>
+        <dl class="ec2 reveal d2">
+          <div><dt class="cap">Role</dt><dd>2nd Unit Director</dd></div>
+          <div><dt class="cap">Also</dt><dd>Visual Consultant</dd></div>
+          <div><dt class="cap">Director</dt><dd>Michael Bay</dd></div>
+          <div><dt class="cap">Location</dt><dd>Egypt</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Music video (founder career) ═══ -->
   <section class="mv" aria-labelledby="mv-title">
     <div class="wrap">
       <div class="head reveal">
@@ -1130,22 +1163,13 @@
           <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M22 4l4.5 11.5L38 16l-9 7.5 3 12L22 29l-10 6.5 3-12L6 16l11.5-.5z"/></svg>
           <h3>Best Special Effects</h3><p>For the Mohamad Mounir music video.</p></div>
       </div>
-      <div class="bill2 reveal">
+      <div class="bill2 single reveal">
         <div>
           <h4 class="cap">Disciplines</h4>
           <ul>
             <li><strong>Film &amp; Drama</strong><span>Features and pan-Arab television series</span></li>
             <li><strong>Commercials</strong><span>El Abd Patisserie for Saatchi &amp; Saatchi Egypt, and more</span></li>
             <li><strong>Music Video</strong><span>Seventy-plus videos since 2000</span></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="cap">Production houses founded</h4>
-          <ul>
-            <li><strong>S.M Production</strong><span>Beirut</span></li>
-            <li><strong>Seven Entertainments</strong><span>Dubai</span></li>
-            <li><strong>Beywood Pictures</strong><span>Beirut</span></li>
-            <li><strong>Room 11</strong><span>Post-production · Beirut</span></li>
           </ul>
         </div>
       </div>
@@ -1334,7 +1358,6 @@
     "monster-of-the-bank": { status: "released", platform: "Netflix", format: "Anthology" }, // platform flagged for confirmation (6b)
     "the-deep-state":      { status: "released", platform: "Shasha", format: "Series", episodes: 8 },
     "the-money":           { status: "released", platform: "New Century", format: "Feature" },
-    "transformers":        { status: "released", platform: "Paramount", format: "Feature" },
     "365-days":            { status: "released", platform: "Arabica Movies", format: "Feature" },
   };
   const STATUS = { coming: "Coming soon", post: "In post-production", streaming: "Now streaming", released: "Released" };
