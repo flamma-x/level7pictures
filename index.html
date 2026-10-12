@@ -85,7 +85,9 @@
     --ls-caps: 0.14em;
     --r-pill: 999px;
     --r-circle: 50%;
-    --r-card: 22px;              /* PENDING decision a/b/c: one value used everywhere */
+    --r-card: 22px;              /* approved: one value used everywhere */
+    --fw-title: 700;             /* uppercase titles inside cards/tiles (Hanken) */
+    --fw-label: 500;
     --blue: var(--brand);
     --blue-b: var(--interactive);
     --blue-soft: var(--tint);
@@ -736,6 +738,8 @@
   .screen .rec { background: var(--scrim); padding: 5px 10px; border-radius: var(--r-pill); }
   /* 12px floor: on phones the REC chip moves to the free bottom-right corner so it never collides with the ribbon */
   @media (max-width: 560px) { .screen .rec { top: auto; bottom: 34px; right: 28px; } }
+  /* Card / tile titles: one pattern, bold Hanken (approved) */
+  .card h3, .svc h3, .award h3, .ep .nm, .bill2 li strong, .tf .ec2 dd, .ec dd, .fc .y { font-weight: var(--fw-title); }
 </style>
 </head>
 <body class="no-js">
