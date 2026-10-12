@@ -58,6 +58,7 @@
     --brand: #005588;            /* on light only (7.9:1 on white; fails on dark) */
     --interactive: #2890d8;      /* on dark only (5.7:1 on --bg-dark); large text/UI only on white */
     --tint: #9fcbee;
+    --tint-dim: rgba(159,203,238,.62);   /* 4.9:1 on --bg-dark: alternating names, still reads as "second voice" */
     --bg-dark: #030c16;
     --bg-dark-2: #0b131d;
     --text: #ffffff;
@@ -372,7 +373,7 @@
   .endcredits .lede { margin: 0 auto; max-width: 56ch; }
   .ec { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; margin-top: 50px; }
   .ec div { display: contents; }
-  .ec dt { text-align: right; color: var(--muted); padding-top: 6px; }
+  .ec dt { text-align: right; color: var(--text-subtle); padding-top: 6px; }
   .ec dd { text-align: left; font-family: var(--body); font-weight: 500; font-size: var(--fs-base); text-transform: uppercase; letter-spacing: var(--ls-normal); }
 
   /* Work rail */
@@ -467,7 +468,7 @@
   .names .r2 .track { animation-direction: reverse; animation-duration: 72s; }
   @keyframes scroll { to { transform: translateX(-50%); } }
   .names span { font-family: var(--disp); font-weight: 700; font-size: var(--fs-2xl); text-transform: uppercase; white-space: nowrap; padding: 0 26px; line-height: 1.25; }
-  .names span.o { color: rgba(159,203,238,.32); font-weight: 300; }
+  .names span.o { color: var(--tint-dim); font-weight: 300; }
   .names span.d { color: var(--blue-b); font-size: var(--fs-lg); align-self: center; padding: 0 4px; }
   .mv .reel { margin-top: 56px; }
 
@@ -482,7 +483,7 @@
   .award h3 { font-family: var(--body); font-weight: 500; font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: var(--ls-normal); margin: 12px 0 10px; line-height: 1.45; }
   .award p { font-size: var(--fs-sm); color: var(--muted); }
   .bill2 { margin-top: clamp(56px, 7vw, 96px); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 5vw, 80px); }
-  .bill2 h4 { color: var(--muted); margin-bottom: 20px; }
+  .bill2 h3, .bill2 h4 { color: var(--muted); margin-bottom: 20px; }
   .bill2 ul { list-style: none; border-top: 1px solid var(--line); }
   .bill2 li { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
   .bill2 li strong { font-family: var(--body); font-weight: 500; font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: var(--ls-normal); }
@@ -768,9 +769,26 @@
     .houses-list { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 560px) { .houses-list { grid-template-columns: 1fr; } .credits.dots .hero-cta { display: none; } .credits.dots { padding-left: 8px; padding-right: 8px; } }
+  /* === Accessibility (Section 5) === */
+  .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .lb { display: block; }
+  .skip-link { position: fixed; left: 16px; top: -80px; z-index: 700; background: var(--text); color: var(--bg-dark); font-family: var(--body); font-weight: 700; font-size: var(--fs-sm); padding: 14px 20px; border-radius: var(--r-pill); transition: top .2s; }
+  .skip-link:focus { top: calc(16px + var(--safe-top)); }
+  #content:focus { outline: none; }
+  /* 44px minimum tap targets */
+  .mark { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; }
+  .nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  .footer .fine a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
+  .clist a.v { display: inline-flex; align-items: center; min-height: 44px; }
+  /* one visible focus style for every control, on dark, light and image backgrounds */
+  :where(a, button, [role="tab"], [tabindex]):focus-visible { outline: 2px solid var(--interactive); outline-offset: 3px; box-shadow: 0 0 0 6px rgba(3,12,22,.55); border-radius: 6px; }
+  .credits.dots .credit:focus-visible { outline: none; box-shadow: none; }
+  .dot-tabs { display: flex; align-items: center; gap: 2px; }
+  .rail:focus-visible, .strip:focus-visible { outline-offset: -2px; border-radius: 0; }
 </style>
 </head>
 <body class="no-js">
+<a class="skip-link" href="#content">Skip to content</a>
 
 <div class="splash" id="splash" role="presentation">
   <video id="splash-video" src="assets/video/l7-splash.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
@@ -794,33 +812,34 @@
 </header>
 
 <main id="top">
+  <h1 class="sr-only">Level Seven Pictures · Film &amp; Television Production</h1>
   <!-- ═══ Hero ═══ -->
   <section class="hero on-dark" aria-roledescription="carousel" aria-label="Featured productions">
     <div></div>
     <div class="screen is-soon" id="screen">
       <video class="shot on" id="obsess-loop" src="assets/video/obsess-loop.mp4" poster="assets/img/obsess-candles.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true" style="object-position:50% 45%"></video>
       <video class="shot bhd-bg" id="bhd-loop" data-wide="assets/video/bhd-loop.mp4" data-tall="assets/video/bhd-loop-v.mp4" data-poster-wide="assets/img/bhd-poster-wide.jpg" data-poster-tall="assets/img/bhd-still.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
-      <img class="shot" src="assets/img/crime-of-love-still.jpg" alt="" />
-      <img class="shot" src="assets/img/monster-bank.jpg" alt="" style="object-position:50% 38%" />
-      <img class="shot" src="assets/img/deep-state-key.jpg" alt="" style="object-position:50% 42%" />
-      <img class="shot" src="assets/img/said-hero.jpg" alt="" style="object-position:60% 34%" />
+      <img class="shot" src="assets/img/crime-of-love-still.jpg" alt="" aria-hidden="true" />
+      <img class="shot" src="assets/img/monster-bank.jpg" alt="" aria-hidden="true" style="object-position:50% 38%" />
+      <img class="shot" src="assets/img/deep-state-key.jpg" alt="" aria-hidden="true" style="object-position:50% 42%" />
+      <img class="shot" src="assets/img/said-hero.jpg" alt="" aria-hidden="true" style="object-position:60% 34%" />
       <span class="scan"></span>
-      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <span class="rec cap"><b></b><span id="tc">REC 00:00:00:00</span></span>
-      <span class="ratio cap" id="ratio"> 2.39 : 1 · Netflix</span>
-      <div class="soon" aria-hidden="true">
-        <span class="ribbon" data-project="obsess"><span data-slot="ribbon">Coming soon</span> <img src="assets/partners/netflix.svg" alt="" /></span>
-        <div class="soon-poster"><img src="assets/posters/obsess.jpg" alt="" /></div>
+      <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+      <span class="rec cap" aria-hidden="true"><b></b><span id="tc">REC 00:00:00:00</span></span>
+      <span class="ratio cap" id="ratio" aria-hidden="true"> 2.39 : 1 · Netflix</span>
+      <div class="soon">
+        <span class="ribbon" data-project="obsess"><span data-slot="ribbon">Coming soon</span> <img src="assets/partners/netflix.svg" alt="Netflix" /></span>
+        <div class="soon-poster" aria-hidden="true"><img src="assets/posters/obsess.jpg" alt="" /></div>
       </div>
-      <div class="bhd" aria-hidden="true">
+      <div class="bhd">
         <span class="ribbon" data-project="beit-hadam"><b></b> <span data-slot="badge">In post-production</span><span class="rx"> · <span data-slot="window">Ramadan 2027</span></span></span>
-        <svg class="crescent" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M27 6a15 15 0 1 0 7 22A12 12 0 1 1 27 6z"/><path d="M31 9l1 2.5 2.5.5-2 1.6.6 2.6L31 14.8 28.9 16.2l.6-2.6-2-1.6 2.5-.5z" stroke-width="1"/></svg>
-        <span class="bts cap">Behind the scenes<br />Kuwait · Bahrain · 2026</span>
+        <svg class="crescent" aria-hidden="true" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M27 6a15 15 0 1 0 7 22A12 12 0 1 1 27 6z"/><path d="M31 9l1 2.5 2.5.5-2 1.6.6 2.6L31 14.8 28.9 16.2l.6-2.6-2-1.6 2.5-.5z" stroke-width="1"/></svg>
+        <span class="bts cap" aria-hidden="true">Behind the scenes<br />Kuwait · Bahrain · 2026</span>
       </div>
       <div class="titles" aria-live="polite"><div>
         <p class="cap pre" id="pre">A Netflix series by Said El Marouk</p>
         <p class="ttl" id="ttl">Obsess</p>
-        <p class="sub ar" id="sub">النفس المطمئنة</p>
+        <p class="sub ar" id="sub" lang="ar" dir="rtl">النفس المطمئنة</p>
         <div class="countdown cd" data-project="obsess" aria-label="Countdown to premiere">
           <div><b data-u="d">00</b><span class="cap" data-l="d">Days</span></div><div class="sep">:</div>
           <div><b data-u="h">00</b><span class="cap" data-l="h">Hours</span></div><div class="sep">:</div>
@@ -829,13 +848,15 @@
         </div>
       </div></div>
     </div>
-    <div class="credits dots" role="tablist" aria-label="Featured productions">
-      <button class="credit on" role="tab" data-project="obsess" data-soon="1" data-dur="14000" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
-      <button class="credit" role="tab" data-project="beit-hadam" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
-      <button class="credit" role="tab" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
-      <button class="credit" role="tab" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
-      <button class="credit" role="tab" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
-      <button class="credit" role="tab" data-pre="Abu Dhabi · Beirut" data-t="Level Seven" data-s="Pictures" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
+    <div class="credits dots">
+      <div class="dot-tabs" role="tablist" aria-label="Featured productions">
+      <button class="credit on" role="tab" aria-selected="true" data-project="obsess" data-soon="1" data-dur="14000" data-pre="A Netflix series by Said El Marouk" data-t="Obsess" data-s="النفس المطمئنة" data-r="Netflix · 30 October" data-href="#obsess"><span class="ln"><i></i></span><span class="cap k"><span class="dot"></span>Netflix · 30 Oct</span><span class="v">Obsess</span></button>
+      <button class="credit" role="tab" aria-selected="false" data-project="beit-hadam" data-bhd="1" data-dur="16000" data-pre="A Shasha series · In post-production · Ramadan 2027" data-t="Beit Hadam" data-s="بيت هدام" data-r="Shasha · Ramadan" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Shasha · Ramadan</span><span class="v">Beit Hadam</span></button>
+      <button class="credit" role="tab" aria-selected="false" data-pre="Directed by Said El Marouk" data-credit="Directed" data-t="Crime of Love" data-s="جناية حب" data-r="Shasha Originals" data-href="#crime-of-love"><span class="ln"><i></i></span><span class="cap k">Shasha</span><span class="v">Crime of Love</span></button>
+      <button class="credit" role="tab" aria-selected="false" data-pre="A Said El Marouk anthology" data-t="Monsters" data-s="وحوش" data-r="Netflix · Shasha" data-href="#monsters"><span class="ln"><i></i></span><span class="cap k">Netflix</span><span class="v">Monsters</span></button>
+      <button class="credit" role="tab" aria-selected="false" data-pre="Produced and directed by Said El Marouk" data-credit="Produced and directed" data-t="The Deep State" data-s="الدولة العميقة" data-r="Series · 8 episodes" data-href="#work"><span class="ln"><i></i></span><span class="cap k">Series</span><span class="v">The Deep State</span></button>
+      <button class="credit" role="tab" aria-selected="false" data-pre="Abu Dhabi · Beirut" data-t="Level Seven" data-s="Pictures" data-r="Abu Dhabi · Beirut" data-href="#founder"><span class="ln"><i></i></span><span class="cap k">Abu Dhabi · Beirut</span><span class="v">The Studio</span></button>
+      </div>
       <div class="hero-cta">
         <button class="arrow" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M14 8H2M7 3L2 8l5 5"/></svg></button>
         <button class="arrow" data-dir="1" aria-label="Next"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
@@ -844,10 +865,10 @@
   </section>
 
   <!-- ═══ Obsess — coming soon ═══ -->
-  <div class="obsess-band">
+  <div class="obsess-band" id="content" tabindex="-1">
   <section class="sec obsess" id="obsess">
-    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-    <span class="ratio cap obsess-cap">2.39 : 1 · Netflix · Featured</span>
+    <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
+    <span class="ratio cap obsess-cap" aria-hidden="true">2.39 : 1 · Netflix · Featured</span>
     <div class="wrap grid">
       <div class="poster reveal">
         <img src="assets/posters/obsess.jpg" alt="Obsess, a Netflix series, 30 October" />
@@ -856,7 +877,7 @@
       <div class="reveal d2">
         <p class="cap label" data-project="obsess" data-slot="label">Coming soon · A Netflix series</p>
         <h2 class="t-xl">Obsess</h2>
-        <p class="arname ar" style="text-align:left">النفس المطمئنة</p>
+        <p class="arname ar" style="text-align:left" lang="ar" dir="rtl">النفس المطمئنة</p>
         <p class="lede">A man returns to Kuwait to mourn his father, and is drawn, without knowing it, back into the cursed grip of an obsessive love. Guilt, desire and black magic blur until he can no longer tell memory from fear.</p>
         <a class="btn btn-w watch" data-project="obsess" data-slot="cta" hidden target="_blank" rel="noopener">Watch on Netflix</a>
         <div class="meta"><span class="chip red">Netflix</span><span class="chip">Psychological horror</span><span class="chip">Shasha</span></div>
@@ -895,12 +916,12 @@
     <div class="txt">
       <p class="cap label reveal">Featured series · Anthology</p>
       <h2 class="t-xl reveal">Monsters</h2>
-      <p class="arname ar reveal" style="text-align:left">وحوش</p>
+      <p class="arname ar reveal" style="text-align:left" lang="ar" dir="rtl">وحوش</p>
       <p class="lede reveal d1">An anthology inspired by real crimes in Kuwait. Every chapter stands alone, its own monster, its own streets, its own terror. Produced with Shasha; <em>Amina’s Monster</em> took the anthology to Netflix.</p>
       <div class="eps reveal d2" role="tablist" aria-label="Chapters">
-        <button class="ep on" role="tab" aria-selected="true" data-i="0" data-tag="Chapter 01 · Monster of the Bank"><span class="p"><img src="assets/img/monsters-poster.jpg" alt="" /></span><span class="nm">Monster of the Bank</span><span class="ar">وحش البنوك</span><span class="meta">With Ali Kakuli &amp; Abdullah Alturkumani</span></button>
-        <button class="ep" role="tab" aria-selected="false" data-i="1" data-tag="Chapter 02 · Amina’s Monster"><span class="p"><img src="assets/img/monster-amina.jpg" alt="" /></span><span class="nm">Amina’s Monster</span><span class="ar">وحش أمينة</span><span class="meta">Netflix</span></button>
-        <button class="ep" role="tab" aria-selected="false" data-i="2" data-tag="Monsters 2 · Djinn Wedding"><span class="p"><img src="assets/posters/djinn-wedding.jpg" alt="" /></span><span class="nm">Djinn Wedding</span><span class="ar">عرس الجن</span><span class="meta">Monsters 2 · 2026</span></button>
+        <button class="ep on" role="tab" aria-selected="true" data-i="0" data-tag="Chapter 01 · Monster of the Bank"><span class="p"><img src="assets/img/monsters-poster.jpg" alt="" aria-hidden="true" /></span><span class="nm">Monster of the Bank</span><span class="ar" lang="ar" dir="rtl">وحش البنوك</span><span class="meta">With Ali Kakuli &amp; Abdullah Alturkumani</span></button>
+        <button class="ep" role="tab" aria-selected="false" data-i="1" data-tag="Chapter 02 · Amina’s Monster"><span class="p"><img src="assets/img/monster-amina.jpg" alt="" aria-hidden="true" /></span><span class="nm">Amina’s Monster</span><span class="ar" lang="ar" dir="rtl">وحش أمينة</span><span class="meta">Netflix</span></button>
+        <button class="ep" role="tab" aria-selected="false" data-i="2" data-tag="Monsters 2 · Djinn Wedding"><span class="p"><img src="assets/posters/djinn-wedding.jpg" alt="" aria-hidden="true" /></span><span class="nm">Djinn Wedding</span><span class="ar" lang="ar" dir="rtl">عرس الجن</span><span class="meta">Monsters 2 · 2026</span></button>
       </div>
     </div>
   </section>
@@ -912,14 +933,14 @@
         <div>
           <p class="cap label">Shasha Originals · Ramadan 2026</p>
           <h2 class="t-lg">Crime of Love</h2>
-          <p class="arname ar" style="text-align:left;margin-top:8px">جناية حب</p>
+          <p class="arname ar" style="text-align:left;margin-top:8px" lang="ar" dir="rtl">جناية حب</p>
         </div>
         <p class="lede">A family, a fatal day by the sea, and four decades of consequence, from the 1980s to today.</p>
       </div>
       <div class="player reveal" id="player">
         <img src="assets/img/crime-of-love-still.jpg" alt="Crime of Love cast key art" loading="lazy" />
         <span class="scan"></span>
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
         <button class="play" aria-label="Play the Crime of Love opening titles">
           <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>
           <span class="cap">Opening titles · 2:07</span>
@@ -952,15 +973,15 @@
           <button class="arrow" data-rail="1" aria-label="Scroll forward"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
         </div>
       </div>
-      <div class="rail reveal" id="rail">
-        <article class="card" data-project="obsess"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff" data-slot="badge">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Series · Coming 30 October 2026</span><p>Psychological horror, an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar">النفس المطمئنة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="beit-hadam"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09" data-slot="badge">In post-production</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap" data-slot="caption">Shasha · Series · 7 episodes · In post-production · Ramadan 2027</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em>, a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar">بيت هدام</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="djinn-wedding"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · Released</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar">عرس الجن</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="crime-of-love"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Mini-series · 7 episodes · Released</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar">جناية حب</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="monster-of-the-bank"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Anthology · Released</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar">وحش البنوك</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="the-deep-state"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · 8 episodes · Released</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="the-money"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">New Century · Feature · Released</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar">الفلوس</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
-        <article class="card" data-project="365-days"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Arabica Movies · Feature · Released</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar">٣٦٥ يوم سعادة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+      <div class="rail reveal" id="rail" tabindex="0" role="region" aria-label="Filmography, scroll sideways">
+        <article class="card" data-project="obsess"><div class="p"><span class="yr cap" style="background:#e50914;color:#fff" data-slot="badge">Coming soon</span><img src="assets/posters/obsess.jpg" alt="Obsess poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Series · Coming 30 October 2026</span><p>Psychological horror, an obsessive love that will not let go.</p></div></div><h3>Obsess</h3><p class="a" lang="ar" dir="rtl">النفس المطمئنة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="beit-hadam"><div class="p" style="background:radial-gradient(ellipse at 30% 40%,#2a2118,#120d09 50%,#030c16)"><span class="yr cap" style="background:#e9d7a8;color:#120d09" data-slot="badge">In post-production</span><img src="assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" loading="lazy" draggable="false" onerror="this.style.display='none'" /><div class="ov" style="opacity:1;background:linear-gradient(0deg,rgba(3,12,22,.95),rgba(3,12,22,.15) 60%)"><span class="cap" data-slot="caption">Shasha · Series · 7 episodes · In post-production · Ramadan 2027</span><p>From Buthaina Al-Essa’s novel <em>All the Things</em>, a family coming apart across generations.</p></div></div><h3>Beit Hadam</h3><p class="a" lang="ar" dir="rtl">بيت هدام</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="djinn-wedding"><div class="p"><img src="assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · Released</span><p>The second season of the Monsters anthology.</p></div></div><h3>Djinn Wedding</h3><p class="a" lang="ar" dir="rtl">عرس الجن</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="crime-of-love"><div class="p"><img src="assets/posters/crime-of-love.jpg" alt="Crime of Love poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Mini-series · 7 episodes · Released</span><p>Seven episodes, seven perspectives on one death.</p></div></div><h3>Crime of Love</h3><p class="a" lang="ar" dir="rtl">جناية حب</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="monster-of-the-bank"><div class="p"><img src="assets/img/monster-bank.jpg" alt="Monster of the Bank poster" loading="lazy" draggable="false"  style="object-position:50% 50%" /><div class="ov"><span class="cap" data-slot="caption">Netflix · Anthology · Released</span><p>A true crime from Kuwait, the chapter that opened the anthology.</p></div></div><h3>Monster of the Bank</h3><p class="a" lang="ar" dir="rtl">وحش البنوك</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="the-deep-state"><div class="p"><img src="assets/posters/the-deep-state.jpg" alt="The Deep State poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Shasha · Series · 8 episodes · Released</span><p>A pan-Arab political thriller, his most widely seen work.</p></div></div><h3>The Deep State</h3><p class="a" lang="ar" dir="rtl">الدولة العميقة</p><div class="dirby"><span class="cr-role">Produced and directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="the-money"><div class="p"><img src="assets/posters/money.jpg" alt="The Money poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">New Century · Feature · Released</span><p>Crime and consequence, shot at the pace of a commercial.</p></div></div><h3>The Money</h3><p class="a" lang="ar" dir="rtl">الفلوس</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
+        <article class="card" data-project="365-days"><div class="p"><img src="assets/posters/365-days.jpg" alt="365 Days of Happiness poster" loading="lazy" draggable="false" /><div class="ov"><span class="cap" data-slot="caption">Arabica Movies · Feature · Released</span><p>His first feature, and his first Egyptian production.</p></div></div><h3>365 Days of Happiness</h3><p class="a" lang="ar" dir="rtl">٣٦٥ يوم سعادة</p><div class="dirby"><span class="cr-role">Directed</span><span class="cr-by">by</span><span class="cr-name">Said El Marouk</span></div></article>
       </div>
     </div>
   </section>
@@ -979,7 +1000,7 @@
         <article class="svc reveal">
           <div class="ph">
             <img src="assets/img/svc-production.jpg" alt="Said El Marouk on set" loading="lazy" style="object-position:38% 50%" />
-            <div class="hud" aria-hidden="true"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div class="hud" aria-hidden="true"><i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
               <span class="slate cap"><b></b>SC 01 · TK 07</span><span class="tc cap">01:12:04:18</span>
               <span class="big">01</span><span class="what cap">On set<br />Shoot</span></div>
           </div>
@@ -989,7 +1010,7 @@
         <article class="svc reveal d1">
           <div class="ph">
             <img src="assets/img/svc-development.jpg" alt="Said El Marouk working through a scene with an actress" loading="lazy" style="object-position:30% 50%" />
-            <div class="hud" aria-hidden="true"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div class="hud" aria-hidden="true"><i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
               <span class="slate cap"><b></b>Draft 03 · p.47</span><span class="tc cap">INT. · Night</span>
               <span class="big">02</span><span class="what cap">Script<br />Talent</span></div>
           </div>
@@ -1000,7 +1021,7 @@
           <div class="ph">
             <img src="assets/img/svc-management.jpg" alt="Said El Marouk with the cast and crew of Djinn Wedding, Istanbul" loading="lazy" style="object-position:58% 40%" />
             <img class="alt" src="assets/img/svc-management-2.jpg" alt="Said El Marouk with Elham Ali on the set of Djinn Wedding" loading="lazy" style="object-position:62% 30%" />
-            <div class="hud" aria-hidden="true"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div class="hud" aria-hidden="true"><i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
               <span class="slate cap"><b></b>Djinn Wedding</span><span class="tc cap">Istanbul · BTS</span>
               <span class="big">03</span><span class="what cap">Kuwait · Cairo<br />Beirut</span></div>
           </div>
@@ -1010,7 +1031,7 @@
         <article class="svc reveal d3">
           <div class="ph lift">
             <img src="assets/img/svc-post.jpg" alt="Colour-graded frame from Obsess" loading="lazy" style="object-position:55% 60%" />
-            <div class="hud" aria-hidden="true"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <div class="hud" aria-hidden="true"><i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
               <span class="bars"><i style="background:#c0c0c0"></i><i style="background:#c0c000"></i><i style="background:#00c0c0"></i><i style="background:#00c000"></i><i style="background:#c000c0"></i><i style="background:#c00000"></i><i style="background:#0000c0"></i></span>
               <span class="slate cap"><b></b>Grade · v4</span><span class="tc cap">23.976 fps</span>
               <svg class="wave" viewBox="0 0 200 26" preserveAspectRatio="none"><path d="M0 13 Q10 2 20 13 T40 13 T60 13 T80 13 T100 13 T120 13 T140 13 T160 13 T180 13 T200 13" fill="none" stroke="#9fcbee" stroke-width="1"/><path d="M0 13 Q5 22 10 13 T20 13 T30 13 T40 13 T50 13 T60 13 T70 13 T80 13 T90 13 T100 13 T110 13 T120 13 T130 13 T140 13 T150 13 T160 13 T170 13 T180 13 T190 13 T200 13" fill="none" stroke="#2890d8" stroke-width="1" opacity=".7"/></svg>
@@ -1035,10 +1056,10 @@
         <span class="txt">Arabica<small>Movies</small></span>
       </div>
       <div class="billing reveal d3">
-        <div><b data-count="30">0</b><span class="cap">Years behind the camera</span></div>
-        <div><b data-count="70" data-suffix="+">0</b><span class="cap">Music videos</span></div>
-        <div><b data-count="4">0</b><span class="cap">Production houses</span></div>
-        <div><b data-count="4">0</b><span class="cap">Countries</span></div>
+        <div><b data-count="30">30</b><span class="cap">Years behind the camera</span></div>
+        <div><b data-count="70" data-suffix="+">70+</b><span class="cap">Music videos</span></div>
+        <div><b data-count="4">4</b><span class="cap">Production houses</span></div>
+        <div><b data-count="4">4</b><span class="cap">Countries</span></div>
       </div>
     </div>
   </section>
@@ -1047,12 +1068,12 @@
   <section class="sec founder on-dark" id="founder">
     <div class="wrap grid">
       <div class="portrait reveal">
-        <div class="frame"><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i></div>
+        <div class="frame"><img src="assets/img/said-hero.jpg" alt="Said El Marouk" loading="lazy" /><i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i></div>
         <div class="inset"><img src="assets/img/on-set-beirut.jpg" alt="Said El Marouk on set in Beirut" loading="lazy" /></div>
       </div>
       <div class="reveal d2">
         <p class="cap label">Founder &amp; Director</p>
-        <h2 class="t-lg">Said El<br />Marouk</h2>
+        <h2 class="t-lg">Said El <span class="lb">Marouk</span></h2>
         <p class="quote">“A director who learned to read a room <em>before he learned to read a script.</em>”</p>
         <div class="body">
           <p>Born in Beirut in 1969 to deaf parents, Said El Marouk grew up fluent in a language made entirely of image and gesture. Three decades later, that is still the language he directs in.</p>
@@ -1074,7 +1095,7 @@
 
     <div class="strip-wrap reveal">
       <div class="wrap" style="margin-bottom:28px"><p class="cap label">Timeline · Thirty years, four countries</p></div>
-      <div class="strip">
+      <div class="strip" tabindex="0" role="region" aria-label="Timeline, scroll sideways">
         <div class="frames">
           <div class="fc"><div class="y"><small>Beirut</small>1969</div><p>Born in Beirut, Lebanon, to deaf parents.</p></div>
           <div class="fc"><div class="y"><small>Belgrade · Düsseldorf</small>1988 to 1992</div><p>University Film Academy of Belgrade, then Düsseldorf. Graduates in 1992.</p></div>
@@ -1098,13 +1119,13 @@
     <div class="wrap">
       <div class="frame reveal">
         <img src="assets/img/transformers-wide.jpg" alt="Transformers: Revenge of the Fallen" loading="lazy" />
-        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <i class="corner tl" aria-hidden="true"></i><i class="corner tr" aria-hidden="true"></i><i class="corner bl" aria-hidden="true"></i><i class="corner br" aria-hidden="true"></i>
         <span class="badge cap">Paramount · DreamWorks</span>
       </div>
       <div class="cols">
         <div class="reveal">
           <p class="cap label">International · Hollywood</p>
-          <h2 class="t-lg">Transformers:<br />Revenge of the Fallen</h2>
+          <h2 class="t-lg">Transformers: <span class="lb">Revenge of the Fallen</span></h2>
           <p class="lede" style="margin-top:26px">Second unit director and visual consultant to Michael Bay on the Egyptian shoot, the credit that opened the international market, and the point where a commercial eye met a studio production of the largest scale.</p>
         </div>
         <dl class="ec2 reveal d2">
@@ -1123,7 +1144,7 @@
       <div class="head reveal">
         <div>
           <p class="cap label">Music video</p>
-          <h2 class="t-lg" id="mv-title">Seventy videos.<br />One generation.</h2>
+          <h2 class="t-lg" id="mv-title">Seventy videos. <span class="lb">One generation.</span></h2>
         </div>
         <p class="lede">Between 2000 and 2004 he directed more than seventy music videos for the biggest names in Arabic music, and has continued since.</p>
       </div>
@@ -1165,7 +1186,7 @@
       </div>
       <div class="bill2 single reveal">
         <div>
-          <h4 class="cap">Disciplines</h4>
+          <h3 class="cap">Disciplines</h3>
           <ul>
             <li><strong>Film &amp; Drama</strong><span>Features and pan-Arab television series</span></li>
             <li><strong>Commercials</strong><span>El Abd Patisserie for Saatchi &amp; Saatchi Egypt, and more</span></li>
@@ -1182,7 +1203,7 @@
     <div class="wrap grid">
       <div class="reveal">
         <p class="cap label">Contact</p>
-        <h2 class="t-xl">Your story.<br /><span style="color:var(--blue-b)">Next.</span></h2>
+        <h2 class="t-xl">Your story. <span class="lb" style="color:var(--blue-b)">Next.</span></h2>
         <p class="lede">Co-productions, commissions and commercial work, write to the studio directly.</p>
         <a href="mailto:saidelmarouk@level7p.com" class="btn btn-w">Email the studio <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 8h12M9 3l5 5-5 5"/></svg></a>
       </div>
@@ -1264,6 +1285,18 @@
   }));
 
   /* Hero title-card carousel */
+  /* Tabs pattern (WAI-ARIA): one tab stop per tablist; Left/Right/Home/End move and activate. */
+  function rovingTabs(list, tabs, getIndex, select) {
+    const sync = () => tabs.forEach((t, k) => { t.tabIndex = k === getIndex() ? 0 : -1; });
+    sync();
+    list.addEventListener("keydown", (e) => {
+      const i = getIndex(), to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault(); select((to + tabs.length) % tabs.length); sync(); tabs[getIndex()].focus();
+    });
+    list.addEventListener("click", sync);
+    return sync;
+  }
   const credits = [...document.querySelectorAll(".credit")];
   const shots = [...document.querySelectorAll(".shot")];
   const screen = document.getElementById("screen");
@@ -1300,7 +1333,7 @@
     i = (i + credits.length) % credits.length;
     credits[cur].querySelector(".ln").style.setProperty("--p", 0);
     cur = i;
-    credits.forEach((c, k) => c.classList.toggle("on", k === i));
+    credits.forEach((c, k) => { c.tabIndex = k === i ? 0 : -1; c.classList.toggle("on", k === i); c.setAttribute("aria-selected", k === i); });
     shots.forEach((s, k) => s.classList.toggle("on", k === i));
     const d = credits[i].dataset;
     [pre, ttl, sub].forEach((el) => { el.style.animation = "none"; void el.offsetHeight; el.style.animation = ""; });
@@ -1314,7 +1347,8 @@
     screen.classList.toggle("is-bhd", !!d.bhd);
     if (bhdVid) { if (d.bhd && !reduce) { bhdVid.currentTime = 0; bhdVid.play().catch(() => {}); } else bhdVid.pause(); }
     const cdHero = screen.querySelector(".countdown"); cdHero.style.animation = "none"; void cdHero.offsetHeight; cdHero.style.animation = "";
-    sub.classList.toggle("ar", /[؀-ۿ]/.test(d.s));
+    const isAr = /[؀-ۿ]/.test(d.s);
+    sub.classList.toggle("ar", isAr); sub.lang = isAr ? "ar" : "en"; sub.dir = isAr ? "rtl" : "ltr";
     start = performance.now(); held = 0;
   };
   credits.forEach((c, i) => c.addEventListener("click", () => {
@@ -1322,6 +1356,10 @@
     else show(i);
   }));
   document.querySelectorAll(".arrow[data-dir]").forEach((b) => b.addEventListener("click", () => show(cur + Number(b.dataset.dir))));
+  const dotTabs = document.querySelector(".dot-tabs");
+  rovingTabs(dotTabs, credits, () => cur, show);
+  dotTabs.addEventListener("focusin", () => { if (!paused) { paused = true; held = performance.now() - start; } });
+  dotTabs.addEventListener("focusout", (e) => { if (!dotTabs.contains(e.relatedTarget)) { paused = false; start = performance.now() - held; } });
   screen.addEventListener("mouseenter", () => { paused = true; held = performance.now() - start; });
   screen.addEventListener("mouseleave", () => { paused = false; start = performance.now() - held; });
   const tick = (now) => {
@@ -1336,7 +1374,7 @@
   requestAnimationFrame(tick);
   onSplashDone.push(() => show(cur)); // replay the title-card reveal once the splash lifts
   addEventListener("keydown", (e) => {
-    if (hero.getBoundingClientRect().bottom < 0) return;
+    if (hero.getBoundingClientRect().bottom < 0 || e.target.closest?.('[role="tablist"], [role="region"], input, textarea, select')) return;
     if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1);
   });
   let sx = null;
@@ -1424,8 +1462,9 @@
   const eps = [...document.querySelectorAll(".ep")];
   eps.forEach((ep) => {
     const f = () => { eps.forEach((x) => { x.classList.toggle("on", x === ep); x.setAttribute("aria-selected", x === ep); }); mImgs.forEach((im, k) => im.classList.toggle("on", k == ep.dataset.i)); mTag.textContent = ep.dataset.tag; };
-    ep.addEventListener("click", f); ep.addEventListener("mouseenter", f); ep.addEventListener("focus", f);
+    ep.addEventListener("click", f); ep.addEventListener("mouseenter", () => { f(); syncEps(); }); ep.addEventListener("focus", f);
   });
+  const syncEps = rovingTabs(document.querySelector(".eps"), eps, () => eps.findIndex((x) => x.classList.contains("on")), (i) => eps[i].click());
 
   /* Crime of Love player */
   const player = document.getElementById("player");
@@ -1457,7 +1496,9 @@
   addEventListener("pointerup", () => { if (!down) return; down = false; rail.classList.remove("drag"); });
 
   /* Reveal + counters */
+  if (!reduce) document.querySelectorAll("[data-count]").forEach((el) => { if (el.getBoundingClientRect().top > innerHeight) el.textContent = "0" + (el.dataset.suffix || ""); });
   const count = (el) => {
+    if (reduce) return;
     const end = Number(el.dataset.count), suf = el.dataset.suffix || "", t = performance.now();
     const step = (n) => { const p = Math.min(1, (n - t) / 1600); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
