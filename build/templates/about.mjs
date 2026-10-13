@@ -2,16 +2,16 @@
 import { PROJECTS } from "../../data/projects.js";
 import { COMPANY as C } from "../../data/company.js";
 import { layout } from "./layout.mjs";
-import { statTile, secTitle } from "./components.mjs";
-import { esc, picture } from "../lib.mjs";
+import { statsRow, secTitle } from "./components.mjs";
+import { esc, picture, clean, orPh } from "../lib.mjs";
 
 const level7Count = Object.values(PROJECTS).filter((p) => p.house === "level7").length;
 
 const leader = (l) => `<article class="leader">
 <div class="leader-img"><div class="clip">${picture(l.image.src, { alt: l.image.alt, sizes: "(max-width: 600px) 92vw, 46vw", style: `object-position:${l.image.pos}` })}</div></div>
-<div class="leader-name"><h3 class="un">${esc(l.name)}</h3><span lang="ar" dir="rtl" class="ar leader-ar">${esc(l.nameAr)}</span></div>
+<div class="leader-name"><h3 class="un">${esc(l.name)}</h3>${clean(l.nameAr) ? `<span lang="ar" dir="rtl" class="ar leader-ar">${esc(clean(l.nameAr))}</span>` : ""}</div>
 <span class="kick leader-role">${esc(l.role)}</span>
-<p class="lead">${esc(l.bio)}</p>
+${clean(l.bio) ? `<p class="lead">${esc(clean(l.bio))}</p>` : ""}
 ${l.link ? `<a href="${l.link}" class="tlink">${esc(l.linkText)}</a>` : ""}
 </article>`;
 
@@ -30,9 +30,7 @@ export default () => ({
 </section>
 
 <section aria-label="Numbers">
-<div class="wrap g4">
-${C.stats.map((s) => statTile({ ...s, v: s.v === "level7-count" ? level7Count : s.v })).join("\n")}
-</div>
+${statsRow(C.stats.map((s) => ({ ...s, v: s.v === "level7-count" ? level7Count : orPh(s.v, s.ph) })))}
 </section>
 
 <section class="section" aria-labelledby="story">
@@ -58,9 +56,9 @@ ${C.leaders.map(leader).join("\n")}
 <div class="where-col"><span class="kick">Where we work</span><h2 id="where" class="h2">${esc(C.whereTitle)}</h2></div>
 <div class="where-col">
 <div class="g2">
-${C.offices.map((o) => `<div class="surface tile"><div class="kick">Office</div><div class="un tile-big">${esc(o.city)}</div><div class="muted tile-note">${esc(o.address || "[Address]")}</div></div>`).join("\n")}
+${C.offices.map((o) => `<div class="surface tile"><div class="kick">Office</div><div class="un tile-big">${esc(o.city)}</div>${orPh(o.address, "[Address]") ? `<div class="muted tile-note">${esc(orPh(o.address, "[Address]"))}</div>` : ""}</div>`).join("\n")}
 </div>
-<div class="surface tile"><div class="kick">We've shot in</div><div class="un tile-mid">${esc(C.shotIn)}</div></div>
+<div class="surface tile"><div class="kick">We've shot in</div><div class="un tile-mid">${esc(clean(C.shotIn))}</div></div>
 <div class="surface tile"><div class="kick">Our work streams on</div><div class="un tile-mid">${esc(C.platforms)}</div></div>
 </div>
 </div>

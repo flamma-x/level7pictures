@@ -1,15 +1,15 @@
 // /productions/<slug> — one template for every Level 7 title, filled from data/projects.js
-import { SITE, PROJECTS, LEVEL7_ORDER, statusLabel, textOf } from "../../data/projects.js";
+import { SITE, PROJECTS, LEVEL7_ORDER, statusLabel } from "../../data/projects.js";
 import { layout } from "./layout.mjs";
-import { esc, bidi, picture } from "../lib.mjs";
+import { esc, bidi, picture, clean, cleanList, orPh, FLAGS } from "../lib.mjs";
 
 const NOW = Date.now();
 const row = (dt, dd) => (dd ? `<div><dt class="kick">${esc(dt)}</dt><dd>${bidi(dd)}</dd></div>` : "");
 
 /* Facts strip: Status · Platform · Format · Premiere/Released · one extra fact */
 const facts = (p) => {
-  const format = p.partOf ? `A ${p.partOf} story`
-    : [p.format, p.episodes ? (p.runtime ? `${p.episodes} × ${p.runtime}` : `${p.episodes} episodes`) : "[N] episodes"].join(" · ");
+  const eps = p.episodes ? (p.runtime ? `${p.episodes} × ${p.runtime}` : `${p.episodes} episodes`) : orPh(null, "[N] episodes");
+  const format = p.partOf ? `A ${p.partOf} story` : [p.format, eps].filter(Boolean).join(" · ");
   return [
     row("Status", statusLabel(p, NOW)),
     row("Platform", p.platform),
@@ -17,7 +17,7 @@ const facts = (p) => {
     p.released ? row("Released", p.released) : row("Premiere", p.window),
     row("Filming began", p.filming),
     row("Shot in", p.locations?.join(" · ")),
-    row("Genre", textOf(p.genre)),
+    row("Genre", clean(p.genre)),
   ].join("\n");
 };
 
@@ -25,8 +25,8 @@ const facts = (p) => {
 const credits = (p) => [
   row("Directed by", p.director),
   p.basedOn ? row("Based on the novel by", p.basedOn.author) : row("Written by", p.writer),
-  row("Starring", p.cast?.join(", ")),
-  row("Series", p.seriesLine),
+  row("Starring", cleanList(p.cast).join(", ")),
+  row("Series", clean(p.seriesLine)),
   row("Produced by", `Level 7 Pictures${p.producedFor ? ` for ${p.producedFor}` : ""}`),
 ].join("\n");
 
@@ -48,13 +48,32 @@ ${action}
 </div>`;
 };
 
-/* Stills: three slots; missing ones show the design's placeholder, never an empty box */
+/* Stills: three slots; missing ones show the design's placeholder, never an empty box.
+   Under PRUNE: placeholders go, and so does any still that only repeats the hero image; no stills → no row. */
 const stills = (p) => {
-  const slots = [...p.page.stills];
-  while (slots.length < 3) slots.push(null);
+  const slots = FLAGS.prune ? p.page.stills.filter((s) => s.src !== p.image.src) : [...p.page.stills];
+  if (!FLAGS.prune) while (slots.length < 3) slots.push(null);
+  if (!slots.length) return "";
   return slots.map((s) => s
     ? `<div class="still">${picture(s.src, { alt: s.alt, sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw", style: `object-position:${s.pos}` })}</div>`
     : `<div class="still"><span class="muted still-ph">[Still from the producers]</span></div>`).join("\n");
+};
+
+/* The story (logline + synopsis) beside the credits; with neither, the credits stand alone */
+const story = (p) => {
+  const logline = clean(p.logline), synopsis = orPh(clean(p.synopsis), "[Longer synopsis from the producers.]");
+  const text = logline || synopsis
+    ? `<div class="t-story-text">
+<span class="kick">The story</span>
+${logline ? `<p class="un t-logline">${esc(logline)}</p>` : ""}
+${synopsis ? `<p class="lead">${esc(synopsis)}</p>` : ""}
+</div>` : "";
+  return `<div class="wrap split t-story">
+${text}
+<dl class="t-credits">
+${credits(p)}
+</dl>
+</div>`;
 };
 
 /* schema.org for search engines: approved facts only (pending copy is left out) */
@@ -62,7 +81,7 @@ const jsonLd = (slug, p) => {
   const d = { "@context": "https://schema.org", "@type": "TVSeries", name: p.titleEn, alternateName: p.titleAr, url: `${SITE.url}/productions/${slug}`,
     image: SITE.url + p.image.src, director: { "@type": "Person", name: p.director },
     productionCompany: { "@type": "Organization", name: SITE.name, url: SITE.url } };
-  if (p.cast?.length && !p.cast.some((c) => c.startsWith("["))) d.actor = p.cast.map((name) => ({ "@type": "Person", name }));
+  if (p.cast?.length && !p.cast.some((c) => c.includes("["))) d.actor = p.cast.map((name) => ({ "@type": "Person", name }));
   if (p.episodes) d.numberOfEpisodes = p.episodes;
   if (p.released) d.datePublished = new Date(`${p.released} 12:00 UTC`).toISOString().slice(0, 10);
   if (typeof p.logline === "string") d.description = p.logline;
@@ -77,7 +96,7 @@ const page = (slug, i) => {
     html: layout({
       page: "/productions",
       title: `${p.titleEn} · Level 7 Pictures`,
-      description: textOf(p.logline) || `${p.titleEn}, a Level 7 Pictures production.`,
+      description: clean(p.logline) || `${p.titleEn}, a Level 7 Pictures production.`,
       image: p.image.src,
       head: jsonLd(slug, p),
       withPlayer: Boolean(p.trailer),
@@ -105,24 +124,13 @@ ${facts(p)}
 </section>
 
 <section class="t-sec">
-<div class="wrap split t-story">
-<div class="t-story-text">
-<span class="kick">The story</span>
-<p class="un t-logline">${esc(textOf(p.logline))}</p>
-<p class="lead">${esc(textOf(p.synopsis) || "[Longer synopsis from the producers.]")}</p>
-</div>
-<dl class="t-credits">
-${credits(p)}
-</dl>
-</div>
+${story(p)}
 </section>
 
-<section class="t-sec" aria-label="Trailer and stills">
+<section class="t-sec" aria-label="${stills(p) ? "Trailer and stills" : "Trailer"}">
 <div class="wrap">
 ${trailer(p)}
-<div class="g3 stills">
-${stills(p)}
-</div>
+${stills(p) ? `<div class="g3 stills">\n${stills(p)}\n</div>` : ""}
 </div>
 </section>
 

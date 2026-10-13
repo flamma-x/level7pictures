@@ -8,7 +8,7 @@ export const COMPANY = {
     { v: "2020", l: "Founded in Lebanon", blue: true },
     { v: "DXB · BEY", l: "Registered offices" },
     { v: "level7-count", l: "Level 7 productions" }, // computed from projects.js
-    { v: "[N]", l: "Crew members on our last shoot" },
+    { v: null, ph: "[N]", l: "Crew members on our last shoot" }, // number to come; tile hidden under PRUNE
   ],
   storyTitle: "Six years, three productions",
   story: [

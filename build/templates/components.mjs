@@ -1,6 +1,6 @@
 // Components shared by several pages.
-import { PROJECTS, statusOf, timeLeft, COUNTDOWN_LABELS, SLOT_TEXT, textOf } from "../../data/projects.js";
-import { esc, picture } from "../lib.mjs";
+import { PROJECTS, statusOf, timeLeft, COUNTDOWN_LABELS, SLOT_TEXT } from "../../data/projects.js";
+import { esc, picture, clean } from "../lib.mjs";
 
 export const NOW = Date.now(); // build time; the browser re-renders every time-based slot on load
 
@@ -39,6 +39,6 @@ export const workCard = ({ slug, line, lineHtml, alt = "", pos, href, pill, size
   return `<${tag}${href ? ` href="${href}"` : ""} class="scard zoom">
 <div class="scard-img"><div class="clip">${picture(p.image.src, { alt, sizes, style: `object-position:${pos || p.image.pos}` })}</div>${pill ? `<span class="pill scard-pill">${esc(pill)}</span>` : ""}</div>
 <div class="scard-title"><h3 class="un scard-en">${esc(p.titleEn)}</h3><span lang="ar" dir="rtl" class="ar scard-ar">${esc(p.titleAr)}</span></div>
-${lineHtml || `<span class="muted scard-meta">${esc(textOf(line))}</span>`}
+${lineHtml || `<span class="muted scard-meta">${esc(clean(line))}</span>`}
 </${tag}>`;
 };

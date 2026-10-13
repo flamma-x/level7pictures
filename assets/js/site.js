@@ -178,3 +178,55 @@ if (player && player.showModal) {
     opener?.focus();
   });
 }
+
+/* ── Forms (Careers, Contact): validate on leave + on submit, error summary, post JSON to /api/contact ── */
+const MESSAGES = {
+  valueMissing: (label) => `Enter your ${label.toLowerCase()}.`,
+  selectMissing: (label) => `Choose ${/^[aeiou]/i.test(label) ? "an" : "a"} ${label.toLowerCase()}.`,
+  typeMismatch: { email: "Enter an email address, like name@example.com.", url: "Enter a full link that starts with https://" },
+};
+const labelOf = (el) => document.querySelector(`label[for="${el.id}"]`)?.firstChild.textContent.trim() || el.name;
+const check = (el) => {
+  const v = el.validity, label = labelOf(el);
+  const msg = v.valueMissing ? (el.tagName === "SELECT" ? MESSAGES.selectMissing(label) : MESSAGES.valueMissing(label))
+    : v.typeMismatch ? MESSAGES.typeMismatch[el.type] : "";
+  const err = document.getElementById(`${el.id}-err`);
+  el.setAttribute("aria-invalid", String(Boolean(msg)));
+  if (err) { err.textContent = msg; err.hidden = !msg; }
+  return msg ? { el, msg } : null;
+};
+document.querySelectorAll("form[data-form]").forEach((f) => {
+  const fields = [...f.querySelectorAll("input:not([type=hidden]):not([name=website]), select, textarea")];
+  const summary = f.querySelector(".form-summary"), status = f.querySelector(".form-status"), submit = f.querySelector(".form-submit");
+  fields.forEach((el) => {
+    el.addEventListener("blur", () => { if (el.dataset.touched || el.value) { el.dataset.touched = "1"; check(el); } });
+    el.addEventListener("input", () => { if (el.getAttribute("aria-invalid") === "true") check(el); });
+  });
+  // /contact?route=co-production pre-selects the matching inquiry type
+  const route = new URLSearchParams(location.search).get("route");
+  const inquiry = f.querySelector("select[name=inquiry]");
+  const ROUTE_INQUIRY = { "co-production": "Co-production / commission", talent: "Talent submission", crew: "Crew", press: "Press" };
+  if (inquiry && ROUTE_INQUIRY[route]) inquiry.value = ROUTE_INQUIRY[route];
+
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errors = fields.map(check).filter(Boolean);
+    if (errors.length) {
+      summary.innerHTML = `<strong>${errors.length === 1 ? "There is a problem" : `There are ${errors.length} problems`}</strong><ul>${errors.map((x) => `<li><a href="#${x.el.id}">${x.msg}</a></li>`).join("")}</ul>`;
+      summary.hidden = false; summary.focus();
+      summary.querySelectorAll("a").forEach((a) => a.addEventListener("click", (ev) => { ev.preventDefault(); document.querySelector(a.getAttribute("href")).focus(); }));
+      return;
+    }
+    summary.hidden = true;
+    if (f.querySelector("[name=website]").value) return; // spam trap filled: drop silently
+    submit.disabled = true; status.textContent = "Sending…";
+    try {
+      const res = await fetch(f.action, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.fromEntries(new FormData(f))) });
+      if (!res.ok) throw new Error(res.status);
+      f.reset(); fields.forEach((el) => { el.removeAttribute("aria-invalid"); delete el.dataset.touched; });
+      status.textContent = "Thank you. Your message has reached Level 7.";
+    } catch {
+      status.textContent = `Sending isn't available right now. Please email info@level7p.com instead.`;
+    } finally { submit.disabled = false; }
+  });
+});

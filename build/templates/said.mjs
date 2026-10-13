@@ -1,9 +1,9 @@
 // /said-el-marouk — Said El Marouk's portfolio
-import { PROJECTS, textOf } from "../../data/projects.js";
+import { PROJECTS } from "../../data/projects.js";
 import { SAID as S } from "../../data/said.js";
 import { layout } from "./layout.mjs";
 import { statTile, secTitle, countdown, slot, workCard } from "./components.mjs";
-import { esc, picture, webp } from "../lib.mjs";
+import { esc, picture, webp, clean } from "../lib.mjs";
 
 const obsess = PROJECTS.obsess;
 const ext = (href, cls, label, icon = "") => `<a href="${href}" class="${cls}" target="_blank" rel="noopener">${icon}${label}<span class="sr-only"> (opens in a new tab)</span></a>`;
@@ -15,7 +15,7 @@ const head = () => `<section class="said-head" aria-label="${esc(S.name)}">
 <span class="kick">${esc(S.role)}</span>
 <h1 class="h1">${esc(S.name)}</h1>
 <p lang="ar" dir="rtl" class="ar said-ar">${esc(S.nameAr)}</p>
-<blockquote class="quote">“${esc(textOf(S.quote))}”</blockquote>
+${clean(S.quote) ? `<blockquote class="quote">“${esc(clean(S.quote))}”</blockquote>` : ""}
 <div class="hero-ctas">
 ${ext(S.reel, "btn btn-w", "Watch the reel ↗", PLAY)}
 ${S.imdb ? ext(S.imdb, "btn btn-o", "IMDb ↗") : ""}
@@ -92,7 +92,7 @@ const timeline = () => `<section id="timeline" class="section" aria-labelledby="
 ${secTitle("timeline-title", "Timeline", "Thirty years, four countries")}
 </div>
 <div class="tl" role="region" aria-label="Timeline, scroll sideways" tabindex="0">
-${S.timeline.map((e) => `<div class="tl-i"><div class="tl-dot" aria-hidden="true"></div><div class="un tl-when">${esc(e.when)}</div><div class="kick tl-where">${esc(e.where)}</div><p class="muted tl-text">${esc(textOf(e.text))}</p></div>`).join("\n")}
+${S.timeline.filter((e) => clean(e.text)).map((e) => `<div class="tl-i"><div class="tl-dot" aria-hidden="true"></div><div class="un tl-when">${esc(e.when)}</div><div class="kick tl-where">${esc(e.where)}</div><p class="muted tl-text">${esc(clean(e.text))}</p></div>`).join("\n")}
 </div>
 </section>`;
 
@@ -114,7 +114,7 @@ const recognition = () => `<section id="recognition" class="section" aria-labell
 <div class="wrap">
 ${secTitle("recognition-title", "Recognition & more", "Awards and standing")}
 <div class="g3">
-${S.awards.map((a) => `<div class="surface award"><span class="un award-big">${esc(a.big)}</span><span class="un award-title">${esc(textOf(a.title))}</span><span class="muted award-note">${esc(textOf(a.note))}</span></div>`).join("\n")}
+${S.awards.filter((a) => clean(a.title)).map((a) => `<div class="surface award"><span class="un award-big">${esc(a.big)}</span><span class="un award-title">${esc(clean(a.title))}</span><span class="muted award-note">${esc(clean(a.note))}</span></div>`).join("\n")}
 </div>
 <div class="g2 mt-16">
 <div class="surface list-tile"><div class="kick">Production houses founded</div><ul>${S.houses.map((h) => `<li>${esc(h)}</li>`).join("")}</ul></div>

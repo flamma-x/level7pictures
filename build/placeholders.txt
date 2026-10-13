@@ -32,6 +32,13 @@ services.html: [Instagram]
 services.html: [LinkedIn]
 news.html: [Instagram]
 news.html: [LinkedIn]
+careers.html: [Instagram]
+careers.html: [LinkedIn]
+contact.html: [Address]
+contact.html: [+971 …]
+contact.html: [+961 …]
+contact.html: [Instagram]
+contact.html: [LinkedIn]
 data said.timeline.7.text: [pending approval] "The Money, The Role, The Deep State."
 data said.timeline.9.text: [pending approval] "The Lebanese Achievement award at BIAF."
 data said.awards.0.title: [pending approval] "The Lebanese Achievement"
