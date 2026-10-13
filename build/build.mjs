@@ -25,7 +25,7 @@ for (const { path: rel, html } of pages) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);
   const text = html.replace(/<(script|style)[\s\S]*?<\/\1>/g, "").replace(/<[^>]+>/g, " ");
-  for (const m of text.matchAll(/\[[^\]\n]{1,80}\]/g)) blockers.push(`${rel}: ${m[0]}`);
+  for (const m of text.matchAll(/\[[^\]\n]{1,400}\]/g)) blockers.push(`${rel}: ${m[0].replace(/\s+/g, " ")}`); // any length: long placeholders count too
 }
 // copy shown on the site but not yet signed off
 const walk = (v, at) => {

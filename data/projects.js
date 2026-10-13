@@ -50,11 +50,11 @@ export const PROJECTS = {
     house: "level7", titleEn: "Djinn Wedding", titleAr: "عرس الجن",
     status: "streaming", platform: "Shasha", window: "Ramadan 2026", year: 2026, partOf: "Monsters 2",
     seriesLine: "Monsters 2 · [وحوش ٢]",            // Arabic series name awaiting confirmation
-    genre: pending("Horror · folklore"),
+    genre: "Horror · folklore",                       // approved 13 Oct 2026
     director: "Said El Marouk",
     cast: ["Elham Ali", "[full cast]"],
     producedFor: "Shasha",
-    logline: pending("A Gulf folk legend turned horror story, part of the Monsters 2 anthology."),
+    logline: "A Kuwaiti folk legend turned horror story, part of the Monsters 2 anthology.", // approved 13 Oct 2026
     image: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 22%", alt: "Djinn Wedding poster" },
     hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
     page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
