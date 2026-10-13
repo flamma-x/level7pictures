@@ -41,6 +41,14 @@ said-el-marouk.html: [Instagram]
 said-el-marouk.html: [LinkedIn]
 said-el-marouk.html: [Privacy]
 said-el-marouk.html: [Terms]
+services.html: [Instagram]
+services.html: [LinkedIn]
+services.html: [Privacy]
+services.html: [Terms]
+news.html: [Instagram]
+news.html: [LinkedIn]
+news.html: [Privacy]
+news.html: [Terms]
 data djinn-wedding.genre: [pending approval] "Horror · folklore"
 data djinn-wedding.logline: [pending approval] "A Gulf folk legend turned horror story, part of the Monsters 2 anthology."
 data deep-state.logline: [pending approval] "A pan-Arab political thriller."
@@ -49,3 +57,5 @@ data said.timeline.7.text: [pending approval] "The Money, The Role, The Deep Sta
 data said.timeline.9.text: [pending approval] "The Lebanese Achievement award at BIAF."
 data said.awards.0.title: [pending approval] "The Lebanese Achievement"
 data said.awards.0.note: [pending approval] "Honoured at BIAF, Beirut"
+data services.1.tags.3: [pending approval] "Financing"
+data services.2.long: [pending approval] "Crews, schedules and budgets run across Lebanon, the Gulf and Egypt."

@@ -11,10 +11,13 @@ import productions from "./templates/productions.mjs";
 import titles from "./templates/title.mjs";
 import about from "./templates/about.mjs";
 import said from "./templates/said.mjs";
+import services from "./templates/services.mjs";
+import news from "./templates/news.mjs";
+import { SERVICES } from "../data/services.js";
 import { SAID } from "../data/said.js";
 import { COMPANY } from "../data/company.js";
 
-const pages = [home(), productions(), ...titles(), about(), said()];
+const pages = [home(), productions(), ...titles(), about(), said(), services(), news()];
 
 const blockers = [];
 for (const { path: rel, html } of pages) {
@@ -32,7 +35,7 @@ const walk = (v, at) => {
   }
 };
 for (const [slug, p] of Object.entries(PROJECTS)) walk(p, slug);
-walk(SAID, "said"); walk(COMPANY, "company");
+walk(SAID, "said"); walk(COMPANY, "company"); walk(SERVICES, "services");
 
 // sitemap from the routes actually built
 const route = (rel) => "/" + rel.replace(/(^|\/)index\.html$/, "").replace(/\.html$/, "");

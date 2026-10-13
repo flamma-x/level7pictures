@@ -1,6 +1,7 @@
 // Home (/)
 import { SITE, PROJECTS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SLOT_TEXT, COUNTDOWN_LABELS, timeLeft } from "../../data/projects.js";
 import { NEWS } from "../../data/news.js";
+import { SERVICES } from "../../data/services.js";
 import { layout } from "./layout.mjs";
 import { countdown, statTile, NOW } from "./components.mjs";
 import { esc, picture, webp } from "../lib.mjs";
@@ -145,13 +146,7 @@ ${person("/assets/img/khouloud-daher.jpg", "Khouloud Daher on set", "Khouloud Da
 </div>
 </section>`;
 
-/* ── services ── */
-const SERVICES = [
-  ["/assets/img/on-set-desert.jpg", "Production", "Drama series and features for broadcasters and streamers."],
-  ["/assets/img/svc-development.jpg", "Development & packaging", "Concepts, scripts and talent, ready to commission."],
-  ["/assets/img/svc-management.jpg", "Production management", "Crews, schedules and budgets across the region."],
-  ["/assets/img/obsess-night.jpg", "Post & delivery", "Editorial, finishing and platform-spec delivery."],
-];
+/* ── services (short versions from data/services.js; each card opens its section on /services) ── */
 const services = () => `<section class="section" aria-labelledby="hs">
 <div class="wrap">
 <div class="sec-head">
@@ -159,10 +154,10 @@ const services = () => `<section class="section" aria-labelledby="hs">
 <a href="/services" class="tlink">Services →</a>
 </div>
 <div class="g4">
-${SERVICES.map(([src, t, d], i) => `<a href="/services" class="svc zoom">
-<div class="svc-img"><div class="clip">${picture(src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 24vw" })}</div><span class="un svc-n" aria-hidden="true">0${i + 1}</span></div>
-<h3 class="h3">${esc(t)}</h3>
-<p class="muted svc-d">${esc(d)}</p>
+${SERVICES.map((s, i) => `<a href="/services#${s.id}" class="svc zoom">
+<div class="svc-img"><div class="clip">${picture(s.image.src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 24vw" })}</div><span class="un svc-n" aria-hidden="true">0${i + 1}</span></div>
+<h3 class="h3">${esc(s.homeTitle)}</h3>
+<p class="muted svc-d">${esc(s.short)}</p>
 </a>`).join("\n")}
 </div>
 </div>
@@ -176,7 +171,7 @@ const news = () => `<section class="section" aria-labelledby="hn">
 <a href="/news" class="tlink">News &amp; Press →</a>
 </div>
 <div class="g3">
-${NEWS.slice(0, 3).map((n) => `<a href="/news" class="surface news-card zoom">
+${NEWS.slice(0, 3).map((n) => `<a href="/news#${n.id}" class="surface news-card zoom">
 <div class="news-img">${picture(n.image.src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw", style: `object-position:${n.image.pos}` })}</div>
 <div class="news-body"><span class="kick news-date">${esc(n.date)}</span><h3 class="h3 news-title">${esc(n.title)}</h3></div>
 </a>`).join("\n")}
