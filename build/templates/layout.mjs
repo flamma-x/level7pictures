@@ -33,7 +33,7 @@ ${navCta()}
 </div>`;
 
 const menu = (page) => `<dialog class="menu" id="menu" aria-label="Menu">
-<span class="menu-glyph" aria-hidden="true">٧</span>
+<span class="clip" aria-hidden="true"><span class="mark menu-glyph">٧</span></span>
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
@@ -88,7 +88,8 @@ ${ph(SITE.linkedin, "LinkedIn")}
 </div>
 </footer>`;
 
-export const FONTS = "https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Alexandria:wght@500;700;800;900&display=swap";
+export const FONTS = "https://fonts.googleapis.com/css2?family=Anton&family=Lalezar&family=Hanken+Grotesk:wght@400;500;600;700&display=swap";
+export const FONT_MARK = "https://fonts.googleapis.com/css2?family=Alexandria:wght@900&text=%D9%A7&display=swap"; // ٧ only
 
 /* Shared trailer player (one per page, only where a trailer exists): modal, Esc closes, focus returns. */
 const player = () => `<dialog class="player" id="player" aria-label="Trailer">
@@ -102,6 +103,7 @@ export function layout({ page, title, description, body, head = "", image = "/as
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -118,6 +120,7 @@ export function layout({ page, title, description, body, head = "", image = "/as
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${FONTS.replace(/&/g, "&amp;")}">
+<link rel="stylesheet" href="${FONT_MARK.replace(/&/g, "&amp;")}">
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="module" src="/assets/js/site.js"></script>

@@ -146,7 +146,6 @@ if (filter && list) {
     status.textContent = `${shown} ${shown === 1 ? "production" : "productions"} shown`;
   };
   chips.forEach((b) => b.addEventListener("click", () => apply(b.dataset.filterKey)));
-  filter.hidden = false;
 }
 
 /* ── Shared trailer player: any [data-trailer] button opens it (YouTube or Vimeo, sound on, captions on) ── */

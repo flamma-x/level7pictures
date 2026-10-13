@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Productions · Level 7 Pictures</title>
 <meta name="description" content="Series developed and produced by Level 7 Pictures for regional and global platforms.">
@@ -17,7 +18,8 @@
 <link rel="icon" href="/l7-mark-light.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Alexandria:wght@500;700;800;900&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Lalezar&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="module" src="/assets/js/site.js"></script>
@@ -42,7 +44,7 @@
 </nav>
 </div>
 <dialog class="menu" id="menu" aria-label="Menu">
-<span class="menu-glyph" aria-hidden="true">٧</span>
+<span class="clip" aria-hidden="true"><span class="mark menu-glyph">٧</span></span>
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
@@ -79,7 +81,7 @@
 </div>
 </section>
 
-<section aria-label="Filter" class="filter-sec" data-filter hidden>
+<section aria-label="Filter" class="filter-sec" data-filter data-js-only>
 <div class="wrap chips" role="group" aria-label="Filter by status">
 <button type="button" class="chip" data-filter-key="all" aria-pressed="true">All</button>
 <button type="button" class="chip" data-filter-key="production" aria-pressed="false">In production</button>
@@ -91,8 +93,10 @@
 <section aria-label="Level 7 productions">
 <div class="wrap g3" data-filter-list>
 <a href="/productions/beit-hadam" class="pcard zoom" data-project="beit-hadam" data-group="production">
+<div class="clip">
 <picture><source type="image/avif" srcset="/assets/img/bhd-still-480.avif 480w, /assets/img/bhd-still-960.avif 960w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><source type="image/webp" srcset="/assets/img/bhd-still-480.webp 480w, /assets/img/bhd-still-960.webp 960w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><img src="/assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" width="1080" height="1920" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw" decoding="async" loading="lazy" style="object-position:50% 30%"></picture>
 <div class="pcard-scrim"></div>
+</div>
 <span class="pill pcard-pill" data-slot="status">In post-production</span>
 <div class="pcard-text">
 <span lang="ar" dir="rtl" class="ar pcard-ar">بيت هدام</span>
@@ -101,8 +105,10 @@
 </div>
 </a>
 <a href="/productions/djinn-wedding" class="pcard zoom" data-project="djinn-wedding" data-group="streaming">
+<div class="clip">
 <picture><source type="image/avif" srcset="/assets/posters/djinn-wedding-480.avif 480w, /assets/posters/djinn-wedding-960.avif 960w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><source type="image/webp" srcset="/assets/posters/djinn-wedding-480.webp 480w, /assets/posters/djinn-wedding-960.webp 960w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><img src="/assets/posters/djinn-wedding.jpg" alt="Djinn Wedding poster" width="1000" height="1333" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw" decoding="async" loading="lazy" style="object-position:50% 22%"></picture>
 <div class="pcard-scrim"></div>
+</div>
 <span class="pill pcard-pill" data-slot="status">Streaming</span>
 <div class="pcard-text">
 <span lang="ar" dir="rtl" class="ar pcard-ar">عرس الجن</span>
@@ -111,8 +117,10 @@
 </div>
 </a>
 <a href="/productions/deep-state" class="pcard zoom" data-project="deep-state" data-group="streaming">
+<div class="clip">
 <picture><source type="image/avif" srcset="/assets/img/deep-state-key-480.avif 480w, /assets/img/deep-state-key-960.avif 960w, /assets/img/deep-state-key-1440.avif 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><source type="image/webp" srcset="/assets/img/deep-state-key-480.webp 480w, /assets/img/deep-state-key-960.webp 960w, /assets/img/deep-state-key-1440.webp 1440w" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw"><img src="/assets/img/deep-state-key.jpg" alt="The Deep State key art" width="1440" height="1721" sizes="(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw" decoding="async" loading="lazy" style="object-position:50% 22%"></picture>
 <div class="pcard-scrim"></div>
+</div>
 <span class="pill pcard-pill" data-slot="status">Streaming</span>
 <div class="pcard-text">
 <span lang="ar" dir="rtl" class="ar pcard-ar">الدولة العميقة</span>

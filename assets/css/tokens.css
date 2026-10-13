@@ -2,15 +2,12 @@
    Brand colours only: #030C16 #0B131D #005588 #2890D8 #9FCBEE (+ white, + Netflix red for Netflix marks only).
    Every component in site.css is built from these. Contrast notes are measured on --bg-dark. */
 
-/* Metric-matched fallback for Unbounded: until the web font arrives, headings render in Arial scaled to
-   Unbounded's width and line metrics, so the swap does not reflow the page (measured on Home: layout shift 0.08 → 0.01). */
-@font-face { font-family: "Unbounded Fallback"; src: local("Arial Black"), local("Arial-Black"); font-weight: 800 900;
-  size-adjust: 116.7%; ascent-override: 85.7%; descent-override: 21.4%; line-gap-override: 0%; }
-@font-face { font-family: "Unbounded Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 500 700;
-  size-adjust: 130.3%; ascent-override: 76.7%; descent-override: 19.2%; line-gap-override: 0%; }
-/* Same for Alexandria (Arabic): Tahoma is the closest local match (3.7% narrower) */
-@font-face { font-family: "Alexandria Fallback"; src: local("Tahoma Bold"), local("Tahoma-Bold"), local("Tahoma"); font-weight: 500 900;
-  size-adjust: 103.7%; ascent-override: 93.5%; descent-override: 24.1%; line-gap-override: 0%; }
+/* Metric-matched fallbacks: until a web font arrives, text renders in a local font scaled to the web font's width
+   and line metrics, so the swap does not reflow the page. Measured against the real fonts at 100px. */
+@font-face { font-family: "Anton Fallback"; src: local("Impact"), local("Impact Regular"); font-weight: 400;
+  size-adjust: 97.5%; ascent-override: 121%; descent-override: 33.8%; line-gap-override: 0%; }
+@font-face { font-family: "Lalezar Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"); font-weight: 400;
+  size-adjust: 106.2%; ascent-override: 92.3%; descent-override: 55.6%; line-gap-override: 0%; }
 
 :root {
   /* colour */
@@ -34,9 +31,12 @@
   --glass-soft: rgba(3,12,22,.55);
 
   /* type */
-  --font-display: "Unbounded", "Unbounded Fallback", Arial, sans-serif;
+  --font-display: "Anton", "Anton Fallback", Impact, sans-serif;      /* Latin display, one weight (400) */
   --font-body: "Hanken Grotesk", system-ui, Arial, sans-serif;
-  --font-ar: "Alexandria", "Alexandria Fallback", Tahoma, sans-serif;
+  --font-ar: "Lalezar", "Lalezar Fallback", Tahoma, sans-serif;       /* Arabic, one weight (400) */
+  --font-mark: "Alexandria", Tahoma, sans-serif;                     /* the ٧ brand mark only, weight 900 */
+  --ls-display: .005em;
+  --lh-ar-display: 1.35;             /* Arabic display text: room for Lalezar's tall ascenders and dots */
   --fs-xs: 12px;                 /* floor: nothing smaller ships */
   --fs-label: 13px;
   --fs-sm: 14px;

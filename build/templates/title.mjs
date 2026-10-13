@@ -38,8 +38,10 @@ const trailer = (p) => {
 <span class="kick trailer-label">Watch the trailer</span>`
     : `<span class="kick trailer-label">${esc(p.page.comingLabel)}</span>`;
   return `<div class="trailer">
+<div class="clip">
 ${picture(img.src, { sizes: "(max-width: 1440px) 92vw, 1312px", style: `object-position:${img.pos}` })}
 <div class="trailer-shade"></div>
+</div>
 <div class="trailer-center">
 ${action}
 </div>
@@ -80,8 +82,10 @@ const page = (slug, i) => {
       head: jsonLd(slug, p),
       withPlayer: Boolean(p.trailer),
       body: `<section class="t-hero" aria-label="${esc(p.titleEn)}">
+<div class="clip">
 ${picture(p.image.src, { alt: p.image.alt, sizes: "100vw", lazy: false, priority: true, cls: "t-hero-img", style: `object-position:${p.page.heroPos}` })}
 <div class="t-hero-shade"></div>
+</div>
 <div class="wrap t-hero-in">
 <a href="/productions" class="tlink t-back">← All productions</a>
 <span class="pill pill-o t-pill" data-project="${slug}" data-slot="status">${esc(statusLabel(p, NOW))}</span>

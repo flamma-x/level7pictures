@@ -11,8 +11,10 @@ const FILTERS = [["all", "All"], ["production", "In production"], ["streaming", 
 const card = (slug) => {
   const p = PROJECTS[slug];
   return `<a href="/productions/${slug}" class="pcard zoom" data-project="${slug}" data-group="${groupOf(p)}">
+<div class="clip">
 ${picture(p.image.src, { alt: p.image.alt, sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw", style: `object-position:${p.image.pos}` })}
 <div class="pcard-scrim"></div>
+</div>
 <span class="pill pcard-pill" data-slot="status">${esc(statusLabel(p, NOW))}</span>
 <div class="pcard-text">
 <span lang="ar" dir="rtl" class="ar pcard-ar">${esc(p.titleAr)}</span>
@@ -45,7 +47,7 @@ export default () => ({
 </div>
 </section>
 
-<section aria-label="Filter" class="filter-sec" data-filter hidden>
+<section aria-label="Filter" class="filter-sec" data-filter data-js-only>
 <div class="wrap chips" role="group" aria-label="Filter by status">
 ${FILTERS.map(([k, l], i) => `<button type="button" class="chip" data-filter-key="${k}" aria-pressed="${i === 0}">${l}</button>`).join("\n")}
 </div>

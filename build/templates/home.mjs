@@ -59,7 +59,7 @@ ${heroDots()}
 </div>
 </div>
 <div class="first-sm hero-glyph-cell">
-<span aria-hidden="true" lang="ar" class="glyph" style="--fill:url(${first.f});--pos:${first.p}">٧</span>
+<span aria-hidden="true" class="mark glyph" style="--fill:url(${first.f});--pos:${first.p}">٧</span>
 </div>
 </div>
 </section>`;
@@ -83,7 +83,7 @@ const panel = (slug, i) => {
 <div class="ptext">
 <div class="ptop">
 <span class="pill pill-o" data-slot="status">${esc(statusLabel(p, NOW))}</span>
-<span aria-hidden="true" class="ar pglyph">٧</span>
+<span aria-hidden="true" class="mark pglyph">٧</span>
 </div>
 <div class="ptitle">
 <span lang="ar" dir="rtl" class="ar ptitle-ar">${esc(p.titleAr)}</span>
@@ -107,8 +107,10 @@ ${Object.keys(PROJECTS).filter((k) => PROJECTS[k].house === "level7").map(panel)
 const feature = () => `<section class="section" aria-labelledby="hf">
 <div class="wrap">
 <div class="feature" data-project="obsess">
+<div class="clip">
 <video class="feature-video" muted loop playsinline preload="none" aria-hidden="true" poster="${webp(obsess.image.src, 1600)}" data-autoplay-visible><source src="/assets/video/obsess-loop.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'><source src="/assets/video/obsess-loop.mp4" type="video/mp4"></video>
 <div class="feature-scrim"></div>
+</div>
 <div class="feature-body">
 <div class="feature-text">
 <h2 id="hf" class="kick feature-kick">Directed by our founder, ${esc(obsess.director)}</h2>
@@ -137,7 +139,7 @@ ${stat("[N]", "Episodes delivered")}
 };
 
 /* ── studio ── */
-const person = (src, alt, name, pos) => `<div class="portrait">${picture(src, { alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${pos}` })}<span class="pill portrait-tag">${name}</span></div>`;
+const person = (src, alt, name, pos) => `<div class="portrait"><div class="clip">${picture(src, { alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${pos}` })}</div><span class="pill portrait-tag">${name}</span></div>`;
 const studio = () => `<section class="section" aria-labelledby="ha">
 <div class="wrap split">
 <div class="stack-16">
@@ -168,7 +170,7 @@ const services = () => `<section class="section" aria-labelledby="hs">
 </div>
 <div class="g4">
 ${SERVICES.map(([src, t, d], i) => `<a href="/services" class="svc zoom">
-<div class="svc-img">${picture(src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 24vw" })}<span class="un svc-n" aria-hidden="true">0${i + 1}</span></div>
+<div class="svc-img"><div class="clip">${picture(src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 24vw" })}</div><span class="un svc-n" aria-hidden="true">0${i + 1}</span></div>
 <h3 class="h3">${esc(t)}</h3>
 <p class="muted svc-d">${esc(d)}</p>
 </a>`).join("\n")}
@@ -197,7 +199,7 @@ const ROUTES = [["A", "Co-productions & commissions"], ["B", "Talent"], ["C", "C
 const contact = () => `<section class="section" aria-labelledby="hc">
 <div class="wrap">
 <div class="cta-block">
-<span aria-hidden="true" class="ar cta-glyph">٧</span>
+<span class="clip" aria-hidden="true"><span class="mark cta-glyph">٧</span></span>
 <h2 id="hc" class="h1 cta-title">Your story.<br>Next.</h2>
 <div class="g4 cta-routes">
 ${ROUTES.map(([k, t]) => `<a href="/contact" class="route"><span class="kick route-k">Route ${k}</span><span class="un route-t">${esc(t)} →</span></a>`).join("\n")}
