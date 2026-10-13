@@ -1,0 +1,4 @@
+index.html: [Instagram]
+index.html: [LinkedIn]
+index.html: [Privacy]
+index.html: [Terms]

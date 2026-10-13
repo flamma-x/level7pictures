@@ -1,0 +1,55 @@
+/* ═══ Level 7 Pictures · design tokens ═══
+   Brand colours only: #030C16 #0B131D #005588 #2890D8 #9FCBEE (+ white, + Netflix red for Netflix marks only).
+   Every component in site.css is built from these. Contrast notes are measured on --bg-dark. */
+:root {
+  /* colour */
+  --bg-dark: #030c16;
+  --bg-dark-2: #0b131d;          /* surfaces, alternate panels (V8 #071A2B maps here) */
+  --brand: #005588;              /* fills behind white text (contact block, blue buttons) */
+  --interactive: #2890d8;        /* accents, active dots, hover of --brand (V8 #00476F maps here) */
+  --tint: #9fcbee;               /* kickers, text links, outline pills: 11.2:1 */
+  --text: #ffffff;
+  --text-soft: rgba(255,255,255,.8);    /* nav links, footer links, lead copy: 12.6:1 */
+  --text-muted: rgba(255,255,255,.72);  /* secondary copy: 9.8:1 */
+  --text-subtle: rgba(255,255,255,.52); /* fine print on flat dark only, never over media: 4.8:1 */
+  --text-on-light: #030c16;
+  --netflix: #e50914;            /* Netflix marks and the Obsess dot only */
+  --line: rgba(255,255,255,.10);
+  --line-strong: rgba(255,255,255,.18);
+  --surface-1: rgba(255,255,255,.06);
+  --surface-2: rgba(255,255,255,.10);
+  --surface-4: rgba(255,255,255,.35);
+  --glass: rgba(3,12,22,.82);    /* floating nav */
+  --glass-soft: rgba(3,12,22,.55);
+
+  /* type */
+  --font-display: "Unbounded", Arial, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, Arial, sans-serif;
+  --font-ar: "Alexandria", "Hanken Grotesk", sans-serif;
+  --fs-xs: 12px;                 /* floor: nothing smaller ships */
+  --fs-label: 13px;
+  --fs-sm: 14px;
+  --fs-md: 15px;
+  --fs-base: 16px;
+  --fs-lead: clamp(16px, 1.4vw, 19px);
+  --fs-h3: clamp(18px, 1.6vw, 22px);
+  --fs-h2: clamp(30px, 4.2vw, 60px);
+  --fs-h1: clamp(42px, 6.6vw, 104px);
+  --ls-caps: .14em;
+  --ls-caps-tight: .12em;
+
+  /* shape + space */
+  --r-pill: 999px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 18px;
+  --r-card: 22px;
+  --r-xl: 28px;
+  --r-2xl: 32px;
+  --gutter: clamp(18px, 4.5vw, 64px);
+  --wrap: 1440px;
+  --section-gap: clamp(72px, 8vw, 112px);
+  --tap: 44px;                   /* minimum target size */
+
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
