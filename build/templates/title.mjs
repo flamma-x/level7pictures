@@ -1,7 +1,8 @@
 // /productions/<slug> — one template for every Level 7 title, filled from data/projects.js
-import { SITE, PROJECTS, LEVEL7_ORDER, statusLabel } from "../../data/projects.js";
+import { SITE, PROJECTS, VIDEOS, LEVEL7_ORDER, statusLabel } from "../../data/projects.js";
+import { videoTag } from "./components.mjs";
 import { layout } from "./layout.mjs";
-import { esc, bidi, picture, clean, cleanList, orPh, FLAGS } from "../lib.mjs";
+import { esc, bidi, picture, webp, clean, cleanList, orPh, FLAGS } from "../lib.mjs";
 
 const NOW = Date.now();
 const row = (dt, dd) => (dd ? `<div><dt class="kick">${esc(dt)}</dt><dd>${bidi(dd)}</dd></div>` : "");
@@ -99,11 +100,14 @@ const page = (slug, i) => {
       title: `${p.titleEn} · Level 7 Pictures`,
       description: clean(p.logline) || `${p.titleEn}, a Level 7 Pictures production.`,
       image: p.image.src,
-      head: jsonLd(slug, p),
+      head: jsonLd(slug, p) + (p.page.video ? `\n<link rel="preload" as="image" href="${webp(VIDEOS[p.page.video].poster, 960)}" fetchpriority="high">` : ""),
       withPlayer: Boolean(p.trailer),
-      body: `<section class="t-hero" aria-label="${esc(p.titleEn)}">
+      body: `<section class="t-hero${p.page.video ? " t-hero-has-video" : ""}" aria-label="${esc(p.titleEn)}">
 <div class="clip">
-${picture(p.image.src, { alt: p.image.alt, sizes: "100vw", lazy: false, priority: true, cls: "t-hero-img", style: `object-position:${p.page.heroPos}` })}
+${p.page.video
+  /* optional hero video: right-aligned, left fade; poster first (LCP), clip after load, only while visible */
+  ? videoTag(p.page.video, { cls: "t-hero-video", pos: "50% 25%" }).replace("<video ", "<video data-autoplay-visible ")
+  : picture(p.image.src, { alt: p.image.alt, sizes: "100vw", lazy: false, priority: true, cls: "t-hero-img", style: `object-position:${p.page.heroPos}` })}
 <div class="t-hero-shade"></div>
 </div>
 <div class="wrap t-hero-in">

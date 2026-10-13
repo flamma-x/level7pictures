@@ -5,7 +5,7 @@ import { pending } from "./projects.js";
 export const SAID = {
   name: "Said El Marouk",
   nameAr: "سعيد الماروق",
-  role: "Founder & Director · Level 7 Pictures",
+  role: "Director · Producer at Level 7 Pictures",
   quote: null, // cut 13 Oct 2026 (design copy, not a sourced quote)
   reel: "https://vimeo.com/saidelmarouk",
   imdb: "https://www.imdb.com/name/nm3656010/", // checked 13 Oct 2026: Said El Marouk, director/writer/producer
@@ -49,11 +49,11 @@ export const SAID = {
     { when: "2009", where: "Egypt", text: "2nd unit director on Transformers: Revenge of the Fallen." },
     { when: "2011", where: "Cairo", text: "Feature debut, 365 Days of Happiness." },
     { when: "2019–2023", where: "Pan-Arab", text: pending("The Money, The Role, The Deep State.", "The Money, The Deep State.") }, // "The Role" awaits Said's confirmation (IMDb lists The Role – Dor El Omor, 2021)
-    { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures." },
+    { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures.", l7: true },
     { when: "2024", where: "Beirut", text: pending("The Lebanese Achievement award at BIAF.") },
     { when: "2025–2026", where: "Kuwait", text: "Monsters, Crime of Love, Djinn Wedding." },
     { when: "Oct 2026", where: "Netflix", text: "Obsess premieres on 30 October." },
-    { when: "2027", where: "Shasha", text: "Beit Hadam, for Ramadan 2027." },
+    { when: "2027", where: "Shasha", text: "Beit Hadam, for Ramadan 2027.", l7: true },
   ],
   musicIntro: "From 2000 he directed more than seventy music videos for the biggest names in Arabic music, and has continued since.",
   artists: ["Kadim El Saher", "Elissa", "Najwa Karam", "Haifa Wehbe", "Nawal El Zoghby", "Sherine", "Magida El Roumy", "Mohamad Mounir",

@@ -15,9 +15,16 @@ const FOOT_SITE = [...NAV.slice(0, 4), { href: "/news", label: "News & Press" },
 const cur = (href, page) => (href === page ? ' aria-current="page"' : "");
 const obsess = PROJECTS.obsess;
 
-// The Obsess button. Text is rewritten by the launch switch (site.js) from the same data.
-const navCta = () =>
-  `<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">${esc(SLOT_TEXT["nav-cta"](obsess, statusOf(obsess)))}</span></a>`;
+// The Obsess button. Long label ≥600px, short label below; the full text is always the accessible name.
+// All three are rewritten by the launch switch (site.js) from the same data.
+const navCta = () => {
+  const s = statusOf(obsess);
+  return `<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="${esc(SLOT_TEXT["nav-cta-label"](obsess, s))}"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">${esc(SLOT_TEXT["nav-cta"](obsess, s))}</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">${esc(SLOT_TEXT["nav-cta-short"](obsess, s))}</span></a>`;
+};
+// The ٧ menu button; inside the open menu the same button shows its × state
+const menuBtn = (close = false) => close
+  ? `<button type="button" class="menu-btn menu-close" aria-label="Close menu"><span class="mb-v" aria-hidden="true">٧</span><span class="mb-x" aria-hidden="true">✕</span></button>`
+  : `<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu"><span class="mb-v" aria-hidden="true">٧</span></button>`;
 const arabic = () => (SITE.arabicSite ? `<a href="${esc(SITE.arabicSite)}" lang="ar" class="ar" hreflang="ar">عربي</a>` : "");
 
 const nav = (page) => `<div class="nav-dock">
@@ -27,8 +34,8 @@ const nav = (page) => `<div class="nav-dock">
 ${NAV.map((l) => `<a href="${l.href}"${cur(l.href, page)}>${esc(l.label)}</a>`).join("\n")}
 ${arabic()}
 </div>
-<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">٧</button>
 ${navCta()}
+${menuBtn()}
 </nav>
 </div>`;
 
@@ -37,19 +44,19 @@ const menu = (page) => `<dialog class="menu" id="menu" aria-label="Menu">
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
-<button type="button" class="menu-btn menu-close" aria-label="Close menu">✕</button>
 ${navCta()}
+${menuBtn(true)}
 </div>
 </div>
 <div class="menu-body">
 <nav aria-label="Menu">
 <ul class="menu-list">
-<li><a href="/"${cur("/", page)}>Home</a></li>
-${NAV.map((l) => `<li><a href="${l.href}"${cur(l.href, page)}>${esc(l.label)}</a></li>`).join("\n")}
+<li style="--i:0"><a href="/"${cur("/", page)}>Home</a></li>
+${NAV.map((l, i) => `<li style="--i:${i + 1}"><a href="${l.href}"${cur(l.href, page)}>${esc(l.label)}</a></li>`).join("\n")}
 ${SITE.arabicSite ? `<li><a href="${esc(SITE.arabicSite)}" lang="ar" class="ar" hreflang="ar">عربي</a></li>` : ""}
 </ul>
 </nav>
-<div class="menu-foot">
+<div class="menu-foot" style="--i:${NAV.length + 1}">
 <a href="mailto:${SITE.email}">${SITE.email}</a>
 <span>${SITE.offices.join(" · ")}</span>
 <span lang="ar" dir="rtl" class="ar">${SITE.taglineAr}</span>
@@ -92,7 +99,7 @@ ${social(SITE.linkedin, "LinkedIn")}
 </footer>`;
 
 export const FONTS = "https://fonts.googleapis.com/css2?family=Anton&family=Lalezar&family=Hanken+Grotesk:wght@400;500;600;700&display=swap";
-export const FONT_MARK = "https://fonts.googleapis.com/css2?family=Alexandria:wght@900&text=%D9%A7&display=swap"; // ٧ only
+export const FONT_MARK = "https://fonts.googleapis.com/css2?family=Alexandria:wght@900&text=%D9%A7&display=block"; // ٧ only; block: decorative, appears once loaded instead of swapping (no layout shift)
 
 /* Shared trailer player (one per page, only where a trailer exists): modal, Esc closes, focus returns. */
 const player = () => `<dialog class="player" id="player" aria-label="Trailer">

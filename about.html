@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Lalezar&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=block">
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="module" src="/assets/js/site.js"></script>
@@ -39,8 +39,8 @@
 <a href="/contact">Contact</a>
 
 </div>
-<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">٧</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu"><span class="mb-v" aria-hidden="true">٧</span></button>
 </nav>
 </div>
 <dialog class="menu" id="menu" aria-label="Menu">
@@ -48,24 +48,24 @@
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
-<button type="button" class="menu-btn menu-close" aria-label="Close menu">✕</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn menu-close" aria-label="Close menu"><span class="mb-v" aria-hidden="true">٧</span><span class="mb-x" aria-hidden="true">✕</span></button>
 </div>
 </div>
 <div class="menu-body">
 <nav aria-label="Menu">
 <ul class="menu-list">
-<li><a href="/">Home</a></li>
-<li><a href="/productions">Productions</a></li>
-<li><a href="/about" aria-current="page">About</a></li>
-<li><a href="/said-el-marouk">Said El Marouk</a></li>
-<li><a href="/services">Services</a></li>
-<li><a href="/news">News</a></li>
-<li><a href="/contact">Contact</a></li>
+<li style="--i:0"><a href="/">Home</a></li>
+<li style="--i:1"><a href="/productions">Productions</a></li>
+<li style="--i:2"><a href="/about" aria-current="page">About</a></li>
+<li style="--i:3"><a href="/said-el-marouk">Said El Marouk</a></li>
+<li style="--i:4"><a href="/services">Services</a></li>
+<li style="--i:5"><a href="/news">News</a></li>
+<li style="--i:6"><a href="/contact">Contact</a></li>
 
 </ul>
 </nav>
-<div class="menu-foot">
+<div class="menu-foot" style="--i:7">
 <a href="mailto:info@level7p.com">info@level7p.com</a>
 <span>Dubai · Beirut</span>
 <span lang="ar" dir="rtl" class="ar">دراما عربية لكل الشاشات</span>
@@ -106,14 +106,14 @@
 
 <section class="section" aria-labelledby="leadership">
 <div class="wrap">
-<span class="kick">Leadership</span>
-<h2 id="leadership" class="h2 sec-title sec-title-32">Who runs Level 7</h2>
+<span class="kick">The people</span>
+<h2 id="leadership" class="h2 sec-title sec-title-32">The people behind Level 7</h2>
 <div class="g2 leaders">
 <article class="leader">
 <div class="leader-img"><div class="clip"><picture><source type="image/avif" srcset="/assets/img/said-hero-480.avif 480w, /assets/img/said-hero-960.avif 960w, /assets/img/said-hero-1600.avif 1600w, /assets/img/said-hero-2400.avif 2400w" sizes="(max-width: 600px) 92vw, 46vw"><source type="image/webp" srcset="/assets/img/said-hero-480.webp 480w, /assets/img/said-hero-960.webp 960w, /assets/img/said-hero-1600.webp 1600w, /assets/img/said-hero-2400.webp 2400w" sizes="(max-width: 600px) 92vw, 46vw"><img src="/assets/img/said-hero.jpg" alt="Said El Marouk on set" width="2400" height="1601" sizes="(max-width: 600px) 92vw, 46vw" decoding="async" loading="lazy" style="object-position:55% 35%"></picture></div></div>
 <div class="leader-name"><h3 class="un">Said El Marouk</h3><span lang="ar" dir="rtl" class="ar leader-ar">سعيد الماروق</span></div>
-<span class="kick leader-role">Founder · Director</span>
-<p class="lead">Director and producer with more than thirty years behind the camera. At Level 7 he leads the creative slate, from The Deep State to Djinn Wedding and Beit Hadam.</p>
+<span class="kick leader-role">Producer</span>
+<p class="lead">Producer at Level 7, with more than thirty years behind the camera. He leads the slate, from The Deep State to Djinn Wedding and Beit Hadam.</p>
 <a href="/said-el-marouk" class="tlink">Full portfolio →</a>
 </article>
 <article class="leader">

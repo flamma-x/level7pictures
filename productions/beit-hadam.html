@@ -19,11 +19,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Lalezar&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=block">
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="module" src="/assets/js/site.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TVSeries","name":"Beit Hadam","alternateName":"بيت هدام","url":"https://level7pictures.com/productions/beit-hadam","image":"https://level7pictures.com/assets/img/bhd-still.jpg","director":{"@type":"Person","name":"Said El Marouk"},"productionCompany":{"@type":"Organization","name":"Level 7 Pictures","url":"https://level7pictures.com"},"actor":[{"@type":"Person","name":"Abdulmohsen Al-Nemer"},{"@type":"Person","name":"Ali Kakouli"},{"@type":"Person","name":"Laila Abdallah"},{"@type":"Person","name":"Basma Hamada"}],"description":"A family coming apart across generations, adapted from Buthaina Al-Essa's novel All the Things."}</script>
+<link rel="preload" as="image" href="/assets/img/beit-hadam-vertical-756.webp" fetchpriority="high">
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -39,8 +40,8 @@
 <a href="/contact">Contact</a>
 
 </div>
-<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">٧</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu"><span class="mb-v" aria-hidden="true">٧</span></button>
 </nav>
 </div>
 <dialog class="menu" id="menu" aria-label="Menu">
@@ -48,24 +49,24 @@
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
-<button type="button" class="menu-btn menu-close" aria-label="Close menu">✕</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn menu-close" aria-label="Close menu"><span class="mb-v" aria-hidden="true">٧</span><span class="mb-x" aria-hidden="true">✕</span></button>
 </div>
 </div>
 <div class="menu-body">
 <nav aria-label="Menu">
 <ul class="menu-list">
-<li><a href="/">Home</a></li>
-<li><a href="/productions" aria-current="page">Productions</a></li>
-<li><a href="/about">About</a></li>
-<li><a href="/said-el-marouk">Said El Marouk</a></li>
-<li><a href="/services">Services</a></li>
-<li><a href="/news">News</a></li>
-<li><a href="/contact">Contact</a></li>
+<li style="--i:0"><a href="/">Home</a></li>
+<li style="--i:1"><a href="/productions" aria-current="page">Productions</a></li>
+<li style="--i:2"><a href="/about">About</a></li>
+<li style="--i:3"><a href="/said-el-marouk">Said El Marouk</a></li>
+<li style="--i:4"><a href="/services">Services</a></li>
+<li style="--i:5"><a href="/news">News</a></li>
+<li style="--i:6"><a href="/contact">Contact</a></li>
 
 </ul>
 </nav>
-<div class="menu-foot">
+<div class="menu-foot" style="--i:7">
 <a href="mailto:info@level7p.com">info@level7p.com</a>
 <span>Dubai · Beirut</span>
 <span lang="ar" dir="rtl" class="ar">دراما عربية لكل الشاشات</span>
@@ -73,9 +74,9 @@
 </div>
 </dialog>
 <main id="main" tabindex="-1">
-<section class="t-hero" aria-label="Beit Hadam">
+<section class="t-hero t-hero-has-video" aria-label="Beit Hadam">
 <div class="clip">
-<picture><source type="image/avif" srcset="/assets/img/bhd-still-480.avif 480w, /assets/img/bhd-still-960.avif 960w" sizes="100vw"><source type="image/webp" srcset="/assets/img/bhd-still-480.webp 480w, /assets/img/bhd-still-960.webp 960w" sizes="100vw"><img src="/assets/img/bhd-still.jpg" alt="Behind the scenes of Beit Hadam" width="1080" height="1920" sizes="100vw" decoding="async" fetchpriority="high" class="t-hero-img" style="object-position:50% 28%"></picture>
+<video data-autoplay-visible class="t-hero-video" muted loop playsinline preload="none" aria-hidden="true" poster="/assets/img/beit-hadam-vertical-756.webp" style="object-position:50% 25%" data-sources='[{&quot;src&quot;:&quot;/assets/video/beit-hadam-vertical-m.av1.mp4&quot;,&quot;type&quot;:&quot;video/mp4; codecs=\&quot;av01.0.04M.08\&quot;&quot;,&quot;media&quot;:&quot;(max-width: 600px)&quot;},{&quot;src&quot;:&quot;/assets/video/beit-hadam-vertical-m.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;,&quot;media&quot;:&quot;(max-width: 600px)&quot;},{&quot;src&quot;:&quot;/assets/video/beit-hadam-vertical.av1.mp4&quot;,&quot;type&quot;:&quot;video/mp4; codecs=\&quot;av01.0.05M.08\&quot;&quot;},{&quot;src&quot;:&quot;/assets/video/beit-hadam-vertical.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;}]'></video>
 <div class="t-hero-shade"></div>
 </div>
 <div class="wrap t-hero-in">

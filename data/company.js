@@ -18,9 +18,11 @@ export const COMPANY = {
     { when: "Aug 2026", what: "Beit Hadam shoots", text: "Filming begins on the Buthaina Al-Essa adaptation." },
     { when: "2027", what: "Beit Hadam premieres", text: "On Shasha for Ramadan 2027." },
   ],
+  leadersKick: "The people",
+  leadersTitle: "The people behind Level 7",
   leaders: [
-    { name: "Said El Marouk", nameAr: "سعيد الماروق", role: "Founder · Director", link: "/said-el-marouk", linkText: "Full portfolio →",
-      bio: "Director and producer with more than thirty years behind the camera. At Level 7 he leads the creative slate, from The Deep State to Djinn Wedding and Beit Hadam.",
+    { name: "Said El Marouk", nameAr: "سعيد الماروق", role: "Producer", link: "/said-el-marouk", linkText: "Full portfolio →",
+      bio: "Producer at Level 7, with more than thirty years behind the camera. He leads the slate, from The Deep State to Djinn Wedding and Beit Hadam.",
       image: { src: "/assets/img/said-hero.jpg", alt: "Said El Marouk on set", pos: "55% 35%" } },
     { name: "Khouloud Daher", nameAr: "[الاسم بالعربية]", role: "Co-producer",
       bio: "[Bio from Khouloud: her role at Level 7, what she oversees, and the productions she co-produced.]",

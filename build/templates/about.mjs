@@ -44,7 +44,7 @@ ${C.story.map((s) => `<li><span class="un story-when">${esc(s.when)}</span><span
 
 <section class="section" aria-labelledby="leadership">
 <div class="wrap">
-${secTitle("leadership", "Leadership", "Who runs Level 7", "sec-title-32")}
+${secTitle("leadership", C.leadersKick, C.leadersTitle, "sec-title-32")}
 <div class="g2 leaders">
 ${C.leaders.map(leader).join("\n")}
 </div>

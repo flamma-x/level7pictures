@@ -23,7 +23,6 @@ ${S.imdb ? ext(S.imdb, "btn btn-o", "IMDb ↗") : ""}
 </div>
 <div class="first-sm said-portrait">
 ${picture(S.portrait.src, { alt: S.portrait.alt, sizes: "(max-width: 820px) 92vw, 46vw", lazy: false, priority: true })}
-<span aria-hidden="true" class="mark said-mark">٧</span>
 </div>
 </div>
 </section>`;
@@ -87,14 +86,28 @@ ${picture(S.bioImage.src, { alt: S.bioImage.alt, sizes: "(max-width: 820px) 92vw
 </div>
 </section>`;
 
-const timeline = () => `<section id="timeline" class="section" aria-labelledby="timeline-title">
-<div class="wrap">
-${secTitle("timeline-title", "Timeline", "Thirty years, four countries")}
+/* Timeline (V8.1): header with ← 01 / 13 →, a scroll-snap track aligned to the content edge that bleeds right,
+   cards on a line with ring dots (Level 7 entries filled blue), and a progress bar. site.js drives it. */
+const timeline = () => {
+  const items = S.timeline.filter((e) => clean(e.text));
+  const pad = (n) => String(n).padStart(2, "0");
+  return `<section id="timeline" class="section" aria-labelledby="timeline-title">
+<div class="wrap tl-head">
+<div>${secTitle("timeline-title", "Timeline", "Thirty years, four countries", "tl-title")}</div>
+<div class="tl-nav" data-js-only>
+<button type="button" class="tl-btn" data-tl-step="-1" aria-label="Previous entry"><span aria-hidden="true">←</span></button>
+<span class="un tl-count" aria-live="polite"><span data-tl-cur>01</span> / ${pad(items.length)}</span>
+<button type="button" class="tl-btn" data-tl-step="1" aria-label="Next entry"><span aria-hidden="true">→</span></button>
 </div>
-<div class="tl" role="region" aria-label="Timeline, scroll sideways" tabindex="0">
-${S.timeline.filter((e) => clean(e.text)).map((e) => `<div class="tl-i"><div class="tl-dot" aria-hidden="true"></div><div class="un tl-when">${esc(e.when)}</div><div class="kick tl-where">${esc(e.where)}</div><p class="muted tl-text">${esc(clean(e.text))}</p></div>`).join("\n")}
 </div>
+<div class="tl" role="region" aria-label="Timeline, scroll sideways" tabindex="0" data-tl>
+<ol class="tl-list">
+${items.map((e) => `<li class="tl-card${e.l7 ? " tl-l7" : ""}"><span class="un tl-when">${esc(e.when)}</span><span class="kick tl-where">${esc(e.where)}</span><p class="tl-text">${esc(clean(e.text))}</p></li>`).join("\n")}
+</ol>
+</div>
+<div class="wrap"><div class="tl-progress" aria-hidden="true" data-js-only><span data-tl-bar style="width:${(100 / items.length).toFixed(3)}%"></span></div></div>
 </section>`;
+};
 
 const music = () => `<section id="music-videos" class="section" aria-labelledby="music-title">
 <div class="wrap split bio">

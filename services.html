@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Lalezar&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@900&amp;text=%D9%A7&amp;display=block">
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script type="module" src="/assets/js/site.js"></script>
@@ -39,8 +39,8 @@
 <a href="/contact">Contact</a>
 
 </div>
-<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu">٧</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn" aria-label="Open menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="menu"><span class="mb-v" aria-hidden="true">٧</span></button>
 </nav>
 </div>
 <dialog class="menu" id="menu" aria-label="Menu">
@@ -48,24 +48,24 @@
 <div class="menu-bar">
 <div class="nav">
 <a class="nav-logo" href="/" aria-label="Level 7 Pictures home"><img src="/assets/brand/l7-mark-light.png" alt="" width="390" height="168"></a>
-<button type="button" class="menu-btn menu-close" aria-label="Close menu">✕</button>
-<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · 30 Oct</span></a>
+<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess" data-label-slot="nav-cta-label" aria-label="Obsess · 30 Oct: premieres on Netflix"><span class="dot" aria-hidden="true"></span><span class="cta-long" data-slot="nav-cta" aria-hidden="true">Obsess · 30 Oct</span><span class="cta-short" data-slot="nav-cta-short" aria-hidden="true">Obsess</span></a>
+<button type="button" class="menu-btn menu-close" aria-label="Close menu"><span class="mb-v" aria-hidden="true">٧</span><span class="mb-x" aria-hidden="true">✕</span></button>
 </div>
 </div>
 <div class="menu-body">
 <nav aria-label="Menu">
 <ul class="menu-list">
-<li><a href="/">Home</a></li>
-<li><a href="/productions">Productions</a></li>
-<li><a href="/about">About</a></li>
-<li><a href="/said-el-marouk">Said El Marouk</a></li>
-<li><a href="/services" aria-current="page">Services</a></li>
-<li><a href="/news">News</a></li>
-<li><a href="/contact">Contact</a></li>
+<li style="--i:0"><a href="/">Home</a></li>
+<li style="--i:1"><a href="/productions">Productions</a></li>
+<li style="--i:2"><a href="/about">About</a></li>
+<li style="--i:3"><a href="/said-el-marouk">Said El Marouk</a></li>
+<li style="--i:4"><a href="/services" aria-current="page">Services</a></li>
+<li style="--i:5"><a href="/news">News</a></li>
+<li style="--i:6"><a href="/contact">Contact</a></li>
 
 </ul>
 </nav>
-<div class="menu-foot">
+<div class="menu-foot" style="--i:7">
 <a href="mailto:info@level7p.com">info@level7p.com</a>
 <span>Dubai · Beirut</span>
 <span lang="ar" dir="rtl" class="ar">دراما عربية لكل الشاشات</span>

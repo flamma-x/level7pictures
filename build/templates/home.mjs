@@ -1,43 +1,44 @@
-// Home (/)
-import { SITE, PROJECTS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SLOT_TEXT, COUNTDOWN_LABELS, timeLeft } from "../../data/projects.js";
+// Home (/) — copy in data/home.js
+import { SITE, PROJECTS, VIDEOS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SLOT_TEXT } from "../../data/projects.js";
 import { NEWS } from "../../data/news.js";
 import { SERVICES } from "../../data/services.js";
-import { layout } from "./layout.mjs";
-import { countdown, statTile, statsRow, NOW } from "./components.mjs";
+import { HOME as H } from "../../data/home.js";
 import { ROUTES } from "../../data/contact.js";
+import { layout } from "./layout.mjs";
+import { countdown, statsRow, videoTag, NOW } from "./components.mjs";
 import { esc, picture, webp, orPh } from "../lib.mjs";
 
 const obsess = PROJECTS.obsess;
 const slot = (name, p = obsess) => SLOT_TEXT[name](p, statusOf(p, NOW), NOW);
-const AV1 = "av01.0.01M.08"; // 640×360 background loops
 
-/* ── hero: the ٧ filled with the current title, its footage blurred behind ── */
+/* ── hero (V8.1): the ٧ is a window. Footage plays at full brightness inside the ٧ and dimmed around it:
+   a #4a5d72 overlay with mix-blend-mode: multiply carries a white ٧ (white × footage = footage). ── */
 const heroLayer = (slug, i) => {
-  const p = PROJECTS[slug], bg = p.hero.bg;
-  const inner = bg.video
-    ? `<video muted loop playsinline preload="${i === 0 ? "auto" : "none"}"${i === 0 ? " autoplay" : ""} poster="${webp(bg.poster, 480)}" data-video><source src="/assets/video/${bg.video}-bg.av1.mp4" type='video/mp4; codecs="${AV1}"'><source src="/assets/video/${bg.video}-bg.mp4" type="video/mp4"></video>`
-    : `<img src="${webp(p.image.src, 480)}" alt="" decoding="async" style="object-position:${bg.pos}">`;
-  return `<div class="hero-layer${i === 0 ? " on" : ""}" data-layer="${i}">${inner}</div>`;
+  const p = PROJECTS[slug], h = p.hero, first = i === 0;
+  const media = h.video
+    ? videoTag(h.video, { cls: "hero-media-el", pos: h.pos, posterWidth: h.layout === "vertical" ? 960 : 1600 })
+    : picture(p.image.src, { sizes: "100vw", lazy: !first, priority: first, cls: "hero-media-el", style: `object-position:${h.pos}` });
+  return `<div class="hero-layer${h.layout === "vertical" ? " hero-layer-v" : ""}${first ? " on" : ""}" data-layer="${i}">${media}</div>`;
 };
 const heroDots = () => HERO_CYCLE.map((slug, i) => `<button type="button" class="hero-dot" aria-pressed="${i === 0}" aria-label="Show ${esc(PROJECTS[slug].titleEn)}" data-i="${i}"><span></span></button>`).join("\n");
-const glyphData = HERO_CYCLE.map((slug) => ({ t: PROJECTS[slug].titleEn, f: webp(PROJECTS[slug].image.src, 960), p: PROJECTS[slug].hero.glyphPos }));
 
 const hero = () => {
-  const first = glyphData[0];
-  return `<section class="hero" aria-label="Level 7 Pictures" data-hero='${esc(JSON.stringify(glyphData))}'>
-<div class="hero-bg" aria-hidden="true">
+  const titles = HERO_CYCLE.map((slug) => PROJECTS[slug].titleEn);
+  return `<section class="hero" aria-label="Level 7 Pictures" data-hero='${esc(JSON.stringify(titles))}'>
+<div class="hero-media" aria-hidden="true">
 ${HERO_CYCLE.map(heroLayer).join("\n")}
-<div class="hero-scrim"></div>
+<div class="hero-window"><span class="mark hero-v">٧</span></div>
+<div class="hero-shade"></div>
 </div>
-<div class="wrap split hero-grid">
+<div class="wrap hero-in">
 <div class="hero-copy">
-<span class="kick">Level 7 Pictures · ${SITE.offices.join(" · ")} · Since ${SITE.founded.year}</span>
-<h1 class="h1">Arab drama, made for every screen.</h1>
-<p lang="ar" dir="rtl" class="ar hero-ar">${SITE.taglineAr}</p>
-<p class="lead hero-lead">A production house founded in ${SITE.founded.country} in ${SITE.founded.year}. We develop, produce and deliver series for regional and global platforms.</p>
+<span class="kick">${esc(H.hero.kick)}</span>
+<h1 class="h1">${esc(H.hero.title)}</h1>
+<p lang="ar" dir="rtl" class="ar hero-ar">${esc(H.hero.titleAr)}</p>
+<p class="lead hero-lead">${esc(H.hero.lead)}</p>
 <div class="hero-ctas">
-<a href="/productions" class="btn btn-w">See the productions →</a>
-<a href="${SITE.brandReel}" class="btn btn-o" target="_blank" rel="noopener"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>Brand reel<span class="sr-only"> (opens Vimeo in a new tab)</span></a>
+<a href="/productions" class="btn btn-w">${esc(H.hero.ctaPrimary)}</a>
+<a href="${SITE.brandReel}" class="btn btn-o" target="_blank" rel="noopener"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>${esc(H.hero.ctaReel)}<span class="sr-only"> (opens Vimeo in a new tab)</span></a>
 </div>
 <div class="hero-panel" data-project="obsess">
 <div class="hero-panel-text">
@@ -47,12 +48,9 @@ ${HERO_CYCLE.map(heroLayer).join("\n")}
 ${countdown("obsess", "sm")}
 </div>
 <div class="hero-dots">
-<span class="muted hero-now">In the ٧ now: <span data-hero-now>${esc(first.t)}</span></span>
+<span class="muted hero-now">${esc(H.hero.nowLabel)} <span data-hero-now>${esc(titles[0])}</span></span>
 ${heroDots()}
 </div>
-</div>
-<div class="first-sm hero-glyph-cell">
-<span aria-hidden="true" class="mark glyph" style="--fill:url(${first.f});--pos:${first.p}">٧</span>
 </div>
 </div>
 </section>`;
@@ -90,8 +88,8 @@ const panel = (slug, i) => {
 };
 const productions = () => `<section class="section" aria-labelledby="hw">
 <div class="wrap sec-head sec-head-28">
-<div><span class="kick">Our productions</span><h2 id="hw" class="h2">Produced by Level 7</h2></div>
-<a href="/productions" class="tlink">All productions →</a>
+<div><span class="kick">${esc(H.productions.kick)}</span><h2 id="hw" class="h2">${esc(H.productions.title)}</h2></div>
+<a href="/productions" class="tlink">${esc(H.productions.link)}</a>
 </div>
 ${Object.keys(PROJECTS).filter((k) => PROJECTS[k].house === "level7").map(panel).join("\n")}
 </section>`;
@@ -101,15 +99,15 @@ const feature = () => `<section class="section" aria-labelledby="hf">
 <div class="wrap">
 <div class="feature" data-project="obsess">
 <div class="clip">
-<video class="feature-video" muted loop playsinline preload="none" aria-hidden="true" poster="${webp(obsess.image.src, 1600)}" data-autoplay-visible><source src="/assets/video/obsess-loop.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"'><source src="/assets/video/obsess-loop.mp4" type="video/mp4"></video>
+${videoTag("obsess-loop", { cls: "feature-video", pos: "50% 50%", posterWidth: 1600 }).replace("<video ", "<video data-autoplay-visible ")}
 <div class="feature-scrim"></div>
 </div>
 <div class="feature-body">
 <div class="feature-text">
-<h2 id="hf" class="kick feature-kick">Directed by our founder, ${esc(obsess.director)}</h2>
+<h2 id="hf" class="kick feature-kick">${esc(H.feature.kick)}</h2>
 <span lang="ar" dir="rtl" class="ar feature-ar">${esc(obsess.titleAr)}</span>
 <span class="un feature-line" data-slot="feature-line">${slot("feature-line")}</span>
-<a href="/said-el-marouk" class="tlink">Said's portfolio →</a>
+<a href="/said-el-marouk" class="tlink">${esc(H.feature.link)}</a>
 </div>
 ${countdown("obsess", "lg")}
 </div>
@@ -130,19 +128,18 @@ ${statsRow([
 </section>`;
 };
 
-/* ── studio ── */
-const person = (src, alt, name, pos) => `<div class="portrait"><div class="clip">${picture(src, { alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${pos}` })}</div><span class="pill portrait-tag">${name}</span></div>`;
-const studio = () => `<section class="section" aria-labelledby="ha">
+/* ── the people ── */
+const person = (x) => `<div class="portrait"><div class="clip">${picture(x.src, { alt: x.alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${x.pos}` })}</div><span class="pill portrait-tag">${esc(x.label)}</span></div>`;
+const people = () => `<section class="section" aria-labelledby="ha">
 <div class="wrap split">
 <div class="stack-16">
-<span class="kick">The studio</span>
-<h2 id="ha" class="h2">Built by a director and a producer.</h2>
-<p class="lead">Said El Marouk and Khouloud Daher run Level 7 with one in-house team, from the first draft to the delivery file.</p>
-<a href="/about" class="tlink">About Level 7 →</a>
+<span class="kick">${esc(H.people.kick)}</span>
+<h2 id="ha" class="h2">${esc(H.people.title)}</h2>
+<p class="lead">${esc(H.people.lead)}</p>
+<a href="/about" class="tlink">${esc(H.people.link)}</a>
 </div>
 <div class="keep2 gap-14">
-${person("/assets/img/said-hero.jpg", "Said El Marouk on set", "Said El Marouk", "55% 35%")}
-${person("/assets/img/khouloud-daher.jpg", "Khouloud Daher on set", "Khouloud Daher", "45% 30%")}
+${H.people.portraits.map(person).join("\n")}
 </div>
 </div>
 </section>`;
@@ -151,8 +148,8 @@ ${person("/assets/img/khouloud-daher.jpg", "Khouloud Daher on set", "Khouloud Da
 const services = () => `<section class="section" aria-labelledby="hs">
 <div class="wrap">
 <div class="sec-head">
-<div><span class="kick">What we do</span><h2 id="hs" class="h2">One partner, every stage</h2></div>
-<a href="/services" class="tlink">Services →</a>
+<div><span class="kick">${esc(H.services.kick)}</span><h2 id="hs" class="h2">${esc(H.services.title)}</h2></div>
+<a href="/services" class="tlink">${esc(H.services.link)}</a>
 </div>
 <div class="g4">
 ${SERVICES.map((s, i) => `<a href="/services#${s.id}" class="svc zoom">
@@ -168,8 +165,8 @@ ${SERVICES.map((s, i) => `<a href="/services#${s.id}" class="svc zoom">
 const news = () => `<section class="section" aria-labelledby="hn">
 <div class="wrap">
 <div class="sec-head">
-<div><span class="kick">News</span><h2 id="hn" class="h2">Latest from the studio</h2></div>
-<a href="/news" class="tlink">News &amp; Press →</a>
+<div><span class="kick">${esc(H.news.kick)}</span><h2 id="hn" class="h2">${esc(H.news.title)}</h2></div>
+<a href="/news" class="tlink">${esc(H.news.link)}</a>
 </div>
 <div class="g3">
 ${NEWS.slice(0, 3).map((n) => `<a href="/news#${n.id}" class="surface news-card zoom">
@@ -185,7 +182,7 @@ const contact = () => `<section class="section" aria-labelledby="hc">
 <div class="wrap">
 <div class="cta-block">
 <span class="clip" aria-hidden="true"><span class="mark cta-glyph">٧</span></span>
-<h2 id="hc" class="h1 cta-title">Your story.<br>Next.</h2>
+<h2 id="hc" class="h1 cta-title">${H.contact.title.map(esc).join("<br>")}</h2>
 <div class="g4 cta-routes">
 ${ROUTES.map((r) => `<a href="/contact?route=${r.id}" class="route"><span class="kick route-k">Route ${r.k}</span><span class="un route-t">${esc(r.title)} →</span></a>`).join("\n")}
 </div>
@@ -198,13 +195,19 @@ ${ROUTES.map((r) => `<a href="/contact?route=${r.id}" class="route"><span class=
 const REDIRECTS = { "#obsess": "/said-el-marouk#obsess", "#monsters": "/said-el-marouk#selected-work", "#crime-of-love": "/said-el-marouk#selected-work", "#work": "/productions", "#founder": "/said-el-marouk", "#contact": "/contact" };
 const redirectScript = `<script>(function(m,h){if(m[h])location.replace(m[h])})(${JSON.stringify(REDIRECTS)},location.hash)</script>`;
 
+/* LCP: the first title's poster, fetched first */
+const firstPoster = () => {
+  const h = PROJECTS[HERO_CYCLE[0]].hero;
+  return h.video ? webp(VIDEOS[h.video].poster, h.layout === "vertical" ? 960 : 1600) : null;
+};
+
 export default () => ({
   path: "index.html",
   html: layout({
     page: "/",
-    title: "Level 7 Pictures · Arab drama, made for every screen",
-    description: `Level 7 Pictures is a production house founded in ${SITE.founded.country} in ${SITE.founded.year}. We develop, produce and deliver series for regional and global platforms.`,
-    head: `${redirectScript}\n<link rel="preload" as="image" href="${glyphData[0].f}" fetchpriority="high">`,
-    body: [hero(), strip(), productions(), feature(), stats(), studio(), services(), news(), contact()].join("\n\n"),
+    title: `Level 7 Pictures · ${H.hero.title.replace(/\.$/, "")}`,
+    description: H.hero.lead,
+    head: `${redirectScript}${firstPoster() ? `\n<link rel="preload" as="image" href="${firstPoster()}" fetchpriority="high">` : ""}`,
+    body: [hero(), strip(), productions(), feature(), stats(), people(), services(), news(), contact()].join("\n\n"),
   }),
 });

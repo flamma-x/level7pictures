@@ -1,6 +1,6 @@
 // Components shared by several pages.
-import { PROJECTS, statusOf, timeLeft, COUNTDOWN_LABELS, SLOT_TEXT } from "../../data/projects.js";
-import { esc, picture, clean } from "../lib.mjs";
+import { PROJECTS, VIDEOS, statusOf, timeLeft, COUNTDOWN_LABELS, SLOT_TEXT } from "../../data/projects.js";
+import { esc, picture, webp, clean } from "../lib.mjs";
 
 export const NOW = Date.now(); // build time; the browser re-renders every time-based slot on load
 
@@ -12,6 +12,13 @@ export const statTile = ({ v, l, blue }) =>
 export const statsRow = (tiles) => {
   const t = tiles.filter((x) => x.v != null && x.v !== "");
   return `<div class="wrap ${t.length >= 4 ? "g4" : t.length === 3 ? "g3" : "g2"}">\n${t.map(statTile).join("\n")}\n</div>`;
+};
+
+/* Deferred video: poster only in the HTML (it is the LCP image); site.js picks a source and starts it after the
+   page has loaded, only while visible, never under reduced motion. */
+export const videoTag = (name, { cls = "", pos = "50% 50%", posterWidth = 960 } = {}) => {
+  const v = VIDEOS[name];
+  return `<video class="${cls}" muted loop playsinline preload="none" aria-hidden="true" poster="${webp(v.poster, posterWidth)}" style="object-position:${pos}" data-sources='${esc(JSON.stringify(v.sources))}'></video>`;
 };
 
 /* Section title: kicker + h2 (spacing as designed) */

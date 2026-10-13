@@ -19,6 +19,7 @@ export function renderStatus() {
     const s = statusOf(p, t);
     const slots = el.matches("[data-slot]") ? [el] : el.querySelectorAll("[data-slot]");
     slots.forEach((x) => { const f = SLOT_TEXT[x.dataset.slot]; if (f) x.textContent = f(p, s, t); });
+    if (el.dataset.labelSlot && SLOT_TEXT[el.dataset.labelSlot]) el.setAttribute("aria-label", SLOT_TEXT[el.dataset.labelSlot](p, s, t));
     if (el.hasAttribute("data-countdown")) el.hidden = s !== "coming";
   });
 }
@@ -57,60 +58,97 @@ const menu = document.getElementById("menu");
 const openBtn = document.querySelector(".nav-dock .menu-btn");
 if (menu && openBtn && menu.showModal) {
   trapFocus(menu);
+  let closeTimer = 0;
+  /* open: circle grows from the ٧ button (CSS clip-path, 450 ms), links stagger in, ٧ turns into × */
   const open = () => {
+    clearTimeout(closeTimer); menu.classList.remove("is-closing");
+    const r = openBtn.getBoundingClientRect();
+    menu.style.setProperty("--cx", `${r.left + r.width / 2}px`);
+    menu.style.setProperty("--cy", `${r.top + r.height / 2}px`);
     menu.showModal();
     document.documentElement.classList.add("menu-open");
     openBtn.setAttribute("aria-expanded", "true");
+    requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add("is-open")));
     menu.querySelector(".menu-close").focus();
   };
-  const close = () => { if (menu.open) menu.close(); };
+  /* close: the reverse, faster (250 ms), then the dialog actually closes */
+  const close = (instant = false) => {
+    if (!menu.open || menu.classList.contains("is-closing")) return;
+    if (instant) { menu.classList.remove("is-open"); menu.close(); return; }
+    menu.classList.add("is-closing"); menu.classList.remove("is-open");
+    closeTimer = setTimeout(() => { menu.classList.remove("is-closing"); menu.close(); }, 250);
+  };
   openBtn.addEventListener("click", open);
-  menu.querySelector(".menu-close").addEventListener("click", close);
+  menu.querySelector(".menu-close").addEventListener("click", () => close());
+  menu.addEventListener("cancel", (e) => { e.preventDefault(); close(); }); // Esc: animate instead of vanishing
   menu.addEventListener("close", () => {
+    menu.classList.remove("is-open", "is-closing");
     document.documentElement.classList.remove("menu-open");
     openBtn.setAttribute("aria-expanded", "false");
     openBtn.focus();
   });
-  menu.querySelectorAll("a[href]").forEach((a) => a.addEventListener("click", close));
-  matchMedia("(min-width: 1101px)").addEventListener("change", (e) => { if (e.matches) close(); });
+  menu.querySelectorAll("a[href]").forEach((a) => a.addEventListener("click", () => close(true)));
+  matchMedia("(min-width: 1101px)").addEventListener("change", (e) => { if (e.matches) close(true); });
 }
 
-/* ── Video that plays only while on screen (and never under reduced motion) ── */
+/* ── Bar below 1100px: solid after 24px; hides on scroll down, returns on scroll up.
+   Never hides while the menu is open or something in the bar has focus; no hiding under reduced motion. ── */
+const navBar = document.querySelector(".nav-dock .nav");
+if (navBar) {
+  const small = matchMedia("(max-width: 1100px)");
+  let lastY = scrollY, rafNav = 0;
+  const onScroll = () => {
+    const y = Math.max(0, scrollY);
+    navBar.classList.toggle("is-solid", y > 24);
+    const pinned = reduce || !small.matches || menu?.open || navBar.contains(document.activeElement) || y < 80;
+    if (pinned) navBar.classList.remove("is-hidden");
+    else if (y > lastY + 4) navBar.classList.add("is-hidden");
+    else if (y < lastY - 4) navBar.classList.remove("is-hidden");
+    lastY = y;
+  };
+  addEventListener("scroll", () => { cancelAnimationFrame(rafNav); rafNav = requestAnimationFrame(onScroll); }, { passive: true });
+  navBar.addEventListener("focusin", () => navBar.classList.remove("is-hidden"));
+  onScroll();
+}
+
+/* ── Deferred video: the HTML carries only the poster (LCP). The source is chosen here — first entry whose
+   media query matches and whose codec plays — and only after the page has loaded. ── */
+const loaded = new Promise((r) => (document.readyState === "complete" ? r() : addEventListener("load", r, { once: true })));
+export const ensureSource = (v) => {
+  if (v.src || !v.dataset.sources) return;
+  const pick = JSON.parse(v.dataset.sources).find((s) => (!s.media || matchMedia(s.media).matches) && v.canPlayType(s.type) !== "");
+  if (pick) { v.src = pick.src; v.preload = "auto"; }
+};
+const play = async (v) => { if (reduce) return; await loaded; ensureSource(v); v.play().catch(() => {}); };
+
+/* Video that plays only while on screen (and never under reduced motion) */
 const playWhenVisible = (v, threshold = 0.25) => {
   if (reduce || !("IntersectionObserver" in window)) return;
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
-  }, { threshold }).observe(v);
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) play(v); else v.pause(); }, { threshold }).observe(v);
 };
 document.querySelectorAll("video[data-autoplay-visible]").forEach((v) => playWhenVisible(v));
 
-/* ── Home hero: the ٧ cycles through the titles every 3 s; footage crossfades behind it ── */
+/* ── Home hero (V8.1): a title every 6 s, footage crossfades (1.2 s, CSS) inside the ٧ window ── */
 const hero = document.querySelector("[data-hero]");
 if (hero) {
-  const slides = JSON.parse(hero.dataset.hero);
+  const titles = JSON.parse(hero.dataset.hero);
   const layers = [...hero.querySelectorAll(".hero-layer")];
   const dots = [...hero.querySelectorAll(".hero-dot")];
-  const glyph = hero.querySelector(".glyph");
   const nowText = hero.querySelector("[data-hero-now]");
-  const INTERVAL = 3000;
+  const INTERVAL = 6000;
   let cur = 0, timer = 0, hovered = false, focused = false, visible = true;
 
   const video = (i) => layers[i]?.querySelector("video");
   const syncVideos = () => layers.forEach((_, i) => {
     const v = video(i); if (!v) return;
-    if (i === cur && !reduce && visible) { v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
+    if (i === cur && visible) play(v); else v.pause(); // only the visible layer's video plays
   });
-  const warm = (i) => { // fetch the next title's fill and footage before its turn
-    new Image().src = slides[i].f;
-    const v = video(i); if (v && !reduce && v.preload === "none") v.preload = "auto";
-  };
+  const warm = (i) => { const v = video(i); if (v && !reduce) loaded.then(() => ensureSource(v)); }; // fetch the next clip before its turn
   const show = (i) => {
-    cur = (i + slides.length) % slides.length;
-    glyph.style.setProperty("--fill", `url(${slides[cur].f})`);
-    glyph.style.setProperty("--pos", slides[cur].p);
+    cur = (i + titles.length) % titles.length;
     layers.forEach((l, k) => l.classList.toggle("on", k === cur));
     dots.forEach((d, k) => d.setAttribute("aria-pressed", String(k === cur)));
-    nowText.textContent = slides[cur].t;
+    nowText.textContent = titles[cur];
     syncVideos();
   };
   const running = () => !reduce && !hovered && !focused && visible && !document.hidden;
@@ -118,7 +156,7 @@ if (hero) {
     clearTimeout(timer);
     if (!running()) return;
     timer = setTimeout(() => { show(cur + 1); schedule(); }, INTERVAL);
-    setTimeout(() => warm((cur + 1) % slides.length), INTERVAL - 1500);
+    setTimeout(() => warm((cur + 1) % titles.length), INTERVAL - 2500);
   };
 
   dots.forEach((d, i) => d.addEventListener("click", () => { show(i); schedule(); }));
@@ -129,8 +167,7 @@ if (hero) {
   document.addEventListener("visibilitychange", schedule);
   if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; syncVideos(); schedule(); }).observe(hero);
 
-  if (reduce) { const v = video(0); if (v) { v.removeAttribute("autoplay"); v.pause(); } }
-  show(0); schedule();
+  show(0); schedule(); // reduced motion: first title, poster only, no cycling
 }
 
 /* ── Productions filter: toggle buttons; hidden without JS so every title still shows ── */
@@ -230,3 +267,34 @@ document.querySelectorAll("form[data-form]").forEach((f) => {
     } finally { submit.disabled = false; }
   });
 });
+
+/* ── Said timeline: ← 01 / 13 → steps one card; counter + progress bar follow the scroll; arrow keys on the track ── */
+const tl = document.querySelector("[data-tl]");
+if (tl) {
+  const cards = [...tl.querySelectorAll(".tl-card")];
+  const curEl = document.querySelector("[data-tl-cur]"), bar = document.querySelector("[data-tl-bar]");
+  const [prev, next] = [-1, 1].map((d) => document.querySelector(`[data-tl-step="${d}"]`));
+  const step = () => cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : tl.clientWidth;
+  const atEnd = () => tl.scrollLeft >= tl.scrollWidth - tl.clientWidth - 2;
+  let index = -1;
+  const update = () => {
+    const i = atEnd() ? cards.length - 1 : Math.min(cards.length - 1, Math.max(0, Math.round(tl.scrollLeft / step())));
+    if (i === index) return;
+    index = i;
+    curEl.textContent = String(i + 1).padStart(2, "0");
+    bar.style.width = `${((i + 1) / cards.length) * 100}%`;
+    prev.disabled = i === 0; next.disabled = atEnd();
+  };
+  const go = (d) => tl.scrollBy({ left: d * step(), behavior: reduce ? "auto" : "smooth" });
+  prev.addEventListener("click", () => go(-1));
+  next.addEventListener("click", () => go(1));
+  tl.addEventListener("keydown", (e) => {
+    const d = { ArrowLeft: -1, ArrowRight: 1 }[e.key];
+    if (d) { e.preventDefault(); go(d); }
+    if (e.key === "Home" || e.key === "End") { e.preventDefault(); tl.scrollTo({ left: e.key === "Home" ? 0 : tl.scrollWidth, behavior: reduce ? "auto" : "smooth" }); }
+  });
+  let raf = 0;
+  tl.addEventListener("scroll", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); }, { passive: true });
+  addEventListener("resize", () => { index = -1; update(); });
+  update();
+}

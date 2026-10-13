@@ -46,8 +46,8 @@ export const PROJECTS = {
     producedFor: "Shasha",
     logline: "A family coming apart across generations, adapted from Buthaina Al-Essa's novel All the Things.",
     image: { src: "/assets/img/bhd-still.jpg", pos: "50% 30%", alt: "Behind the scenes of Beit Hadam" },
-    hero: { glyphPos: "50% 35%", bg: { video: "bhd-loop", poster: "/assets/img/bhd-poster-wide.jpg" } },
-    page: { heroPos: "50% 28%", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, comingLabel: "Teaser coming",
+    hero: { layout: "vertical", video: "beit-hadam-vertical", pos: "50% 22%" }, // Home hero layer (V8.1): sharp vertical clip, right-aligned
+    page: { heroPos: "50% 28%", video: "beit-hadam-vertical", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, comingLabel: "Teaser coming",
       stills: [{ src: "/assets/img/bhd-still.jpg", alt: "On set", pos: "50% 30%" }] },
     trailer: null, pressKit: null,
   },
@@ -61,7 +61,7 @@ export const PROJECTS = {
     producedFor: "Shasha",
     logline: "A Kuwaiti folk legend turned horror story, part of the Monsters 2 anthology.", // approved 13 Oct 2026
     image: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 22%", alt: "Djinn Wedding poster" },
-    hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
+    hero: { pos: "50% 25%" },
     page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
       stills: [{ src: "/assets/posters/djinn-wedding.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
@@ -75,7 +75,7 @@ export const PROJECTS = {
     cast: ["[Cast from the producers]"],
     logline: null, // cut 13 Oct 2026 (was "A pan-Arab political thriller.")
     image: { src: "/assets/img/deep-state-key.jpg", pos: "50% 22%", alt: "The Deep State key art" },
-    hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
+    hero: { pos: "50% 25%" },
     page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
       stills: [{ src: "/assets/img/deep-state-key.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
@@ -89,7 +89,7 @@ export const PROJECTS = {
     link: null,     // Netflix title URL, once public
     trailer: null,  // adding a URL here is all it takes to surface a trailer
     image: { src: "/assets/img/obsess-candles.jpg", pos: "40% 50%", alt: "" },
-    hero: { glyphPos: "40% 50%", bg: { video: "obsess-loop", poster: "/assets/img/obsess-candles.jpg" } },
+    hero: { video: "obsess-loop", pos: "40% 50%" },
     said: { anchor: "obsess" },
   },
   "crime-of-love": { house: "said", titleEn: "Crime of Love", titleAr: "جناية حب", platform: "Shasha Originals", format: "Mini-series", director: "Said El Marouk",
@@ -103,6 +103,28 @@ export const PROJECTS = {
   "365-days": { house: "said", titleEn: "365 Days of Happiness", titleAr: "٣٦٥ يوم سعادة", format: "Feature", year: 2011, director: "Said El Marouk",
     image: { src: "/assets/posters/365-days.jpg", pos: "50% 20%", alt: "" } },
 };
+
+/* Video clips: poster + sources in order of preference. The browser (site.js) takes the first source whose
+   media query matches and whose codec it can play; phones get the lighter -m encodes. */
+export const VIDEOS = {
+  "beit-hadam-vertical": {
+    poster: "/assets/img/beit-hadam-vertical.jpg",
+    sources: [
+      { src: "/assets/video/beit-hadam-vertical-m.av1.mp4", type: 'video/mp4; codecs="av01.0.04M.08"', media: "(max-width: 600px)" },
+      { src: "/assets/video/beit-hadam-vertical-m.mp4", type: "video/mp4", media: "(max-width: 600px)" },
+      { src: "/assets/video/beit-hadam-vertical.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+      { src: "/assets/video/beit-hadam-vertical.mp4", type: "video/mp4" },
+    ],
+  },
+  "obsess-loop": {
+    poster: "/assets/img/obsess-candles.jpg",
+    sources: [
+      { src: "/assets/video/obsess-loop.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+      { src: "/assets/video/obsess-loop.mp4", type: "video/mp4" },
+    ],
+  },
+};
+
 /* Title pages, in "Next title" order (wraps around) */
 export const LEVEL7_ORDER = ["beit-hadam", "djinn-wedding", "deep-state"];
 /* "Said El Marouk's other work" on /productions, in this order */
@@ -140,7 +162,9 @@ export const timeLeft = (iso, now = Date.now()) => {
 
 /* Text slots that change at launch. Rendered at build time and re-rendered in the browser (site.js). */
 export const SLOT_TEXT = {
-  "nav-cta": (p, s) => (s === "streaming" ? `Obsess · Now on ${p.platform}` : `Obsess · ${shortDate(p.premiere)}`),
+  "nav-cta": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `Obsess · ${shortDate(p.premiere)}`),        // ≥600px
+  "nav-cta-short": (p, s) => (s === "streaming" ? p.platform : "Obsess"),                                       // <600px
+  "nav-cta-label": (p, s) => (s === "streaming" ? `Now on ${p.platform}: Obsess` : `Obsess · ${shortDate(p.premiere)}: premieres on ${p.platform}`), // accessible name: starts with the visible text (WCAG 2.5.3)
   "date": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : longDate(p.premiere)),
   "strip": (p, s, now) => {
     if (s === "streaming") return `Now on ${p.platform}`;
