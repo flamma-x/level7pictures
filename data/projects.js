@@ -21,6 +21,14 @@ export const SITE = {
    at that moment (on load, and live while the page is open). */
 export const STATUS = { post: "In post-production", streaming: "Streaming", coming: "Coming soon" };
 
+/* Copy shown as designed but not yet signed off: renders normally, and the build lists it so main stays blocked. */
+export const pending = (text) => ({ text, pending: true });
+export const textOf = (v) => (v && typeof v === "object" && "text" in v ? v.text : v);
+
+/* Title-page fields (Level 7 titles):
+   trailer   YouTube or Vimeo URL. null → the trailer box shows its "coming" state, no play button.
+   pressKit  URL of the ZIP. null → the press-kit block is hidden.
+   producedFor → "Produced by Level 7 Pictures for <x>".  Fields left out are not shown at all. */
 export const PROJECTS = {
   /* ── Produced by Level 7 ── */
   "beit-hadam": {
@@ -30,27 +38,41 @@ export const PROJECTS = {
     basedOn: { author: "Buthaina Al-Essa", work: "All the Things" },
     director: "Said El Marouk",
     cast: ["Abdulmohsen Al-Nemer", "Ali Kakouli", "Laila Abdallah", "Basma Hamada"],
+    producedFor: "Shasha",
     logline: "A family coming apart across generations, adapted from Buthaina Al-Essa's novel All the Things.",
     image: { src: "/assets/img/bhd-still.jpg", pos: "50% 30%", alt: "Behind the scenes of Beit Hadam" },
     hero: { glyphPos: "50% 35%", bg: { video: "bhd-loop", poster: "/assets/img/bhd-poster-wide.jpg" } },
+    page: { heroPos: "50% 28%", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, comingLabel: "Teaser coming",
+      stills: [{ src: "/assets/img/bhd-still.jpg", alt: "On set", pos: "50% 30%" }] },
     trailer: null, pressKit: null,
   },
   "djinn-wedding": {
     house: "level7", titleEn: "Djinn Wedding", titleAr: "عرس الجن",
     status: "streaming", platform: "Shasha", window: "Ramadan 2026", year: 2026, partOf: "Monsters 2",
+    seriesLine: "Monsters 2 · [وحوش ٢]",            // Arabic series name awaiting confirmation
+    genre: pending("Horror · folklore"),
     director: "Said El Marouk",
-    cast: ["Elham Ali"],
+    cast: ["Elham Ali", "[full cast]"],
+    producedFor: "Shasha",
+    logline: pending("A Gulf folk legend turned horror story, part of the Monsters 2 anthology."),
     image: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 22%", alt: "Djinn Wedding poster" },
     hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
+    page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
+      stills: [{ src: "/assets/posters/djinn-wedding.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
   },
   "deep-state": {
     house: "level7", titleEn: "The Deep State", titleAr: "الدولة العميقة",
-    status: "streaming", year: 2023, format: "Series", episodes: 8, runtime: "47 min",
+    status: "streaming", year: 2023, released: "14 Sep 2023", format: "Series", episodes: 8, runtime: "47 min",
+    // platform: awaiting confirmation, so no Platform row is shown
     writer: "Faisal Al Balushi", locations: ["Lebanon", "Cuba", "Kuwait"],
     director: "Said El Marouk",
+    cast: ["[Cast from the producers]"],
+    logline: pending("A pan-Arab political thriller."),
     image: { src: "/assets/img/deep-state-key.jpg", pos: "50% 22%", alt: "The Deep State key art" },
     hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
+    page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
+      stills: [{ src: "/assets/img/deep-state-key.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
   },
 
@@ -63,11 +85,17 @@ export const PROJECTS = {
     trailer: null,  // adding a URL here is all it takes to surface a trailer
     image: { src: "/assets/img/obsess-candles.jpg", pos: "40% 50%", alt: "" },
     hero: { glyphPos: "40% 50%", bg: { video: "obsess-loop", poster: "/assets/img/obsess-candles.jpg" } },
+    said: { anchor: "obsess" },
   },
-  "crime-of-love": { house: "said", titleEn: "Crime of Love", titleAr: "جناية حب", platform: "Shasha Originals", format: "Mini-series", director: "Said El Marouk" },
-  "aminas-monster": { house: "said", titleEn: "Amina's Monster", titleAr: "وحش أمينة", series: "Monsters", director: "Said El Marouk" },
-  "monster-of-the-bank": { house: "said", titleEn: "Monster of the Bank", titleAr: "وحش البنوك", series: "Monsters", director: "Said El Marouk" },
+  "crime-of-love": { house: "said", titleEn: "Crime of Love", titleAr: "جناية حب", platform: "Shasha Originals", format: "Mini-series", director: "Said El Marouk",
+    image: { src: "/assets/img/crime-of-love-still.jpg", pos: "50% 40%", alt: "" }, said: { anchor: "selected-work", line: "Shasha Originals · Mini-series" } },
+  "aminas-monster": { house: "said", titleEn: "Amina's Monster", titleAr: "وحش أمينة", series: "Monsters", director: "Said El Marouk",
+    image: { src: "/assets/img/monster-amina.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
+  "monster-of-the-bank": { house: "said", titleEn: "Monster of the Bank", titleAr: "وحش البنوك", series: "Monsters", director: "Said El Marouk",
+    image: { src: "/assets/img/monster-bank.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
 };
+/* Title pages, in "Next title" order (wraps around) */
+export const LEVEL7_ORDER = ["beit-hadam", "djinn-wedding", "deep-state"];
 
 /* Home hero: the ٧ cycles through these, in this order */
 export const HERO_CYCLE = ["beit-hadam", "djinn-wedding", "deep-state", "obsess"];
@@ -112,4 +140,5 @@ export const SLOT_TEXT = {
   },
   "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${longDate(p.premiere)}`).toUpperCase(),
   "status": (p, s, now) => statusLabel(p, now),
+  "said-line": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${longDate(p.premiere)}`),
 };

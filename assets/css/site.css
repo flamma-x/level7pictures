@@ -259,3 +259,88 @@ html.menu-open { overflow: hidden; }
   .zoom img { transition: none; } .zoom:hover img { transform: none; }
   .hero-layer { transition: none; }
 }
+
+/* ═══ Productions ═══ */
+.page-head { padding: clamp(128px, 12vw, 168px) 0 clamp(32px, 4vw, 56px); }
+.page-head-in { display: flex; flex-direction: column; gap: 18px; }
+.page-lead { max-width: 680px; }
+.said-lead { max-width: 620px; }
+
+/* filter chips (toggle buttons) */
+.filter-sec { padding-bottom: 24px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { height: var(--tap); padding: 0 18px; border-radius: var(--r-pill); border: 1px solid rgba(255,255,255,.25); background: transparent; color: var(--text); font: inherit; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
+.chip:hover { border-color: var(--text); }
+.chip[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: var(--text-on-light); font-weight: 700; }
+
+/* production card: image with title over a bottom fade */
+.pcard { position: relative; display: block; min-height: 560px; border-radius: var(--r-card); overflow: hidden; color: var(--text); text-decoration: none; background: var(--bg-dark-2); }
+.pcard:hover { color: var(--text); }
+.pcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pcard-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,12,22,.05) 35%, rgba(3,12,22,.94) 100%); }
+.pcard-pill { position: absolute; top: 16px; left: 16px; background: rgba(3,12,22,.75); color: var(--tint); }
+.pcard-text { position: absolute; left: 22px; right: 22px; bottom: 22px; display: flex; flex-direction: column; gap: 6px; }
+.pcard-ar { font-weight: 900; font-size: clamp(40px, 3.6vw, 56px); line-height: 1.05; text-align: left; }
+.pcard-en { margin: 0; font-weight: 700; font-size: 18px; }
+.pcard-meta { font-size: var(--fs-sm); }
+
+/* small portrait card (Said's other work) */
+.scard { display: flex; flex-direction: column; gap: 12px; color: var(--text); text-decoration: none; }
+.scard:hover { color: var(--text); }
+.scard-img { aspect-ratio: 4 / 5; border-radius: var(--r-lg); overflow: hidden; background: var(--bg-dark-2); }
+.scard-img img { width: 100%; height: 100%; object-fit: cover; }
+.scard-title { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.scard-en { margin: 0; font-weight: 700; font-size: var(--fs-base); }
+.scard-ar { font-size: var(--fs-md); color: var(--tint); }
+.scard-meta { font-size: var(--fs-sm); margin-top: -6px; }
+
+/* ═══ Title page ═══ */
+.t-hero { position: relative; min-height: 720px; display: flex; align-items: flex-end; overflow: hidden; }
+.t-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.t-hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,12,22,.35) 0%, rgba(3,12,22,.1) 35%, var(--bg-dark) 100%); }
+.t-hero-in { position: relative; width: 100%; padding-bottom: 48px; display: flex; flex-direction: column; gap: 14px; }
+.t-back { color: var(--text); align-self: flex-start; }
+.t-pill { align-self: flex-start; }
+.t-title { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.t-title-ar { font-weight: 900; font-size: clamp(64px, 10vw, 160px); line-height: .95; text-align: left; }
+.t-title-en { font-weight: 800; font-size: clamp(22px, 2.6vw, 36px); }
+.t-facts { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); border-top: 1px solid rgba(255,255,255,.14); border-bottom: 1px solid rgba(255,255,255,.14); }
+.t-facts > div { padding: 22px 0; }
+.t-facts dt, .t-credits dt { font-size: var(--fs-xs); color: var(--text-subtle); }
+.t-facts dd { margin: 8px 0 0; font-size: 17px; }
+.t-sec { padding-top: clamp(56px, 7vw, 96px); }
+.t-story { align-items: start; }
+.t-story-text { display: flex; flex-direction: column; gap: 18px; }
+.t-logline { margin: 0; font-weight: 600; font-size: clamp(22px, 2.4vw, 32px); line-height: 1.3; }
+.t-credits { margin: 0; display: flex; flex-direction: column; gap: 20px; }
+.t-credits dd { margin: 6px 0 0; font-size: 18px; line-height: 1.5; }
+
+/* trailer box (data-driven: "coming" label, or play button for the shared player) */
+.trailer { position: relative; aspect-ratio: 21 / 9; border-radius: 24px; overflow: hidden; background: var(--bg-dark-2); }
+.trailer img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.trailer-shade { position: absolute; inset: 0; background: rgba(3,12,22,.45); }
+.trailer-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+.play { width: 88px; height: 88px; border-radius: 50%; border: 0; background: var(--text); color: var(--text-on-light); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.play:hover { color: var(--brand); }
+.trailer-label { color: var(--text); }
+.stills { margin-top: 16px; }
+.still { aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; background: var(--bg-dark-2); display: flex; align-items: center; justify-content: center; }
+.still img { width: 100%; height: 100%; object-fit: cover; }
+.still-ph { font-size: var(--fs-sm); }
+.t-foot { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+.t-kit { flex: 1 1 420px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.t-kit-d { font-size: var(--fs-base); margin-top: 6px; }
+.t-kit-btn { height: 48px; }
+.t-next { flex: 1 1 320px; padding: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--text); text-decoration: none; }
+.t-next:hover { color: var(--text); border-color: var(--surface-4); }
+.t-next-t { font-weight: 700; font-size: 20px; margin-top: 6px; }
+.t-next-arrow { font-size: 24px; }
+@media (max-width: 600px) { .trailer { aspect-ratio: 16 / 9; } }
+
+/* ═══ Shared trailer player (modal) ═══ */
+.player { position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(3,12,22,.96); color: var(--text); }
+.player::backdrop { background: rgba(3,12,22,.96); }
+.player[open] { display: flex; align-items: center; justify-content: center; }
+.player .player-close { display: flex; position: absolute; top: 18px; right: 18px; z-index: 1; }
+.player-frame { width: min(92vw, calc((100vh - 120px) * 16 / 9)); aspect-ratio: 16 / 9; background: #000; border-radius: var(--r-md); overflow: hidden; }
+.player-frame iframe { width: 100%; height: 100%; border: 0; display: block; }

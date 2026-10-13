@@ -90,7 +90,13 @@ ${ph(SITE.linkedin, "LinkedIn")}
 
 export const FONTS = "https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Alexandria:wght@500;700;800;900&display=swap";
 
-export function layout({ page, title, description, body, head = "" }) {
+/* Shared trailer player (one per page, only where a trailer exists): modal, Esc closes, focus returns. */
+const player = () => `<dialog class="player" id="player" aria-label="Trailer">
+<button type="button" class="menu-btn player-close" aria-label="Close trailer">✕</button>
+<div class="player-frame"></div>
+</dialog>`;
+
+export function layout({ page, title, description, body, head = "", image = "/assets/img/crime-of-love-still.jpg", withPlayer = false }) {
   const url = SITE.url + (page === "/" ? "/" : page);
   return `<!doctype html>
 <html lang="en">
@@ -105,6 +111,8 @@ export function layout({ page, title, description, body, head = "" }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${url}">
+<meta property="og:image" content="${SITE.url}${image}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#030c16">
 <link rel="icon" href="/l7-mark-light.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,6 +131,7 @@ ${menu(page)}
 ${body}
 </main>
 ${footer()}
+${withPlayer ? player() : ""}
 </body>
 </html>
 `;

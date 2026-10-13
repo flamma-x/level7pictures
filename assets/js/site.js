@@ -39,10 +39,24 @@ setInterval(() => {
   else if (!launched && new Date().getSeconds() === 0) renderStatus(); // keep "N days" lines fresh
 }, 1000);
 
+/* ── Focus trap for modal dialogs: guards at both ends send Tab focus back inside, even after it has been
+   inside an embedded iframe (where the browser's own modal trap no longer applies). ── */
+export function trapFocus(dialog) {
+  const focusables = () => [...dialog.querySelectorAll("a[href], button, iframe, [tabindex]:not([tabindex='-1']):not([data-guard])")].filter((e) => e.getClientRects().length);
+  const guard = (where) => {
+    const g = document.createElement("span");
+    g.tabIndex = 0; g.dataset.guard = where; g.className = "sr-only";
+    g.addEventListener("focus", () => { const f = focusables(); (where === "end" ? f[0] : f[f.length - 1])?.focus(); });
+    return g;
+  };
+  dialog.prepend(guard("start")); dialog.append(guard("end"));
+}
+
 /* ── Menu: modal <dialog> (focus stays inside, Esc closes, focus returns to the ٧ button) ── */
 const menu = document.getElementById("menu");
 const openBtn = document.querySelector(".nav-dock .menu-btn");
 if (menu && openBtn && menu.showModal) {
+  trapFocus(menu);
   const open = () => {
     menu.showModal();
     document.documentElement.classList.add("menu-open");
@@ -117,4 +131,51 @@ if (hero) {
 
   if (reduce) { const v = video(0); if (v) { v.removeAttribute("autoplay"); v.pause(); } }
   show(0); schedule();
+}
+
+/* ── Productions filter: toggle buttons; hidden without JS so every title still shows ── */
+const filter = document.querySelector("[data-filter]");
+const list = document.querySelector("[data-filter-list]");
+if (filter && list) {
+  const chips = [...filter.querySelectorAll("[data-filter-key]")];
+  const status = filter.querySelector("[data-filter-status]");
+  const apply = (key) => {
+    let shown = 0;
+    list.querySelectorAll("[data-group]").forEach((c) => { c.hidden = key !== "all" && c.dataset.group !== key; if (!c.hidden) shown++; });
+    chips.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filterKey === key)));
+    status.textContent = `${shown} ${shown === 1 ? "production" : "productions"} shown`;
+  };
+  chips.forEach((b) => b.addEventListener("click", () => apply(b.dataset.filterKey)));
+  filter.hidden = false;
+}
+
+/* ── Shared trailer player: any [data-trailer] button opens it (YouTube or Vimeo, sound on, captions on) ── */
+const player = document.getElementById("player");
+const embedUrl = (url) => {
+  const yt = url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0&cc_load_policy=1&playsinline=1`;
+  const vm = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}?autoplay=1&texttrack=en&dnt=1`;
+  return null;
+};
+if (player && player.showModal) {
+  trapFocus(player);
+  const frame = player.querySelector(".player-frame");
+  let opener = null;
+  document.querySelectorAll("[data-trailer]").forEach((b) => b.addEventListener("click", () => {
+    const src = embedUrl(b.dataset.trailer);
+    if (!src) { window.open(b.dataset.trailer, "_blank", "noopener"); return; } // unknown host: open it directly
+    opener = b;
+    frame.innerHTML = `<iframe src="${src}" title="${b.dataset.trailerTitle || "Trailer"}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    player.showModal();
+    document.documentElement.classList.add("menu-open");
+    player.querySelector(".player-close").focus();
+  }));
+  player.querySelector(".player-close").addEventListener("click", () => player.close());
+  player.addEventListener("click", (e) => { if (e.target === player) player.close(); }); // click outside the video
+  player.addEventListener("close", () => {
+    frame.innerHTML = ""; // stops playback
+    document.documentElement.classList.remove("menu-open");
+    opener?.focus();
+  });
 }

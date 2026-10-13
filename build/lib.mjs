@@ -5,6 +5,8 @@ import { ROOT } from "./lib-root.mjs";
 export { ROOT };
 
 export const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+/* Escaped text with every Arabic run isolated (<bdi lang=ar dir=rtl>), so mixed English/Arabic keeps its punctuation in place */
+export const bidi = (s) => esc(s).replace(/[؀-ۿ][؀-ۿ\s]*[؀-ۿ]|[؀-ۿ]/g, (m) => `<bdi lang="ar" dir="rtl">${m}</bdi>`);
 
 /* Responsive image: <picture> AVIF → WebP → JPEG from the variants in build/images.json (Section 6 pattern).
    sizes: the slot's rendered width. lazy: false only for images in the first screen. */
