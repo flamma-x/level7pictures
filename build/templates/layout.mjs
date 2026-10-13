@@ -1,5 +1,5 @@
 // Shared page shell: <head>, floating pill nav, full-screen menu, footer.
-import { SITE, PROJECTS, shortDate } from "../../data/projects.js";
+import { SITE, PROJECTS, SLOT_TEXT, statusOf } from "../../data/projects.js";
 import { esc } from "../lib.mjs";
 
 export const NAV = [
@@ -17,7 +17,7 @@ const obsess = PROJECTS.obsess;
 
 // The Obsess button. Text is rewritten by the launch switch (site.js) from the same data.
 const navCta = () =>
-  `<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">Obsess · ${esc(shortDate(obsess.premiere))}</span></a>`;
+  `<a class="nav-cta" href="/said-el-marouk#obsess" data-project="obsess"><span class="dot" aria-hidden="true"></span><span data-slot="nav-cta">${esc(SLOT_TEXT["nav-cta"](obsess, statusOf(obsess)))}</span></a>`;
 const arabic = () => (SITE.arabicSite ? `<a href="${esc(SITE.arabicSite)}" lang="ar" class="ar" hreflang="ar">عربي</a>` : "");
 
 const nav = (page) => `<div class="nav-dock">

@@ -1,9 +1,8 @@
 // Small helpers shared by the templates.
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
-
-export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+import { ROOT } from "./lib-root.mjs";
+export { ROOT };
 
 export const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 

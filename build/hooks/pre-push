@@ -1,0 +1,13 @@
+#!/bin/sh
+# Blocks any push to main while the built site still shows [placeholders] (decision 5, V8).
+# Install: cp build/hooks/pre-push .git/hooks/pre-push
+while read local_ref local_sha remote_ref remote_sha; do
+  [ "$remote_ref" = "refs/heads/main" ] || continue
+  node build/build.mjs >/dev/null || { echo "pre-push: build failed"; exit 1; }
+  if [ -s build/placeholders.txt ]; then
+    echo "pre-push: main is blocked, these placeholders are still visible on the site:"
+    sed "s/^/  /" build/placeholders.txt
+    exit 1
+  fi
+done
+exit 0

@@ -82,3 +82,34 @@ export const statusLabel = (p, now) => {
 const DAY = { timeZone: "Asia/Kuwait" };
 export const shortDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "short" });             // 30 Oct
 export const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "short", year: "numeric" }); // 30 Oct 2026
+
+/* One line of facts under a title, same order everywhere: [Monsters 2 story] · platform · [format · episodes] · window or year */
+export const metaLine = (p) => [
+  p.partOf && `A ${p.partOf} story`,
+  p.platform,
+  !p.platform && p.format,
+  !p.platform && p.episodes && `${p.episodes} episodes`,
+  p.status === "post" ? p.window : p.year,
+].filter(Boolean).join(" · ");
+
+/* Countdown: one label set everywhere (approved: Days / Hrs / Min / Sec) */
+export const COUNTDOWN_LABELS = { d: "Days", h: "Hrs", m: "Min", s: "Sec" };
+export const timeLeft = (iso, now = Date.now()) => {
+  const ms = Math.max(0, new Date(iso).getTime() - now);
+  return { ms, d: Math.floor(ms / 864e5), h: Math.floor(ms / 36e5) % 24, m: Math.floor(ms / 6e4) % 60, s: Math.floor(ms / 1e3) % 60 };
+};
+
+/* Text slots that change at launch. Rendered at build time and re-rendered in the browser (site.js). */
+export const SLOT_TEXT = {
+  "nav-cta": (p, s) => (s === "streaming" ? `Obsess · Now on ${p.platform}` : `Obsess · ${shortDate(p.premiere)}`),
+  "date": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : longDate(p.premiere)),
+  "strip": (p, s, now) => {
+    if (s === "streaming") return `Now on ${p.platform}`;
+    const t = timeLeft(p.premiere, now);
+    const hrs = Math.max(1, t.h + (t.m || t.s ? 1 : 0)); // round up: "2 hrs" at 1 h 30 min
+    const left = t.d > 1 ? `${t.d} days` : t.d === 1 ? "1 day" : hrs === 1 ? "1 hr" : `${hrs} ${COUNTDOWN_LABELS.h.toLowerCase()}`;
+    return `${p.platform} · ${left}`;
+  },
+  "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${longDate(p.premiere)}`).toUpperCase(),
+  "status": (p, s, now) => statusLabel(p, now),
+};
