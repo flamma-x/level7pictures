@@ -3,8 +3,9 @@ import { SITE, PROJECTS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SL
 import { NEWS } from "../../data/news.js";
 import { SERVICES } from "../../data/services.js";
 import { layout } from "./layout.mjs";
-import { countdown, statTile, NOW } from "./components.mjs";
-import { esc, picture, webp } from "../lib.mjs";
+import { countdown, statTile, statsRow, NOW } from "./components.mjs";
+import { ROUTES } from "../../data/contact.js";
+import { esc, picture, webp, orPh } from "../lib.mjs";
 
 const obsess = PROJECTS.obsess;
 const slot = (name, p = obsess) => SLOT_TEXT[name](p, statusOf(p, NOW), NOW);
@@ -120,12 +121,12 @@ ${countdown("obsess", "lg")}
 const stats = () => {
   const n = Object.values(PROJECTS).filter((p) => p.house === "level7").length;
   return `<section class="section" aria-label="Level 7 at a glance">
-<div class="wrap g4">
-${statTile({ v: SITE.founded.year, l: `Founded in ${SITE.founded.country}`, blue: true })}
-${statTile({ v: SITE.offices.length, l: `Offices: ${SITE.offices.join(" and ")}` })}
-${statTile({ v: n, l: "Level 7 productions" })}
-${statTile({ v: "[N]", l: "Episodes delivered" })}
-</div>
+${statsRow([
+    { v: SITE.founded.year, l: `Founded in ${SITE.founded.country}`, blue: true },
+    { v: SITE.offices.length, l: `Offices: ${SITE.offices.join(" and ")}` },
+    { v: n, l: "Level 7 productions" },
+    { v: orPh(SITE.episodesDelivered, "[N]"), l: "Episodes delivered" },
+  ])}
 </section>`;
 };
 
@@ -179,15 +180,14 @@ ${NEWS.slice(0, 3).map((n) => `<a href="/news#${n.id}" class="surface news-card 
 </div>
 </section>`;
 
-/* ── contact block ── */
-const ROUTES = [["A", "Co-productions & commissions"], ["B", "Talent"], ["C", "Crew"], ["D", "Press"]];
+/* ── contact block: each route opens /contact with its inquiry type pre-selected ── */
 const contact = () => `<section class="section" aria-labelledby="hc">
 <div class="wrap">
 <div class="cta-block">
 <span class="clip" aria-hidden="true"><span class="mark cta-glyph">٧</span></span>
 <h2 id="hc" class="h1 cta-title">Your story.<br>Next.</h2>
 <div class="g4 cta-routes">
-${ROUTES.map(([k, t]) => `<a href="/contact" class="route"><span class="kick route-k">Route ${k}</span><span class="un route-t">${esc(t)} →</span></a>`).join("\n")}
+${ROUTES.map((r) => `<a href="/contact?route=${r.id}" class="route"><span class="kick route-k">Route ${r.k}</span><span class="un route-t">${esc(r.title)} →</span></a>`).join("\n")}
 </div>
 <a href="mailto:${SITE.email}" class="un cta-mail">${SITE.email}</a>
 </div>

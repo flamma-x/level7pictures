@@ -1,6 +1,6 @@
 // Shared page shell: <head>, floating pill nav, full-screen menu, footer.
 import { SITE, PROJECTS, SLOT_TEXT, statusOf } from "../../data/projects.js";
-import { esc } from "../lib.mjs";
+import { esc, FLAGS } from "../lib.mjs";
 
 export const NAV = [
   { href: "/productions", label: "Productions" },
@@ -57,7 +57,10 @@ ${SITE.arabicSite ? `<li><a href="${esc(SITE.arabicSite)}" lang="ar" class="ar" 
 </div>
 </dialog>`;
 
-const ph = (url, label) => (url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : `<a href="#">[${label}]</a>`);
+/* Social link: real URL, else the design's [placeholder] (removed under PRUNE) */
+const social = (url, label) => (url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : FLAGS.prune ? "" : `<a href="#">[${label}]</a>`);
+/* Legal links appear only once the pages exist (decided 13 Oct) */
+const legal = () => [SITE.privacy && `<a href="${esc(SITE.privacy)}">Privacy</a>`, SITE.terms && `<a href="${esc(SITE.terms)}">Terms</a>`].filter(Boolean).join(" · ");
 
 const footer = () => `<footer class="footer">
 <div class="wrap foot">
@@ -78,13 +81,13 @@ ${FOOT_SITE.map((l) => `<a href="${l.href}">${esc(l.label)}</a>`).join("\n")}
 </div>
 <div class="foot-col">
 <span class="kick">Follow</span>
-${ph(SITE.instagram, "Instagram")}
-${ph(SITE.linkedin, "LinkedIn")}
+${social(SITE.instagram, "Instagram")}
+${social(SITE.linkedin, "LinkedIn")}
 <a href="${SITE.vimeo}" target="_blank" rel="noopener">Vimeo</a>
 </div>
 </div>
 <div class="wrap foot-legal">
-<span>© 2026 Level 7 Pictures</span><span>[Privacy] · [Terms]</span>
+<span>© 2026 Level 7 Pictures</span>${legal() ? `<span>${legal()}</span>` : ""}
 </div>
 </footer>`;
 

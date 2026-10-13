@@ -6,7 +6,7 @@ export const SAID = {
   name: "Said El Marouk",
   nameAr: "سعيد الماروق",
   role: "Founder & Director · Level 7 Pictures",
-  quote: pending("A director who learned to read a room before he learned to read a script."), // design copy, not a sourced quote
+  quote: null, // cut 13 Oct 2026 (design copy, not a sourced quote)
   reel: "https://vimeo.com/saidelmarouk",
   imdb: "https://www.imdb.com/name/nm3656010/", // checked 13 Oct 2026: Said El Marouk, director/writer/producer
   portrait: { src: "/assets/img/said-portrait.jpg", alt: "Portrait of Said El Marouk" },
@@ -48,7 +48,7 @@ export const SAID = {
     { when: "2005–2009", where: "Beirut · Dubai", text: "Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11." },
     { when: "2009", where: "Egypt", text: "2nd unit director on Transformers: Revenge of the Fallen." },
     { when: "2011", where: "Cairo", text: "Feature debut, 365 Days of Happiness." },
-    { when: "2019–2023", where: "Pan-Arab", text: pending("The Money, The Role, The Deep State.") }, // "The Role" awaits Said's confirmation (IMDb lists The Role – Dor El Omor, 2021)
+    { when: "2019–2023", where: "Pan-Arab", text: pending("The Money, The Role, The Deep State.", "The Money, The Deep State.") }, // "The Role" awaits Said's confirmation (IMDb lists The Role – Dor El Omor, 2021)
     { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures." },
     { when: "2024", where: "Beirut", text: pending("The Lebanese Achievement award at BIAF.") },
     { when: "2025–2026", where: "Kuwait", text: "Monsters, Crime of Love, Djinn Wedding." },

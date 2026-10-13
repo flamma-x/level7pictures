@@ -14,7 +14,8 @@ export const SERVICES = [
     image: { src: "/assets/img/svc-development.jpg", alt: "Working through a scene with an actress", pos: "50% 30%" } },
   { id: "management", homeTitle: "Production management", title: "Production management",
     short: "Crews, schedules and budgets across the region.",
-    long: pending("Crews, schedules and budgets run across Lebanon, the Gulf and Egypt."), // no Level 7 shoot in Egypt on record
+    long: pending("Crews, schedules and budgets run across Lebanon, the Gulf and Egypt.",
+      "Crews, schedules and budgets run across Lebanon and the Gulf."), // no Level 7 shoot in Egypt on record; PRUNE drops "and Egypt"
     tags: ["Crews", "Schedules", "Budgets", "Locations"],
     image: { src: "/assets/img/svc-management.jpg", alt: "Cast and crew on set", pos: "50% 50%" } },
   { id: "post", homeTitle: "Post & delivery", title: "Post-production & delivery",

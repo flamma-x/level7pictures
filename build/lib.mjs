@@ -2,7 +2,31 @@
 import fs from "fs";
 import path from "path";
 import { ROOT } from "./lib-root.mjs";
-export { ROOT };
+import { FLAGS } from "./flags.mjs";
+export { ROOT, FLAGS };
+
+/* ── Placeholders and pending copy ──
+   clean(v): the text to show for a data value, or null when there is nothing to show.
+   • pending(text, pruneText) → text normally; under PRUNE the approved fallback (pruneText) or nothing
+   • strings → unchanged normally; under PRUNE every [bracket] segment is removed and the separators tidied,
+     e.g. "Series · [N] episodes" → "Series", "Lebanon · Kuwait · Cuba · [more]" → "Lebanon · Kuwait · Cuba"
+   Templates skip any element whose value comes back null, so nothing ever renders empty. */
+export const isPending = (v) => Boolean(v && typeof v === "object" && v.pending);
+export function clean(v) {
+  if (v == null) return null;
+  if (isPending(v)) return FLAGS.prune ? v.prune ?? null : v.text;
+  if (typeof v !== "string") return v;
+  if (!FLAGS.prune) return v;
+  const s = v.replace(/\[[^\]]*\]/g, "")
+    .replace(/\s*[·,]\s*(?=[·,]|$)/g, "")   // separators left dangling before another separator or the end
+    .replace(/^\s*[·,]\s*/, "")              // …or at the start
+    .replace(/\s{2,}/g, " ").trim();
+  return s || null;
+}
+/* A list with placeholder entries dropped under PRUNE */
+export const cleanList = (arr) => (arr || []).map(clean).filter(Boolean);
+/* A value that only exists as a placeholder until real data arrives: `real` if set, else the placeholder (or null under PRUNE) */
+export const orPh = (real, placeholder) => (real != null && real !== "" ? real : FLAGS.prune ? null : placeholder);
 
 export const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 /* Escaped text with every Arabic run isolated (<bdi lang=ar dir=rtl>), so mixed English/Arabic keeps its punctuation in place */

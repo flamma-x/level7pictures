@@ -8,6 +8,12 @@ export const NOW = Date.now(); // build time; the browser re-renders every time-
 export const statTile = ({ v, l, blue }) =>
   `<div class="surface stat"><div class="un stat-v${blue ? " stat-blue" : ""}">${esc(v)}</div><div class="muted stat-l">${esc(l)}</div></div>`;
 
+/* Row of stat tiles; tiles whose value is null (placeholder removed under PRUNE) drop out and the grid adapts */
+export const statsRow = (tiles) => {
+  const t = tiles.filter((x) => x.v != null && x.v !== "");
+  return `<div class="wrap ${t.length >= 4 ? "g4" : t.length === 3 ? "g3" : "g2"}">\n${t.map(statTile).join("\n")}\n</div>`;
+};
+
 /* Section title: kicker + h2 (spacing as designed) */
 export const secTitle = (id, kick, title, cls = "") =>
   `<span class="kick">${esc(kick)}</span>\n<h2 id="${id}" class="h2 sec-title ${cls}">${esc(title)}</h2>`;

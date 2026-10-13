@@ -13,16 +13,21 @@ export const SITE = {
   vimeo: "https://vimeo.com/saidelmarouk",
   brandReel: "https://vimeo.com/saidelmarouk", // approved: opens in a new tab
   arabicSite: null,                              // the عربي nav link is hidden while this is null
-  instagram: null,                               // footer shows [Instagram] until set
-  linkedin: null,                                // footer shows [LinkedIn] until set
+  instagram: null,                               // footer shows [Instagram] until set (hidden under PRUNE)
+  linkedin: null,                                // footer shows [LinkedIn] until set (hidden under PRUNE)
+  privacy: null,                                 // footer Privacy link hidden until the page exists (decided 13 Oct)
+  terms: null,                                   // footer Terms link hidden until the page exists
+  episodesDelivered: null,                       // Home stat shows [N] until set (tile hidden under PRUNE)
+  phones: null,                                  // e.g. ["+971 …", "+961 …"]; Contact shows [+971 …] · [+961 …] until set
 };
 
 /* status: "post" | "streaming" | "coming". A "coming" title with a premiere switches to "streaming"
    at that moment (on load, and live while the page is open). */
 export const STATUS = { post: "In post-production", streaming: "Streaming", coming: "Coming soon" };
 
-/* Copy shown as designed but not yet signed off: renders normally, and the build lists it so main stays blocked. */
-export const pending = (text) => ({ text, pending: true });
+/* Copy shown as designed but not yet signed off: renders normally, and the build lists it so main stays blocked.
+   pruneText: what to show instead under PRUNE (omit to remove the item entirely). */
+export const pending = (text, pruneText = null) => ({ text, pending: true, prune: pruneText });
 export const textOf = (v) => (v && typeof v === "object" && "text" in v ? v.text : v);
 
 /* Title-page fields (Level 7 titles):
@@ -68,7 +73,7 @@ export const PROJECTS = {
     writer: "Faisal Al Balushi", locations: ["Lebanon", "Cuba", "Kuwait"],
     director: "Said El Marouk",
     cast: ["[Cast from the producers]"],
-    logline: pending("A pan-Arab political thriller."),
+    logline: null, // cut 13 Oct 2026 (was "A pan-Arab political thriller.")
     image: { src: "/assets/img/deep-state-key.jpg", pos: "50% 22%", alt: "The Deep State key art" },
     hero: { glyphPos: "50% 30%", bg: { pos: "50% 25%" } },
     page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
