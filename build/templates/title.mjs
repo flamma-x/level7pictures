@@ -48,12 +48,13 @@ ${action}
 </div>`;
 };
 
-/* Stills: three slots; missing ones show the design's placeholder, never an empty box.
-   Under PRUNE: placeholders go, and so does any still that only repeats the hero image; no stills → no row. */
+/* Stills: only real stills count; one that repeats the hero image is not shown (approved 13 Oct).
+   No real stills → no row at all. Some real stills → the row is topped up to three with the design's
+   placeholder (removed under PRUNE). */
 const stills = (p) => {
-  const slots = FLAGS.prune ? p.page.stills.filter((s) => s.src !== p.image.src) : [...p.page.stills];
-  if (!FLAGS.prune) while (slots.length < 3) slots.push(null);
+  const slots = p.page.stills.filter((s) => s.src !== p.image.src);
   if (!slots.length) return "";
+  if (!FLAGS.prune) while (slots.length < 3) slots.push(null);
   return slots.map((s) => s
     ? `<div class="still">${picture(s.src, { alt: s.alt, sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw", style: `object-position:${s.pos}` })}</div>`
     : `<div class="still"><span class="muted still-ph">[Still from the producers]</span></div>`).join("\n");
