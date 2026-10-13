@@ -1,5 +1,6 @@
 // /productions — Level 7's own titles (filterable) + Said El Marouk's work for other producers
-import { PROJECTS, LEVEL7_ORDER, statusOf, statusLabel, metaLine, SLOT_TEXT } from "../../data/projects.js";
+import { PROJECTS, LEVEL7_ORDER, SAID_ON_PRODUCTIONS, statusOf, statusLabel, metaLine, SLOT_TEXT } from "../../data/projects.js";
+import { workCard } from "./components.mjs";
 import { layout } from "./layout.mjs";
 import { esc, picture } from "../lib.mjs";
 
@@ -24,13 +25,10 @@ ${picture(p.image.src, { alt: p.image.alt, sizes: "(max-width: 600px) 92vw, (max
 </a>`;
 };
 
-const saidCard = ([slug, p]) => {
-  const line = p.premiere ? `<span class="muted scard-meta" data-project="${slug}" data-slot="said-line">${esc(SLOT_TEXT["said-line"](p, statusOf(p, NOW)))}</span>` : `<span class="muted scard-meta">${esc(p.said.line)}</span>`;
-  return `<a href="/said-el-marouk#${p.said.anchor}" class="scard zoom">
-<div class="scard-img">${picture(p.image.src, { sizes: "(max-width: 1060px) 46vw, 24vw", style: `object-position:${p.image.pos}` })}</div>
-<div class="scard-title"><h3 class="un scard-en">${esc(p.titleEn)}</h3><span lang="ar" dir="rtl" class="ar scard-ar">${esc(p.titleAr)}</span></div>
-${line}
-</a>`;
+const saidCard = (slug) => {
+  const p = PROJECTS[slug];
+  const lineHtml = p.premiere ? `<span class="muted scard-meta" data-project="${slug}" data-slot="said-line">${esc(SLOT_TEXT["said-line"](p, statusOf(p, NOW)))}</span>` : null;
+  return workCard({ slug, line: p.said.line, lineHtml, href: `/said-el-marouk#${p.said.anchor}` });
 };
 
 export default () => ({
@@ -67,7 +65,7 @@ ${LEVEL7_ORDER.map(card).join("\n")}
 <a href="/said-el-marouk" class="tlink">Said's portfolio →</a>
 </div>
 <div class="g4">
-${Object.entries(PROJECTS).filter(([, p]) => p.house === "said").map(saidCard).join("\n")}
+${SAID_ON_PRODUCTIONS.map(saidCard).join("\n")}
 </div>
 </div>
 </section>`,

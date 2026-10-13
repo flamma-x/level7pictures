@@ -93,9 +93,15 @@ export const PROJECTS = {
     image: { src: "/assets/img/monster-amina.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
   "monster-of-the-bank": { house: "said", titleEn: "Monster of the Bank", titleAr: "وحش البنوك", series: "Monsters", director: "Said El Marouk",
     image: { src: "/assets/img/monster-bank.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
+  "the-money": { house: "said", titleEn: "The Money", titleAr: "الفلوس", platform: "New Century", format: "Feature", year: 2019, director: "Said El Marouk",
+    image: { src: "/assets/posters/money.jpg", pos: "50% 20%", alt: "" } },
+  "365-days": { house: "said", titleEn: "365 Days of Happiness", titleAr: "٣٦٥ يوم سعادة", format: "Feature", year: 2011, director: "Said El Marouk",
+    image: { src: "/assets/posters/365-days.jpg", pos: "50% 20%", alt: "" } },
 };
 /* Title pages, in "Next title" order (wraps around) */
 export const LEVEL7_ORDER = ["beit-hadam", "djinn-wedding", "deep-state"];
+/* "Said El Marouk's other work" on /productions, in this order */
+export const SAID_ON_PRODUCTIONS = ["obsess", "crime-of-love", "aminas-monster", "monster-of-the-bank"];
 
 /* Home hero: the ٧ cycles through these, in this order */
 export const HERO_CYCLE = ["beit-hadam", "djinn-wedding", "deep-state", "obsess"];
@@ -141,4 +147,5 @@ export const SLOT_TEXT = {
   "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${longDate(p.premiere)}`).toUpperCase(),
   "status": (p, s, now) => statusLabel(p, now),
   "said-line": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${longDate(p.premiere)}`),
+  "said-kick": (p, s) => (s === "streaming" ? `Latest work · Now on ${p.platform}` : `Latest work · ${p.platform} · ${longDate(p.premiere)}`),
 };

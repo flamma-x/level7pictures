@@ -2,21 +2,12 @@
 import { SITE, PROJECTS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SLOT_TEXT, COUNTDOWN_LABELS, timeLeft } from "../../data/projects.js";
 import { NEWS } from "../../data/news.js";
 import { layout } from "./layout.mjs";
+import { countdown, statTile, NOW } from "./components.mjs";
 import { esc, picture, webp } from "../lib.mjs";
 
-const NOW = Date.now(); // build time; the browser re-renders every time-based slot on load
 const obsess = PROJECTS.obsess;
-const sObsess = statusOf(obsess, NOW);
 const slot = (name, p = obsess) => SLOT_TEXT[name](p, statusOf(p, NOW), NOW);
 const AV1 = "av01.0.01M.08"; // 640×360 background loops
-
-/* Countdown (shared component): cd-sm in the hero panel, cd-lg on the Obsess feature */
-export const countdown = (slug, size) => {
-  const p = PROJECTS[slug], t = timeLeft(p.premiere, NOW);
-  return `<div class="cd cd-${size}" data-project="${slug}" data-countdown aria-label="Time until ${esc(p.titleEn)} premieres"${statusOf(p, NOW) === "coming" ? "" : " hidden"}>
-${Object.entries(COUNTDOWN_LABELS).map(([k, l]) => `<div class="cd-u"><span class="un" data-u="${k}">${String(t[k]).padStart(2, "0")}</span><span class="cd-l">${l}</span></div>`).join("\n")}
-</div>`;
-};
 
 /* ── hero: the ٧ filled with the current title, its footage blurred behind ── */
 const heroLayer = (slug, i) => {
@@ -127,13 +118,12 @@ ${countdown("obsess", "lg")}
 /* ── at a glance ── */
 const stats = () => {
   const n = Object.values(PROJECTS).filter((p) => p.house === "level7").length;
-  const stat = (v, l, blue) => `<div class="surface stat"><div class="un stat-v${blue ? " stat-blue" : ""}">${v}</div><div class="muted stat-l">${l}</div></div>`;
   return `<section class="section" aria-label="Level 7 at a glance">
 <div class="wrap g4">
-${stat(SITE.founded.year, `Founded in ${SITE.founded.country}`, true)}
-${stat(SITE.offices.length, `Offices: ${SITE.offices.join(" and ")}`)}
-${stat(n, "Level 7 productions")}
-${stat("[N]", "Episodes delivered")}
+${statTile({ v: SITE.founded.year, l: `Founded in ${SITE.founded.country}`, blue: true })}
+${statTile({ v: SITE.offices.length, l: `Offices: ${SITE.offices.join(" and ")}` })}
+${statTile({ v: n, l: "Level 7 productions" })}
+${statTile({ v: "[N]", l: "Episodes delivered" })}
 </div>
 </section>`;
 };

@@ -29,6 +29,23 @@ productions/deep-state.html: [Instagram]
 productions/deep-state.html: [LinkedIn]
 productions/deep-state.html: [Privacy]
 productions/deep-state.html: [Terms]
+about.html: [N]
+about.html: [الاسم بالعربية]
+about.html: [Address]
+about.html: [more]
+about.html: [Instagram]
+about.html: [LinkedIn]
+about.html: [Privacy]
+about.html: [Terms]
+said-el-marouk.html: [Instagram]
+said-el-marouk.html: [LinkedIn]
+said-el-marouk.html: [Privacy]
+said-el-marouk.html: [Terms]
 data djinn-wedding.genre: [pending approval] "Horror · folklore"
 data djinn-wedding.logline: [pending approval] "A Gulf folk legend turned horror story, part of the Monsters 2 anthology."
 data deep-state.logline: [pending approval] "A pan-Arab political thriller."
+data said.quote: [pending approval] "A director who learned to read a room before he learned to read a script."
+data said.timeline.7.text: [pending approval] "The Money, The Role, The Deep State."
+data said.timeline.9.text: [pending approval] "The Lebanese Achievement award at BIAF."
+data said.awards.0.title: [pending approval] "The Lebanese Achievement"
+data said.awards.0.note: [pending approval] "Honoured at BIAF, Beirut"
