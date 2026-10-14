@@ -45,7 +45,6 @@ export default () => ({
     page: "/careers",
     title: "Careers · Level 7 Pictures",
     description: "We crew up for every production in Lebanon and the Gulf. Leave your details and we will reach out when a project fits.",
-    image: "/assets/img/svc-management.jpg",
     body: `<section class="page-head">
 <div class="wrap page-head-in">
 <span class="kick">Careers · <span lang="ar" dir="rtl">انضم إلينا</span></span>

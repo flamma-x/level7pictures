@@ -107,8 +107,8 @@ const player = () => `<dialog class="player" id="player" aria-label="Trailer">
 <div class="player-frame"></div>
 </dialog>`;
 
-export function layout({ page, title, description, body, head = "", image = "/assets/img/crime-of-love-still.jpg", withPlayer = false }) {
-  const url = SITE.url + (page === "/" ? "/" : page);
+export function layout({ page, path = page, title, description, body, head = "", share = SITE.share, withPlayer = false }) {
+  const url = SITE.url + (path === "/" ? "/" : path); // page = nav highlight, path = this page's own URL
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -123,8 +123,16 @@ export function layout({ page, title, description, body, head = "", image = "/as
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${SITE.url}${image}">
+<meta property="og:image" content="${SITE.url}${share.src}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(share.alt)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(title)}">
+<meta name="twitter:description" content="${esc(description)}">
+<meta name="twitter:image" content="${SITE.url}${share.src}">
+<meta name="twitter:image:alt" content="${esc(share.alt)}">
 <meta name="theme-color" content="#030c16">
 <link rel="icon" href="/l7-mark-light.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">

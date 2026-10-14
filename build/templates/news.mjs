@@ -39,7 +39,6 @@ export default () => ({
     page: "/news",
     title: "News & Press · Level 7 Pictures",
     description: "Announcements from the studio, and press kits for every title.",
-    image: NEWS[0].image.src,
     body: `<section class="page-head">
 <div class="wrap page-head-in">
 <span class="kick">News &amp; Press · <span lang="ar" dir="rtl">الأخبار</span></span>

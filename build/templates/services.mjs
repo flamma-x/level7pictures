@@ -22,7 +22,6 @@ export default () => ({
     page: "/services",
     title: "Services · Level 7 Pictures",
     description: "One team carries a project through every stage, so platforms and co-producers work with a single partner.",
-    image: SERVICES[0].image.src,
     body: `<section class="page-head">
 <div class="wrap page-head-in">
 <span class="kick">Services · <span lang="ar" dir="rtl">خدماتنا</span></span>

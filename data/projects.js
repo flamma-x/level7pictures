@@ -5,6 +5,9 @@
 export const SITE = {
   name: "Level 7 Pictures",
   url: "https://level7pictures.com",
+  // Share card (og:image / twitter:image) for Home and every general page: 1200×630, built by build/og.mjs.
+  // Title pages use /assets/img/og/<slug>.jpg, Said's page his portrait. Never a title Level 7 did not produce.
+  share: { src: "/assets/img/og/level7-og.jpg", alt: "Level 7 Pictures: Arab stories, made for every screen. حكايات عربية لكل الشاشات" },
   email: "info@level7p.com",
   offices: ["Abu Dhabi", "Beirut"],                // Dubai → Abu Dhabi (14 Oct 2026)
   founded: { year: 2020, country: "Lebanon" },

@@ -151,7 +151,7 @@ export default () => ({
     page: "/said-el-marouk",
     title: "Said El Marouk · Level 7 Pictures",
     description: `${S.name}, founder and director of Level 7 Pictures. ${S.bio[0]}`,
-    image: S.portrait.src,
+    share: { src: "/assets/img/og/said-el-marouk.jpg", alt: S.portrait.alt },
     head: `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: S.name, alternateName: S.nameAr, jobTitle: "Director", worksFor: { "@type": "Organization", name: "Level 7 Pictures" }, sameAs: [S.reel, S.imdb].filter(Boolean) })}</script>`,
     body: [head(), `<section aria-label="Career in numbers"><div class="wrap g4">\n${S.numbers.map(statTile).join("\n")}\n</div></section>`,
       feature(), work(), transformers(), bio(), timeline(), music(), recognition(), cta()].join("\n\n"),

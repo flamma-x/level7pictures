@@ -125,7 +125,8 @@ const page = (slug, i) => {
       page: "/productions",
       title: `${p.titleEn} · Level 7 Pictures`,
       description: clean(p.logline) || `${p.titleEn}, a Level 7 Pictures production.`,
-      image: p.image.src,
+      path: `/productions/${slug}`,
+      share: { src: `/assets/img/og/${slug}.jpg`, alt: p.image.alt || `${p.titleEn}, a Level 7 Pictures production` },
       head: jsonLd(slug, p) + (p.page.video ? `\n<link rel="preload" as="image" href="${webp(VIDEOS[p.page.video].poster, 960)}" fetchpriority="high">` : ""),
       withPlayer: Boolean(p.trailer),
       body: `<section class="t-hero${p.page.video ? " t-hero-has-video" : ""}" aria-label="${esc(p.titleEn)}">
