@@ -134,7 +134,7 @@ if (hero) {
   const titles = JSON.parse(hero.dataset.hero);
   const layers = [...hero.querySelectorAll(".hero-layer")];
   const dots = [...hero.querySelectorAll(".hero-dot")];
-  const nowText = hero.querySelector("[data-hero-now]");
+  const nowText = hero.querySelector("[data-hero-now]"); // optional (label removed in V8.1 §7)
   const INTERVAL = 6000;
   let cur = 0, timer = 0, hovered = false, focused = false, visible = true;
 
@@ -148,7 +148,7 @@ if (hero) {
     cur = (i + titles.length) % titles.length;
     layers.forEach((l, k) => l.classList.toggle("on", k === cur));
     dots.forEach((d, k) => d.setAttribute("aria-pressed", String(k === cur)));
-    nowText.textContent = titles[cur];
+    if (nowText) nowText.textContent = titles[cur];
     syncVideos();
   };
   const running = () => !reduce && !hovered && !focused && visible && !document.hidden;

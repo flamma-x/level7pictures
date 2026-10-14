@@ -23,8 +23,8 @@ export const SAID = {
     { slug: "beit-hadam", line: "Shasha · Ramadan 2027", alt: "Beit Hadam", pos: "50% 30%" },
     { slug: "crime-of-love", line: "Shasha Originals · 2026", alt: "Crime of Love", pos: "50% 40%" },
     { slug: "djinn-wedding", line: "Monsters 2 · Shasha · 2026", alt: "Djinn Wedding", pos: "50% 20%" },
-    { slug: "aminas-monster", line: "Monsters", alt: "Amina's Monster", pos: "50% 35%" },
-    { slug: "monster-of-the-bank", line: "Monsters", alt: "Monster of the Bank", pos: "50% 35%" },
+    { slug: "aminas-monster", line: "Monsters · Netflix", alt: "Amina's Monster", pos: "50% 35%" },
+    { slug: "monster-of-the-bank", line: "Monsters · Netflix", alt: "Monster of the Bank", pos: "50% 35%" },
     { slug: "deep-state", line: "Series · 2023", alt: "The Deep State", pos: "50% 20%" },
     { slug: "the-money", line: "Feature · New Century · 2019", alt: "The Money", pos: "50% 20%" },
     { slug: "365-days", line: "Feature debut · 2011", alt: "365 Days of Happiness", pos: "50% 20%" },
@@ -48,9 +48,9 @@ export const SAID = {
     { when: "2005–2009", where: "Beirut · Dubai", text: "Founds S.M Production, Seven Entertainments, Beywood Pictures and Room 11." },
     { when: "2009", where: "Egypt", text: "2nd unit director on Transformers: Revenge of the Fallen." },
     { when: "2011", where: "Cairo", text: "Feature debut, 365 Days of Happiness." },
-    { when: "2019–2023", where: "Pan-Arab", text: pending("The Money, The Role, The Deep State.", "The Money, The Deep State.") }, // "The Role" awaits Said's confirmation (IMDb lists The Role – Dor El Omor, 2021)
+    { when: "2019–2023", where: "Pan-Arab", text: "The Money, The Deep State." }, // "The Role" dropped 14 Oct 2026
     { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures.", l7: true },
-    { when: "2024", where: "Beirut", text: pending("The Lebanese Achievement award at BIAF.") },
+    { when: "2024", where: "Beirut", text: "The Lebanese Achievement award at BIAF." }, // approved 14 Oct 2026
     { when: "2025–2026", where: "Kuwait", text: "Monsters, Crime of Love, Djinn Wedding." },
     { when: "Oct 2026", where: "Netflix", text: "Obsess premieres on 30 October." },
     { when: "2027", where: "Shasha", text: "Beit Hadam, for Ramadan 2027.", l7: true },
@@ -60,7 +60,7 @@ export const SAID = {
     "Wael Kfoury", "Fadel Shaker", "Assala", "Nawal El Kuwaitiya", "Assi El Hellany", "Rami Ayach", "Fares Karam", "Suzanne Tamim",
     "Madeleine Matar", "Moein Shreif", "Rouwaida El Mahrouki", "Samo Zein", "Houwaida", "Ahmad Al Abdallah", "Abdallah Rashad", "Melhem Zein"],
   awards: [
-    { big: "2024", title: pending("The Lebanese Achievement"), note: pending("Honoured at BIAF, Beirut") },
+    { big: "2024", title: "The Lebanese Achievement", note: "Honoured at BIAF, Beirut" }, // approved 14 Oct 2026
     { big: "Jury", title: "Mentor Arabia", note: "Repeated service on animation and film panels" },
     { big: "2000", title: "Best Special Effects", note: "For the Mohamad Mounir music video" },
   ],

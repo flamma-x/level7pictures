@@ -29,6 +29,7 @@
   --surface-4: rgba(255,255,255,.35);
   --glass: rgba(3,12,22,.82);    /* floating nav */
   --glass-soft: rgba(3,12,22,.55);
+  --bg-hover: #0e1824;           /* card hover surface (V8.1 §7) */
   --window-tint: #4a5d72;         /* Home hero: multiplied over the footage; the ٧ (white) stays full-bright */
 
   /* type */

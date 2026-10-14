@@ -56,9 +56,8 @@ ${C.leaders.map(leader).join("\n")}
 <div class="where-col"><span class="kick">Where we work</span><h2 id="where" class="h2">${esc(C.whereTitle)}</h2></div>
 <div class="where-col">
 <div class="g2">
-${C.offices.map((o) => `<div class="surface tile"><div class="kick">Office</div><div class="un tile-big">${esc(o.city)}</div>${orPh(o.address, "[Address]") ? `<div class="muted tile-note">${esc(orPh(o.address, "[Address]"))}</div>` : ""}</div>`).join("\n")}
+${C.offices.map((o) => `<div class="surface tile"><div class="kick">Office</div><div class="un tile-big">${esc(o.city)}</div>${o.address ? `<div class="muted tile-note">${esc(o.address)}</div>` : ""}</div>`).join("\n")}
 </div>
-<div class="surface tile"><div class="kick">We've shot in</div><div class="un tile-mid">${esc(clean(C.shotIn))}</div></div>
 <div class="surface tile"><div class="kick">Our work streams on</div><div class="un tile-mid">${esc(C.platforms)}</div></div>
 </div>
 </div>

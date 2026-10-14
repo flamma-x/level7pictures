@@ -6,19 +6,19 @@ export const SITE = {
   name: "Level 7 Pictures",
   url: "https://level7pictures.com",
   email: "info@level7p.com",
-  offices: ["Dubai", "Beirut"],
+  offices: ["Abu Dhabi", "Beirut"],                // Dubai → Abu Dhabi (14 Oct 2026)
   founded: { year: 2020, country: "Lebanon" },
-  registered: ["Dubai", "Lebanon"],
+  registered: ["Abu Dhabi", "Lebanon"],
   taglineAr: "دراما عربية لكل الشاشات",
   vimeo: "https://vimeo.com/saidelmarouk",
   brandReel: "https://vimeo.com/saidelmarouk", // approved: opens in a new tab
   arabicSite: null,                              // the عربي nav link is hidden while this is null
-  instagram: null,                               // footer shows [Instagram] until set (hidden under PRUNE)
-  linkedin: null,                                // footer shows [LinkedIn] until set (hidden under PRUNE)
+  instagram: "https://www.instagram.com/levelsevenpictures/",
+  linkedin: false,                               // removed 14 Oct 2026 (false = no link at all)
   privacy: null,                                 // footer Privacy link hidden until the page exists (decided 13 Oct)
   terms: null,                                   // footer Terms link hidden until the page exists
-  episodesDelivered: null,                       // Home stat shows [N] until set (tile hidden under PRUNE)
-  phones: null,                                  // e.g. ["+971 …", "+961 …"]; Contact shows [+971 …] · [+961 …] until set
+  // episodes-delivered stat dropped 14 Oct 2026
+  phones: null,                                  // Phone/WhatsApp tile hidden until a number exists (14 Oct 2026)
 };
 
 /* status: "post" | "streaming" | "coming". A "coming" title with a premiere switches to "streaming"
@@ -38,13 +38,14 @@ export const PROJECTS = {
   /* ── Produced by Level 7 ── */
   "beit-hadam": {
     house: "level7", titleEn: "Beit Hadam", titleAr: "بيت هدام",
-    status: "post", platform: "Shasha", window: "Ramadan 2027", format: "Series", episodes: null,
+    status: "post", platform: "Shasha", window: "Ramadan 2027", format: "Series", episodes: 7, // verified 14 Oct 2026
     filming: "August 2026",
     basedOn: { author: "Buthaina Al-Essa", work: "All the Things" },
     director: "Said El Marouk",
     cast: ["Abdulmohsen Al-Nemer", "Ali Kakouli", "Laila Abdallah", "Basma Hamada"],
     producedFor: "Shasha",
     logline: "A family coming apart across generations, adapted from Buthaina Al-Essa's novel All the Things.",
+    synopsis: "Jasem Al-Azmi comes home to Kuwait after four years abroad to bury his father, and finds a past he walked away from, a country he no longer recognises and a family house coming apart. Adapted from Buthaina Al-Essa's 2017 novel All the Things (كل الأشياء).",
     image: { src: "/assets/img/bhd-still.jpg", pos: "50% 30%", alt: "Behind the scenes of Beit Hadam" },
     hero: { layout: "vertical", video: "beit-hadam-vertical", pos: "50% 22%" }, // Home hero layer (V8.1): sharp vertical clip, right-aligned
     page: { heroPos: "50% 28%", video: "beit-hadam-vertical", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, comingLabel: "Teaser coming",
@@ -53,13 +54,16 @@ export const PROJECTS = {
   },
   "djinn-wedding": {
     house: "level7", titleEn: "Djinn Wedding", titleAr: "عرس الجن",
-    status: "streaming", platform: "Shasha", window: "Ramadan 2026", year: 2026, partOf: "Monsters 2",
-    seriesLine: "Monsters 2 · [وحوش ٢]",            // Arabic series name awaiting confirmation
+    status: "streaming", platform: "Shasha · Netflix", window: "Ramadan 2026", year: 2026, partOf: "Monsters 2", // platform verified 14 Oct
+    cardLine: "A Monsters 2 story · Shasha · 2026",  // Home/Productions card line, as designed
+    seriesLine: "Monsters 2 · وحوش ٢",               // approved 14 Oct 2026
     genre: "Horror · folklore",                       // approved 13 Oct 2026
     director: "Said El Marouk",
-    cast: ["Elham Ali", "[full cast]"],
+    writer: "Faisal Al-Balushi",
+    cast: ["Elham Ali", "Fatat Sultan", "Ahmed Al-Najjar", "Abeer Ahmed", "Hessa Al-Nabhan", "Noura Al-Ameeri"],
     producedFor: "Shasha",
     logline: "A Kuwaiti folk legend turned horror story, part of the Monsters 2 anthology.", // approved 13 Oct 2026
+    synopsis: "A 1990s folk singer is booked for a wealthy family's wedding and realises too late that the guests are djinn. Years later, she tells a journalist why she never sang again. Inspired by a story told in Kuwait.",
     image: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 22%", alt: "Djinn Wedding poster" },
     hero: { pos: "50% 25%" },
     page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
@@ -69,11 +73,13 @@ export const PROJECTS = {
   "deep-state": {
     house: "level7", titleEn: "The Deep State", titleAr: "الدولة العميقة",
     status: "streaming", year: 2023, released: "14 Sep 2023", format: "Series", episodes: 8, runtime: "47 min",
-    // platform: awaiting confirmation, so no Platform row is shown
+    platform: "Shasha · Netflix",                     // approved 14 Oct 2026
+    cardLine: "Series · 8 episodes · 2023",           // Home/Productions card line, as designed
     writer: "Faisal Al Balushi", locations: ["Lebanon", "Cuba", "Kuwait"],
     director: "Said El Marouk",
-    cast: ["[Cast from the producers]"],
+    cast: ["Saad Al-Faraj", "Faisal Al-Omairi", "Jassim Al-Nabhan", "Khaled Al-Buraiki", "Yaqoub Abdullah", "Fahad Al-Abdulmohsen", "Bashar Al-Shatti", "Khaled Al-Mudhaffar", "Rawan Bin Hussain"],
     logline: null, // cut 13 Oct 2026 (was "A pan-Arab political thriller.")
+    synopsis: "A military jet goes down and the trail leads to the minister of national security. Two officers set out to find the truth and uncover one secret after another.",
     image: { src: "/assets/img/deep-state-key.jpg", pos: "50% 22%", alt: "The Deep State key art" },
     hero: { pos: "50% 25%" },
     page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
@@ -95,9 +101,9 @@ export const PROJECTS = {
   "crime-of-love": { house: "said", titleEn: "Crime of Love", titleAr: "جناية حب", platform: "Shasha Originals", format: "Mini-series", director: "Said El Marouk",
     image: { src: "/assets/img/crime-of-love-still.jpg", pos: "50% 40%", alt: "" }, said: { anchor: "selected-work", line: "Shasha Originals · Mini-series" } },
   "aminas-monster": { house: "said", titleEn: "Amina's Monster", titleAr: "وحش أمينة", series: "Monsters", director: "Said El Marouk",
-    image: { src: "/assets/img/monster-amina.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
+    image: { src: "/assets/img/monster-amina.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters · Netflix" } }, // verified 14 Oct
   "monster-of-the-bank": { house: "said", titleEn: "Monster of the Bank", titleAr: "وحش البنوك", series: "Monsters", director: "Said El Marouk",
-    image: { src: "/assets/img/monster-bank.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters" } },
+    image: { src: "/assets/img/monster-bank.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters · Netflix" } }, // verified 14 Oct
   "the-money": { house: "said", titleEn: "The Money", titleAr: "الفلوس", platform: "New Century", format: "Feature", year: 2019, director: "Said El Marouk",
     image: { src: "/assets/posters/money.jpg", pos: "50% 20%", alt: "" } },
   "365-days": { house: "said", titleEn: "365 Days of Happiness", titleAr: "٣٦٥ يوم سعادة", format: "Feature", year: 2011, director: "Said El Marouk",
@@ -145,7 +151,14 @@ export const shortDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ..
 export const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "short", year: "numeric" }); // 30 Oct 2026
 
 /* One line of facts under a title, same order everywhere: [Monsters 2 story] · platform · [format · episodes] · window or year */
-export const metaLine = (p) => [
+/* Time left as words: "16 days", "1 day", then hours ("2 hrs", "1 hr") on the last day */
+const leftText = (p, now) => {
+  const t = timeLeft(p.premiere, now);
+  const hrs = Math.max(1, t.h + (t.m || t.s ? 1 : 0)); // round up: "2 hrs" at 1 h 30 min
+  return t.d > 1 ? `${t.d} days` : t.d === 1 ? "1 day" : hrs === 1 ? "1 hr" : `${hrs} ${COUNTDOWN_LABELS.h.toLowerCase()}`;
+};
+
+export const metaLine = (p) => p.cardLine || [
   p.partOf && `A ${p.partOf} story`,
   p.platform,
   !p.platform && p.format,
@@ -166,13 +179,9 @@ export const SLOT_TEXT = {
   "nav-cta-short": (p, s) => (s === "streaming" ? p.platform : "Obsess"),                                       // <600px
   "nav-cta-label": (p, s) => (s === "streaming" ? `Now on ${p.platform}: Obsess` : `Obsess · ${shortDate(p.premiere)}: premieres on ${p.platform}`), // accessible name: starts with the visible text (WCAG 2.5.3)
   "date": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : longDate(p.premiere)),
-  "strip": (p, s, now) => {
-    if (s === "streaming") return `Now on ${p.platform}`;
-    const t = timeLeft(p.premiere, now);
-    const hrs = Math.max(1, t.h + (t.m || t.s ? 1 : 0)); // round up: "2 hrs" at 1 h 30 min
-    const left = t.d > 1 ? `${t.d} days` : t.d === 1 ? "1 day" : hrs === 1 ? "1 hr" : `${hrs} ${COUNTDOWN_LABELS.h.toLowerCase()}`;
-    return `${p.platform} · ${left}`;
-  },
+  "strip": (p, s, now) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${leftText(p, now)}`),
+  /* Home status card kicker (V8.1 §7): "Netflix · in 16 days" → "Now on Netflix" */
+  "card-kicker": (p, s, now) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · in ${leftText(p, now)}`),
   "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${longDate(p.premiere)}`).toUpperCase(),
   "status": (p, s, now) => statusLabel(p, now),
   "said-line": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${longDate(p.premiere)}`),

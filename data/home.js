@@ -1,14 +1,19 @@
 /* Home page copy (V8.1, 13 Oct 2026). Copy pass in progress: edit here, never in the templates. */
 export const HOME = {
   hero: {
-    kick: "Level 7 Pictures · Dubai · Beirut · Since 2020",
+    kick: "Level 7 Pictures · Abu Dhabi · Beirut · Since 2020",
     title: "Arab stories, made for every screen.",
     titleAr: "حكايات عربية لكل الشاشات",
     lead: "A production house founded in Lebanon in 2020. We develop, produce and deliver for regional and global platforms.",
-    ctaPrimary: "See the productions →",
-    ctaReel: "Brand reel",
-    nowLabel: "In the ٧ now:",
+    cta: { label: "Contact us", href: "/contact" },  // V8.1 §7: one outline button (was "See the productions" + "Brand reel")
+    dotsLabel: "Featured titles",
   },
+  /* Status cards under the hero (V8.1 §7). Kicker + meta come from the data and the launch switch:
+     a title with a premiere shows "Netflix · in N days" → "Now on Netflix" and "Directed by … · 30 Oct". */
+  statusCards: [
+    { slug: "beit-hadam", href: "/productions/beit-hadam" },
+    { slug: "obsess", href: "/said-el-marouk#obsess" },
+  ],
   productions: { kick: "Our productions", title: "Produced by Level 7", link: "All productions →" },
   feature: { kick: "Directed by Said El Marouk", link: "Said's portfolio →" },
   people: {

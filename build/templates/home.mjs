@@ -1,5 +1,5 @@
 // Home (/) — copy in data/home.js
-import { SITE, PROJECTS, VIDEOS, HERO_CYCLE, STATUS, statusOf, statusLabel, metaLine, SLOT_TEXT } from "../../data/projects.js";
+import { SITE, PROJECTS, VIDEOS, HERO_CYCLE, statusOf, statusLabel, metaLine, SLOT_TEXT, shortDate } from "../../data/projects.js";
 import { NEWS } from "../../data/news.js";
 import { SERVICES } from "../../data/services.js";
 import { HOME as H } from "../../data/home.js";
@@ -37,8 +37,7 @@ ${HERO_CYCLE.map(heroLayer).join("\n")}
 <p lang="ar" dir="rtl" class="ar hero-ar">${esc(H.hero.titleAr)}</p>
 <p class="lead hero-lead">${esc(H.hero.lead)}</p>
 <div class="hero-ctas">
-<a href="/productions" class="btn btn-w">${esc(H.hero.ctaPrimary)}</a>
-<a href="${SITE.brandReel}" class="btn btn-o" target="_blank" rel="noopener"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 14 14"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg>${esc(H.hero.ctaReel)}<span class="sr-only"> (opens Vimeo in a new tab)</span></a>
+<a href="${H.hero.cta.href}" class="btn btn-o">${esc(H.hero.cta.label)}</a>
 </div>
 <div class="hero-panel" data-project="obsess">
 <div class="hero-panel-text">
@@ -47,8 +46,7 @@ ${HERO_CYCLE.map(heroLayer).join("\n")}
 </div>
 ${countdown("obsess", "sm")}
 </div>
-<div class="hero-dots">
-<span class="muted hero-now">${esc(H.hero.nowLabel)} <span data-hero-now>${esc(titles[0])}</span></span>
+<div class="hero-dots" role="group" aria-label="${esc(H.hero.dotsLabel)}">
 ${heroDots()}
 </div>
 </div>
@@ -56,16 +54,25 @@ ${heroDots()}
 </section>`;
 };
 
-/* ── status strip ── */
-const strip = () => {
-  const bhd = PROJECTS["beit-hadam"];
-  return `<div class="strip">
-<div class="wrap strip-row">
-<span class="strip-item" data-project="beit-hadam"><span class="strip-dot strip-dot-blue" aria-hidden="true"></span><span>${esc(bhd.titleEn)} · ${esc(STATUS[statusOf(bhd, NOW)].replace(/^In /, "in "))} · ${esc(bhd.window)}</span></span>
-<span class="strip-item" data-project="obsess"><span class="strip-dot" aria-hidden="true"></span><span>${esc(obsess.titleEn)}, directed by ${esc(obsess.director)} · <span data-slot="strip">${slot("strip")}</span></span></span>
-</div>
-</div>`;
+/* ── status cards under the hero (V8.1 §7): one per entry in data/home.js, text from the project data.
+   A title with a premiere gets the launch-switch kicker ("Netflix · in N days" → "Now on Netflix"). ── */
+const statusCard = ({ slug, href }) => {
+  const p = PROJECTS[slug], s = statusOf(p, NOW);
+  const kicker = p.premiere
+    ? `<span class="scard2-k kick" data-slot="card-kicker">${esc(SLOT_TEXT["card-kicker"](p, s, NOW))}</span>`
+    : `<span class="scard2-k kick" data-slot="status">${esc(statusLabel(p, NOW))}</span>`;
+  const meta = p.premiere ? `Directed by ${p.director} · ${shortDate(p.premiere)}` : metaLine(p);
+  return `<a href="${href}" class="scard2" data-project="${slug}">
+<span class="scard2-thumb">${picture(p.image.src, { sizes: "84px", style: `object-position:${p.image.pos}` })}</span>
+<span class="scard2-text">${kicker}<span class="un scard2-t">${esc(p.titleEn)}</span><span class="scard2-m">${esc(meta)}</span></span>
+<span class="scard2-arrow" aria-hidden="true">→</span>
+</a>`;
 };
+const statusCards = () => `<section class="status-cards" aria-label="Now">
+<div class="wrap status-grid">
+${H.statusCards.map(statusCard).join("\n")}
+</div>
+</section>`;
 
 /* ── Produced by Level 7: one panel per title, alternating sides ── */
 const panel = (slug, i) => {
@@ -123,7 +130,6 @@ ${statsRow([
     { v: SITE.founded.year, l: `Founded in ${SITE.founded.country}`, blue: true },
     { v: SITE.offices.length, l: `Offices: ${SITE.offices.join(" and ")}` },
     { v: n, l: "Level 7 productions" },
-    { v: orPh(SITE.episodesDelivered, "[N]"), l: "Episodes delivered" },
   ])}
 </section>`;
 };
@@ -208,6 +214,6 @@ export default () => ({
     title: `Level 7 Pictures · ${H.hero.title.replace(/\.$/, "")}`,
     description: H.hero.lead,
     head: `${redirectScript}${firstPoster() ? `\n<link rel="preload" as="image" href="${firstPoster()}" fetchpriority="high">` : ""}`,
-    body: [hero(), strip(), productions(), feature(), stats(), people(), services(), news(), contact()].join("\n\n"),
+    body: [hero(), statusCards(), productions(), feature(), stats(), people(), services(), news(), contact()].join("\n\n"),
   }),
 });

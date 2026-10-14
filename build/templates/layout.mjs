@@ -65,7 +65,7 @@ ${SITE.arabicSite ? `<li><a href="${esc(SITE.arabicSite)}" lang="ar" class="ar" 
 </dialog>`;
 
 /* Social link: real URL, else the design's [placeholder] (removed under PRUNE) */
-const social = (url, label) => (url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : FLAGS.prune ? "" : `<a href="#">[${label}]</a>`);
+const social = (url, label) => (url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${label}</a>` : url === false || FLAGS.prune ? "" : `<a href="#">[${label}]</a>`); // false = removed
 /* Legal links appear only once the pages exist (decided 13 Oct) */
 const legal = () => [SITE.privacy && `<a href="${esc(SITE.privacy)}">Privacy</a>`, SITE.terms && `<a href="${esc(SITE.terms)}">Terms</a>`].filter(Boolean).join(" · ");
 

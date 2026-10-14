@@ -1,21 +1,19 @@
 /* Services: one source for the Home teaser (homeTitle + short) and /services (title + long + tags). */
-import { pending } from "./projects.js";
 
 export const SERVICES = [
   { id: "production", homeTitle: "Production", title: "Production",
-    short: "Drama series and features for broadcasters and streamers.",
+    short: "Series and features across drama, action, horror and thriller, for broadcasters and streamers.", // 14 Oct 2026
     long: "Drama series and features for regional broadcasters and global streamers, shot in Lebanon, the Gulf and beyond.",
     tags: ["Series", "Features", "Streaming originals"],
     image: { src: "/assets/img/on-set-desert.jpg", alt: "Shooting on location", pos: "50% 40%" } },
   { id: "development", homeTitle: "Development & packaging", title: "Development & packaging",
     short: "Concepts, scripts and talent, ready to commission.",
     long: "Shaping concepts, scripts and talent into projects ready for financing and commissioning, including literary adaptations.",
-    tags: ["Scripts", "Adaptations", "Casting", pending("Financing")], // implies Level 7 arranges financing: awaiting sign-off
+    tags: ["Scripts", "Adaptations", "Casting"], // "Financing" removed 14 Oct 2026
     image: { src: "/assets/img/svc-development.jpg", alt: "Working through a scene with an actress", pos: "50% 30%" } },
   { id: "management", homeTitle: "Production management", title: "Production management",
     short: "Crews, schedules and budgets across the region.",
-    long: pending("Crews, schedules and budgets run across Lebanon, the Gulf and Egypt.",
-      "Crews, schedules and budgets run across Lebanon and the Gulf."), // no Level 7 shoot in Egypt on record; PRUNE drops "and Egypt"
+    long: "Crews, schedules and budgets, wherever the story shoots.", // 14 Oct 2026
     tags: ["Crews", "Schedules", "Budgets", "Locations"],
     image: { src: "/assets/img/svc-management.jpg", alt: "Cast and crew on set", pos: "50% 50%" } },
   { id: "post", homeTitle: "Post & delivery", title: "Post-production & delivery",

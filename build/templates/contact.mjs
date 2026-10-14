@@ -26,14 +26,14 @@ ${field({ id: "m", name: "message", label: "Message", type: "textarea", required
 });
 
 const phones = () => {
-  const v = SITE.phones?.length ? SITE.phones.join(" · ") : orPh(null, "[+971 …] · [+961 …]");
+  const v = SITE.phones?.length ? SITE.phones.join(" · ") : null; // tile appears once a number exists
   return v ? `<div class="surface tile"><div class="kick">Phone / WhatsApp</div><div class="tile-phone">${esc(v)}</div></div>` : "";
 };
 
 const info = () => `<div class="where-col">
 <div class="surface tile"><div class="kick">Email</div><a href="mailto:${SITE.email}" class="un contact-mail">${SITE.email}</a></div>
 <div class="g2">
-${COMPANY.offices.map((o) => `<div class="surface tile"><div class="kick">${esc(o.city)}</div>${orPh(o.address, "[Address]") ? `<div class="muted tile-note">${esc(orPh(o.address, "[Address]"))}</div>` : ""}</div>`).join("\n")}
+${COMPANY.offices.map((o) => `<div class="surface tile"><div class="kick">${esc(o.city)}</div>${o.address ? `<div class="muted tile-note">${esc(o.address)}</div>` : ""}</div>`).join("\n")}
 </div>
 ${phones()}
 ${FLAGS.forms ? `<div class="contact-img"><div class="clip">${picture("/assets/img/on-set-desert.jpg", { alt: "Level 7 crew on location", sizes: "(max-width: 820px) 92vw, 46vw" })}</div></div>` : ""}
