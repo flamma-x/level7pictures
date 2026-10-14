@@ -31,7 +31,8 @@ export const pending = (text, pruneText = null) => ({ text, pending: true, prune
 export const textOf = (v) => (v && typeof v === "object" && "text" in v ? v.text : v);
 
 /* Title-page fields (Level 7 titles):
-   trailer   YouTube or Vimeo URL. null → the trailer box shows its "coming" state, no play button.
+   page.bts  VIDEOS key of a behind-the-scenes clip. Set → it takes the trailer box (blurred fill + sharp 9:16 centre).
+   trailer   YouTube or Vimeo URL → play button for the shared player. No bts and no trailer → no box at all.
    pressKit  URL of the ZIP. null → the press-kit block is hidden.
    producedFor → "Produced by Level 7 Pictures for <x>".  Fields left out are not shown at all. */
 export const PROJECTS = {
@@ -48,7 +49,7 @@ export const PROJECTS = {
     synopsis: "Jasem Al-Azmi comes home to Kuwait after four years abroad to bury his father, and finds a past he walked away from, a country he no longer recognises and a family house coming apart. Adapted from Buthaina Al-Essa's 2017 novel All the Things (كل الأشياء).",
     image: { src: "/assets/img/bhd-still.jpg", pos: "50% 30%", alt: "Behind the scenes of Beit Hadam" },
     hero: { layout: "vertical", video: "beit-hadam-vertical", pos: "50% 22%" }, // Home hero layer (V8.1): sharp vertical clip, right-aligned
-    page: { heroPos: "50% 28%", video: "beit-hadam-vertical", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, comingLabel: "Teaser coming",
+    page: { heroPos: "50% 28%", video: "beit-hadam-vertical", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, bts: "beit-hadam-vertical",
       stills: [{ src: "/assets/img/bhd-still.jpg", alt: "On set", pos: "50% 30%" }] },
     trailer: null, pressKit: null,
   },
@@ -66,7 +67,7 @@ export const PROJECTS = {
     synopsis: "A 1990s folk singer is booked for a wealthy family's wedding and realises too late that the guests are djinn. Years later, she tells a journalist why she never sang again. Inspired by a story told in Kuwait.",
     image: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 22%", alt: "Djinn Wedding poster" },
     hero: { pos: "50% 25%" },
-    page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
+    page: { heroPos: "50% 18%", trailerImage: { src: "/assets/posters/djinn-wedding.jpg", pos: "50% 30%" },
       stills: [{ src: "/assets/posters/djinn-wedding.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
   },
@@ -82,7 +83,7 @@ export const PROJECTS = {
     synopsis: "A military jet goes down and the trail leads to the minister of national security. Two officers set out to find the truth and uncover one secret after another.",
     image: { src: "/assets/img/deep-state-key.jpg", pos: "50% 22%", alt: "The Deep State key art" },
     hero: { pos: "50% 25%" },
-    page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" }, comingLabel: "Trailer coming",
+    page: { heroPos: "50% 20%", trailerImage: { src: "/assets/img/deep-state-key.jpg", pos: "50% 30%" },
       stills: [{ src: "/assets/img/deep-state-key.jpg", alt: "Key art", pos: "50% 20%" }] },
     trailer: null, pressKit: null,
   },

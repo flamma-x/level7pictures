@@ -128,6 +128,22 @@ const playWhenVisible = (v, threshold = 0.25) => {
 };
 document.querySelectorAll("video[data-autoplay-visible]").forEach((v) => playWhenVisible(v));
 
+/* Behind the scenes (title pages): two copies of one clip, a blurred fill and a sharp centre. They start
+   together once both can play, and the fill follows the centre's clock if it drifts (e.g. on a loop). */
+document.querySelectorAll("[data-bts]").forEach((box) => {
+  if (reduce || !("IntersectionObserver" in window)) return;
+  const [bg, fg] = box.querySelectorAll("video");
+  const ready = (v) => (v.readyState >= 3 ? Promise.resolve() : new Promise((r) => v.addEventListener("canplay", r, { once: true })));
+  const start = async () => {
+    await loaded; ensureSource(bg); ensureSource(fg);
+    await Promise.all([ready(bg), ready(fg)]);
+    bg.currentTime = fg.currentTime;
+    Promise.all([fg.play(), bg.play()]).catch(() => {});
+  };
+  fg.addEventListener("timeupdate", () => { if (Math.abs(bg.currentTime - fg.currentTime) > 0.15) bg.currentTime = fg.currentTime; });
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) start(); else { fg.pause(); bg.pause(); } }, { threshold: 0.25 }).observe(box);
+});
+
 /* ── Home hero (V8.1): a title every 6 s, footage crossfades (1.2 s, CSS) inside the ٧ window ── */
 const hero = document.querySelector("[data-hero]");
 if (hero) {

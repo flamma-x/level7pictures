@@ -363,6 +363,10 @@ html.menu-open { overflow: hidden; }
 .play { width: 88px; height: 88px; border-radius: 50%; border: 0; background: var(--text); color: var(--text-on-light); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .play:hover { color: var(--brand); }
 .trailer-label { color: var(--text); }
+/* behind the scenes (V8.1 §10): the same clip twice; blurred fill behind a sharp 9:16 centre */
+.bts-bg { position: absolute; inset: -40px; width: calc(100% + 80px); max-width: none; height: calc(100% + 80px); object-fit: cover; filter: blur(32px) brightness(.45) saturate(1.1); }
+.bts-fg { position: absolute; top: 0; left: 50%; height: 100%; width: auto; aspect-ratio: 9 / 16; object-fit: cover; transform: translateX(-50%); }
+.bts-pill { position: absolute; top: 16px; left: 16px; background: rgba(3,12,22,.75); color: var(--text); }
 .stills { margin-top: 16px; }
 .still { aspect-ratio: 3 / 2; border-radius: 16px; background: var(--bg-dark-2); display: flex; align-items: center; justify-content: center; }
 .still img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }

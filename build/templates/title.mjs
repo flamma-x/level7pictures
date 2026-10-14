@@ -31,22 +31,48 @@ const credits = (p) => [
   row("Produced by", `Level 7 Pictures${p.producedFor ? ` for ${p.producedFor}` : ""}`),
 ].join("\n");
 
-/* Trailer: a link switches the box from its "coming" state to a play button for the shared player */
+/* Behind the scenes (V8.1 §10): one clip twice in the trailer box. A blurred, dimmed copy fills it; the sharp
+   copy sits centred at 9:16. Both muted loops, started together by site.js; reduced motion keeps the posters. */
+const bts = (p) => {
+  const v = (cls) => videoTag(p.page.bts, { cls, posterWidth: 960 });
+  return `<div class="trailer bts" data-bts>
+<div class="clip">
+${v("bts-bg")}
+${v("bts-fg")}
+</div>
+<span class="pill bts-pill">Behind the scenes</span>
+</div>`;
+};
+
+/* Trailer box: the BTS clip when set; otherwise a trailer link puts a play button for the shared player
+   over the key art. Neither → no box. */
 const trailer = (p) => {
+  if (p.page.bts) return bts(p);
+  if (!p.trailer) return "";
   const img = p.page.trailerImage;
-  const action = p.trailer
-    ? `<button type="button" class="play" data-trailer="${esc(p.trailer)}" data-trailer-title="${esc(p.titleEn)} trailer" aria-label="Play trailer: ${esc(p.titleEn)}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 14 14"><path d="M3.5 1.5v11l9-5.5z" fill="currentColor"/></svg></button>
-<span class="kick trailer-label">Watch the trailer</span>`
-    : `<span class="kick trailer-label">${esc(p.page.comingLabel)}</span>`;
   return `<div class="trailer">
 <div class="clip">
 ${picture(img.src, { sizes: "(max-width: 1440px) 92vw, 1312px", style: `object-position:${img.pos}` })}
 <div class="trailer-shade"></div>
 </div>
 <div class="trailer-center">
-${action}
+<button type="button" class="play" data-trailer="${esc(p.trailer)}" data-trailer-title="${esc(p.titleEn)} trailer" aria-label="Play trailer: ${esc(p.titleEn)}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 14 14"><path d="M3.5 1.5v11l9-5.5z" fill="currentColor"/></svg></button>
+<span class="kick trailer-label">Watch the trailer</span>
 </div>
 </div>`;
+};
+
+/* Trailer/BTS box + stills; the section goes when both are empty */
+const media = (p) => {
+  const box = trailer(p), row = stills(p);
+  if (!box && !row) return "";
+  const label = [box && (p.page.bts ? "Behind the scenes" : "Trailer"), row && "stills"].filter(Boolean).join(" and ");
+  return `<section class="t-sec" aria-label="${label[0].toUpperCase() + label.slice(1)}">
+<div class="wrap">
+${box}
+${row ? `<div class="g3 stills">\n${row}\n</div>` : ""}
+</div>
+</section>`;
 };
 
 /* Stills: only real stills count; one that repeats the hero image is not shown (approved 13 Oct).
@@ -132,12 +158,7 @@ ${facts(p)}
 ${story(p)}
 </section>
 
-<section class="t-sec" aria-label="${stills(p) ? "Trailer and stills" : "Trailer"}">
-<div class="wrap">
-${trailer(p)}
-${stills(p) ? `<div class="g3 stills">\n${stills(p)}\n</div>` : ""}
-</div>
-</section>
+${media(p)}
 
 <section class="t-sec">
 <div class="wrap t-foot">
