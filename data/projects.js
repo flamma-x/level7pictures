@@ -46,7 +46,7 @@ export const PROJECTS = {
     cast: ["Abdulmohsen Al-Nemer", "Ali Kakouli", "Laila Abdallah", "Basma Hamada"],
     producedFor: "Shasha",
     logline: "A family coming apart across generations, adapted from Buthaina Al-Essa's novel All the Things.",
-    synopsis: "Jasem Al-Azmi comes home to Kuwait after four years abroad to bury his father, and finds a past he walked away from, a country he no longer recognises and a family house coming apart. Adapted from Buthaina Al-Essa's 2017 novel All the Things (كل الأشياء).",
+    synopsis: "Nasser Al-Azimi comes home to Kuwait after four years abroad to bury his father, and finds a past he walked away from, a country he no longer recognises and a family house coming apart. Adapted from Buthaina Al-Essa's 2017 novel All the Things (كل الأشياء).",
     image: { src: "/assets/img/bhd-still.jpg", pos: "50% 30%", alt: "Behind the scenes of Beit Hadam" },
     hero: { layout: "vertical", video: "beit-hadam-vertical", pos: "50% 22%" }, // Home hero layer (V8.1): sharp vertical clip, right-aligned
     page: { heroPos: "50% 28%", video: "beit-hadam-vertical", trailerImage: { src: "/assets/img/bhd-poster-wide.jpg", pos: "70% 50%" }, bts: "beit-hadam-vertical",
