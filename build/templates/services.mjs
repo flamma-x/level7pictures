@@ -43,7 +43,7 @@ ${secTitle("steps", "How we work with platforms", "Four steps, one team")}
 <ol class="g4 steps">
 ${STEPS.map((s, i) => `<li class="surface step"><span class="un step-n" aria-hidden="true">${i + 1}</span><span class="un step-t">${esc(s.t)}</span><span class="muted step-d">${esc(s.d)}</span></li>`).join("\n")}
 </ol>
-<a href="/contact?route=co-production" class="btn btn-b mt-28">Start a co-production →</a>
+<a href="/contact?route=co-production" class="btn btn-w mt-28">Start a co-production</a>
 </div>
 </section>`,
   }),

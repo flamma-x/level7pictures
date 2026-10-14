@@ -36,7 +36,7 @@ ${field({ id: "cm", name: "message", label: "Anything else", type: "textarea" })
 const byEmail = () => `<div class="surface form-off">
 <div class="kick">Sign up by email</div>
 <p class="form-off-text">Send your name, department, where you're based and a link to your reel or CV.</p>
-<a href="mailto:${SITE.email}?subject=${encodeURIComponent("Crew and talent sign-up")}" class="btn btn-b">${SITE.email}</a>
+<a href="mailto:${SITE.email}?subject=${encodeURIComponent("Crew and talent sign-up")}" class="btn btn-w">${SITE.email}</a>
 </div>`;
 
 export default () => ({

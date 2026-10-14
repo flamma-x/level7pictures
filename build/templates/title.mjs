@@ -141,7 +141,7 @@ ${stills(p) ? `<div class="g3 stills">\n${stills(p)}\n</div>` : ""}
 
 <section class="t-sec">
 <div class="wrap t-foot">
-${p.pressKit ? `<div class="surface t-kit"><div><div class="kick">Press kit</div><div class="t-kit-d">Key art, stills, logline and credits</div></div><a href="${esc(p.pressKit)}" class="btn btn-w t-kit-btn" download>Download (ZIP) ↓</a></div>` : ""}
+${p.pressKit ? `<div class="surface t-kit"><div><div class="kick">Press kit</div><div class="t-kit-d">Key art, stills, logline and credits</div></div><a href="${esc(p.pressKit)}" class="btn btn-sm btn-w t-kit-btn" download>Download (ZIP) ↓</a></div>` : ""}
 <a href="/productions/${next}" class="surface t-next">
 <div><div class="kick">Next title</div><div class="un t-next-t">${esc(PROJECTS[next].titleEn)}</div></div><span aria-hidden="true" class="t-next-arrow">→</span>
 </a>

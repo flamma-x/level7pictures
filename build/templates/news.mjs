@@ -28,7 +28,7 @@ const kit = (slug) => {
 <div class="pk-img"><div class="clip">${picture(p.image.src, { sizes: "(max-width: 600px) 92vw, (max-width: 1060px) 46vw, 31vw", style: `object-position:${p.image.pos}` })}</div></div>
 <div class="pk-body">
 <div class="scard-title"><h3 class="un pk-name"><a href="/productions/${slug}" class="pk-link">${esc(p.titleEn)}</a></h3><span lang="ar" dir="rtl" class="ar scard-ar">${esc(p.titleAr)}</span></div>
-${p.pressKit ? `<a href="${esc(p.pressKit)}" class="btn btn-w pk-btn" download>Download press kit ↓</a>` : `<span class="muted pk-note">Press kit coming</span>`}
+${p.pressKit ? `<a href="${esc(p.pressKit)}" class="btn btn-sm btn-w pk-btn" download>Download press kit ↓</a>` : `<span class="muted pk-note">Press kit coming</span>`}
 </div>
 </div>`;
 };
@@ -62,7 +62,7 @@ ${LEVEL7_ORDER.map(kit).join("\n")}
 </div>
 <div class="surface press-contact">
 <div><div class="kick">Press contact</div><div class="press-contact-d">Interviews, screeners and set visits</div></div>
-<a href="mailto:${SITE.email}?subject=Press" class="btn btn-b">${SITE.email}</a>
+<a href="mailto:${SITE.email}?subject=Press" class="btn btn-w">${SITE.email}</a>
 </div>
 </div>
 </section>`,

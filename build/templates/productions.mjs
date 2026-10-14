@@ -47,7 +47,7 @@ export default () => ({
 
 <section aria-label="Filter" class="filter-sec" data-filter data-js-only>
 <div class="wrap chips" role="group" aria-label="Filter by status">
-${FILTERS.map(([k, l], i) => `<button type="button" class="chip" data-filter-key="${k}" aria-pressed="${i === 0}">${l}</button>`).join("\n")}
+${FILTERS.map(([k, l], i) => `<button type="button" class="btn btn-sm chip" data-filter-key="${k}" aria-pressed="${i === 0}">${l}</button>`).join("\n")}
 </div>
 <p class="sr-only" role="status" data-filter-status></p>
 </section>

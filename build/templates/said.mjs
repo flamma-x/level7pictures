@@ -140,7 +140,7 @@ const cta = () => `<section class="section" aria-labelledby="work-with">
 <div class="wrap">
 <div class="cta-band">
 <h2 id="work-with" class="h2">Work with Said through Level 7.</h2>
-<a href="/contact" class="btn btn-w">Get in touch →</a>
+<a href="/contact" class="btn btn-w">Contact us</a>
 </div>
 </div>
 </section>`;
