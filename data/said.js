@@ -52,7 +52,7 @@ export const SAID = {
     { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures.", l7: true },
     { when: "2024", where: "Beirut", text: "The Lebanese Achievement award at BIAF." }, // approved 14 Oct 2026
     { when: "2025–2026", where: "Kuwait", text: "Monsters, Crime of Love, Djinn Wedding." },
-    { when: "Oct 2026", where: "Netflix", text: "Obsess premieres on 30 October." },
+    { when: "Oct 2026", where: "Netflix", text: "Obsess premieres on 30 October 2026." },
     { when: "2027", where: "Shasha", text: "Beit Hadam, for Ramadan 2027.", l7: true },
   ],
   musicIntro: "From 2000 he directed more than seventy music videos for the biggest names in Arabic music, and has continued since.",

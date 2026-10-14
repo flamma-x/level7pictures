@@ -41,7 +41,7 @@ ${HERO_CYCLE.map(heroLayer).join("\n")}
 </div>
 <div class="hero-panel" data-project="obsess">
 <div class="hero-panel-text">
-<span class="hero-panel-date"><span class="nf-badge">Netflix</span><span data-slot="date">${slot("date")}</span></span>
+<span class="hero-panel-date"><span class="nf-badge">Netflix</span><span class="nocaps" data-slot="date">${slot("date")}</span></span>
 <span class="hero-panel-credit">${esc(obsess.titleEn)}, directed by ${esc(obsess.director)}</span>
 </div>
 ${countdown("obsess", "sm")}

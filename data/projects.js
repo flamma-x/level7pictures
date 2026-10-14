@@ -9,7 +9,7 @@ export const SITE = {
   offices: ["Abu Dhabi", "Beirut"],                // Dubai → Abu Dhabi (14 Oct 2026)
   founded: { year: 2020, country: "Lebanon" },
   registered: ["Abu Dhabi", "Lebanon"],
-  taglineAr: "دراما عربية لكل الشاشات",
+  taglineAr: "حكايات عربية لكل الشاشات",
   vimeo: "https://vimeo.com/saidelmarouk",
   brandReel: "https://vimeo.com/saidelmarouk", // approved: opens in a new tab
   arabicSite: null,                              // the عربي nav link is hidden while this is null
@@ -100,7 +100,7 @@ export const PROJECTS = {
     said: { anchor: "obsess" },
   },
   "crime-of-love": { house: "said", titleEn: "Crime of Love", titleAr: "جناية حب", platform: "Shasha Originals", format: "Mini-series", director: "Said El Marouk",
-    image: { src: "/assets/img/crime-of-love-still.jpg", pos: "50% 40%", alt: "" }, said: { anchor: "selected-work", line: "Shasha Originals · Mini-series" } },
+    image: { src: "/assets/img/crime-of-love-still.jpg", pos: "50% 40%", alt: "" }, said: { anchor: "selected-work", line: "Shasha Originals · 2026" } },
   "aminas-monster": { house: "said", titleEn: "Amina's Monster", titleAr: "وحش أمينة", series: "Monsters", director: "Said El Marouk",
     image: { src: "/assets/img/monster-amina.jpg", pos: "50% 35%", alt: "" }, said: { anchor: "selected-work", line: "Monsters · Netflix" } }, // verified 14 Oct
   "monster-of-the-bank": { house: "said", titleEn: "Monster of the Bank", titleAr: "وحش البنوك", series: "Monsters", director: "Said El Marouk",
@@ -149,7 +149,7 @@ export const statusLabel = (p, now) => {
 };
 const DAY = { timeZone: "Asia/Kuwait" };
 export const shortDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "short" });             // 30 Oct
-export const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "short", year: "numeric" }); // 30 Oct 2026
+export const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { ...DAY, day: "numeric", month: "long", year: "numeric" }); // 30 October 2026 (in sentences; chips and pills use shortDate)
 
 /* One line of facts under a title, same order everywhere: [Monsters 2 story] · platform · [format · episodes] · window or year */
 /* Time left as words: "16 days", "1 day", then hours ("2 hrs", "1 hr") on the last day */
@@ -179,12 +179,13 @@ export const SLOT_TEXT = {
   "nav-cta": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `Obsess · ${shortDate(p.premiere)}`),        // ≥600px
   "nav-cta-short": (p, s) => (s === "streaming" ? p.platform : "Obsess"),                                       // <600px
   "nav-cta-label": (p, s) => (s === "streaming" ? `Now on ${p.platform}: Obsess` : `Obsess · ${shortDate(p.premiere)}: premieres on ${p.platform}`), // accessible name: starts with the visible text (WCAG 2.5.3)
-  "date": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : longDate(p.premiere)),
+  "date": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : shortDate(p.premiere)),
   "strip": (p, s, now) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${leftText(p, now)}`),
   /* Home status card kicker (V8.1 §7): "Netflix · in 16 days" → "Now on Netflix" */
   "card-kicker": (p, s, now) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · in ${leftText(p, now)}`),
-  "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${longDate(p.premiere)}`).toUpperCase(),
+  "feature-line": (p, s) => (s === "streaming" ? `${p.titleEn} · Now on ${p.platform}` : `${p.titleEn} · ${p.platform} · ${shortDate(p.premiere)}`),
   "status": (p, s, now) => statusLabel(p, now),
-  "said-line": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${longDate(p.premiere)}`),
-  "said-kick": (p, s) => (s === "streaming" ? `Latest work · Now on ${p.platform}` : `Latest work · ${p.platform} · ${longDate(p.premiere)}`),
+  "said-line": (p, s) => (s === "streaming" ? `Now on ${p.platform}` : `${p.platform} · ${shortDate(p.premiere)}`),
+  "said-kick": (p, s) => (s === "streaming" ? `Latest work · Now on ${p.platform}` : `Latest work · ${p.platform}`),
+  "said-kick-date": (p, s) => (s === "streaming" ? "" : ` · ${shortDate(p.premiere)}`), // own span: the kicker is uppercase, the date is not
 };

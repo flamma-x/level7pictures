@@ -61,7 +61,7 @@ ${LEVEL7_ORDER.map(card).join("\n")}
 <section class="section" aria-labelledby="pd">
 <div class="wrap">
 <div class="sec-head">
-<div><span class="kick">Directed by our founder</span><h2 id="pd" class="h2">Said El Marouk's other work</h2><p class="lead said-lead">Series Said directed for other producers. Shown here for context; the full list lives in his portfolio.</p></div>
+<div><span class="kick">Directed by Said El Marouk</span><h2 id="pd" class="h2">Said El Marouk's other work</h2><p class="lead said-lead">Series Said directed for other producers. Shown here for context; the full list lives in his portfolio.</p></div>
 <a href="/said-el-marouk" class="tlink">Said's portfolio →</a>
 </div>
 <div class="g4">

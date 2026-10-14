@@ -2,7 +2,7 @@
    source.url: the article (checked 13 Oct 2026). source.project: take the URL from that title's `link` in projects.js;
    while it is null the source line is hidden. */
 export const NEWS = [
-  { id: "obsess-premiere", date: "Oct 2026", title: "Obsess, directed by Said El Marouk, premieres on Netflix on 30 October",
+  { id: "obsess-premiere", date: "Oct 2026", title: "Obsess, directed by Said El Marouk, premieres on Netflix on 30 October 2026",
     image: { src: "/assets/img/obsess-candles.jpg", pos: "40% 50%" },
     source: { name: "Netflix", project: "obsess" } },
   { id: "beit-hadam-filming", date: "Aug 2026", title: "Cameras roll on Beit Hadam, adapted from Buthaina Al-Essa's novel",

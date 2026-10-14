@@ -36,7 +36,7 @@ const feature = () => `<section id="obsess" class="section" aria-labelledby="obs
 </div>
 <div class="feature-body">
 <div class="feature-text">
-<h2 id="obsess-title" class="kick feature-kick">${slot("said-kick", "obsess")}</h2>
+<h2 id="obsess-title" class="kick feature-kick">${slot("said-kick", "obsess")}${slot("said-kick-date", "obsess").replace("<span ", `<span class="nocaps" `)}</h2>
 <span lang="ar" dir="rtl" class="ar feature-ar">${esc(obsess.titleAr)}</span>
 <span class="un feature-en">${esc(obsess.titleEn)}</span>
 <p class="lead feature-blurb">${esc(S.obsessBlurb)}</p>

@@ -17,9 +17,9 @@
   --interactive: #2890d8;        /* accents, active dots, hover of --brand (V8 #00476F maps here) */
   --tint: #9fcbee;               /* kickers, text links, outline pills: 11.2:1 */
   --text: #ffffff;
-  --text-soft: rgba(255,255,255,.8);    /* nav links, footer links, lead copy: 12.6:1 */
-  --text-muted: rgba(255,255,255,.72);  /* secondary copy: 9.8:1 */
-  --text-subtle: rgba(255,255,255,.52); /* fine print on flat dark only, never over media: 4.8:1 */
+  --text-soft: rgba(255,255,255,.82);   /* secondary copy, nav and footer links, lead */
+  --text-muted: rgba(255,255,255,.70);  /* muted copy */
+  --text-subtle: rgba(255,255,255,.55); /* fine print on flat dark only, never over media */
   --text-on-light: #030c16;
   --netflix: #e50914;            /* Netflix marks and the Obsess dot only */
   --line: rgba(255,255,255,.10);
@@ -45,20 +45,22 @@
   --fs-md: 15px;
   --fs-base: 16px;
   --fs-lead: clamp(16px, 1.4vw, 19px);
-  --fs-h3: clamp(18px, 1.6vw, 22px);
-  --fs-h2: clamp(30px, 4.2vw, 60px);
-  --fs-h1: clamp(42px, 6.6vw, 104px);
-  --ls-caps: .14em;
-  --ls-caps-tight: .12em;
+  --fs-h3: clamp(26px, 2.8vw, 40px);     /* display 40: h3, stats, service titles */
+  --fs-card-l: clamp(22px, 1.95vw, 28px); /* large card titles: news, now-cards, Home panels, office city */
+  --fs-card-m: 22px;                      /* medium card titles */
+  --fs-card-s: 18px;                      /* small card titles: directed, Productions, Careers, routes */
+  --fs-h2: clamp(30px, 4.2vw, 60px);     /* display 60 */
+  --fs-h1: clamp(42px, 6.6vw, 95px);     /* display 95 */
+  --ls-caps: .14em;              /* every label: section kicker 13px, card label 12px (the pill keeps .1em) */
 
   /* shape + space */
   --r-pill: 999px;
-  --r-sm: 10px;
-  --r-md: 14px;
-  --r-lg: 18px;
-  --r-card: 22px;
-  --r-xl: 28px;
-  --r-2xl: 32px;
+  --r-sm: 8px;                   /* badges, countdown cells */
+  --r-md: 14px;                  /* thumbnails, inputs */
+  --r-lg: 22px;                  /* = --r-card */
+  --r-card: 22px;                /* cards, media, stills, trailer */
+  --r-xl: 32px;                  /* = --r-2xl */
+  --r-2xl: 32px;                 /* big panels: contact block, Said portrait */
   --gutter: clamp(18px, 4.5vw, 64px);
   --wrap: 1440px;
   --section-gap: clamp(72px, 8vw, 112px);
