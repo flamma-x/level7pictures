@@ -22,7 +22,7 @@ export const HOME = {
     lead: "Producer Said El Marouk and co-producer Khouloud Daher lead Level 7, with one in-house team from the first draft to the delivery file.",
     link: "About Level 7 →",
     portraits: [
-      { src: "/assets/img/said-hero.jpg", alt: "Said El Marouk on set", label: "Said El Marouk · Producer", pos: "55% 35%" },
+      { src: "/assets/img/said-producer.jpg", alt: "Said El Marouk on set", label: "Said El Marouk · Producer", pos: "50% 50%" }, // cropped from said-hero.jpg to match Khouloud's framing
       { src: "/assets/img/khouloud-daher.jpg", alt: "Khouloud Daher on set", label: "Khouloud Daher · Co-producer", pos: "45% 30%" },
     ],
   },

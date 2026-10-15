@@ -24,7 +24,7 @@ export const COMPANY = {
   leaders: [
     { name: "Said El Marouk", nameAr: "سعيد الماروق", role: "Producer", link: "/said-el-marouk", linkText: "Full portfolio →",
       bio: "Producer at Level 7, with more than thirty years behind the camera. He leads the slate, from The Deep State to Djinn Wedding and Beit Hadam.",
-      image: { src: "/assets/img/said-hero.jpg", alt: "Said El Marouk on set", pos: "55% 35%" } },
+      image: { src: "/assets/img/said-producer.jpg", alt: "Said El Marouk on set", pos: "50% 50%" } }, // same framing as Khouloud
     { name: "Khouloud Daher", nameAr: "خلود ضاهر", role: "Co-producer", // verified 14 Oct 2026
       bio: "Co-producer at Level 7 Pictures. Khouloud runs production across the slate, from Monsters to Djinn Wedding and Beit Hadam.",
       image: { src: "/assets/img/khouloud-daher.jpg", alt: "Khouloud Daher on set", pos: "45% 30%" } }, // hi-res portrait coming
