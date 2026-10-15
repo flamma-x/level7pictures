@@ -135,7 +135,7 @@ ${statsRow([
 };
 
 /* ── the people ── */
-const person = (x) => `<div class="portrait"><div class="clip">${picture(x.src, { alt: x.alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${x.pos}` })}</div><span class="pill portrait-tag">${esc(x.label)}</span></div>`;
+const person = (x) => `<div class="portrait"><div class="clip">${picture(x.src, { alt: x.alt, sizes: "(max-width: 820px) 46vw, 24vw", style: `object-position:${x.pos}` })}</div><span class="portrait-tag">${x.label.split(" · ").map((t, i) => `<span class="${i ? "portrait-role" : "portrait-name"}">${esc(t)}</span>`).join("")}</span></div>`;
 const people = () => `<section class="section" aria-labelledby="ha">
 <div class="wrap split">
 <div class="stack-16">

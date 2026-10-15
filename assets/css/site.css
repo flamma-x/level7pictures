@@ -255,7 +255,12 @@ html.menu-open { overflow: hidden; }
 /* portrait with name tag */
 .portrait { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-card); }
 .portrait img { width: 100%; height: 100%; object-fit: cover; }
-.portrait-tag { position: absolute; left: 12px; bottom: 12px; background: rgba(3,12,22,.75); color: var(--text); }
+/* name tag: no pill. Centred text on a blurred, darkened band that sits behind the text only and fades out above it */
+.portrait-tag { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 30px 12px 16px; text-align: center; color: var(--text);
+  background: linear-gradient(0deg, rgba(3,12,22,.55) 0, rgba(3,12,22,.4) 55%, rgba(3,12,22,0) 100%); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  -webkit-mask-image: linear-gradient(0deg, #000 65%, transparent); mask-image: linear-gradient(0deg, #000 65%, transparent); border-radius: 0 0 var(--r-card) var(--r-card); }
+.portrait-name { font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--ls-caps); text-transform: uppercase; }
+.portrait-role { font-size: var(--fs-xs); color: var(--text-soft); }
 
 /* service card */
 .svc { display: flex; flex-direction: column; gap: 14px; color: var(--text); text-decoration: none; }
