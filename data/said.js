@@ -37,7 +37,7 @@ export const SAID = {
   bio: [
     "Born in Beirut in 1969 to deaf parents, Said El Marouk grew up fluent in a language made of image and gesture. It is still the language he directs in.",
     "He trained at the University Film Academy of Belgrade and in Düsseldorf, then spent the nineties in Germany as a first AD, editor and cameraman, and as a director and reporter for German and Arab broadcasters.",
-    "Back in Beirut he directed more than seventy music videos for the biggest names in Arabic music, before moving into long form: his Egyptian feature debut, then a run of pan-Arab dramas. In 2020 he founded Level 7 Pictures.",
+    "Back in Beirut he directed more than seventy music videos for the biggest names in Arabic music, before moving into long form: his Egyptian feature debut, then a run of pan-Arab dramas. In 2022 he founded Level 7 Pictures.",
   ],
   bioImage: { src: "/assets/img/on-set.jpg", alt: "Said El Marouk working through a scene with an actress", pos: "30% 40%" },
   timeline: [
@@ -49,7 +49,7 @@ export const SAID = {
     { when: "2009", where: "Egypt", text: "2nd unit director on Transformers: Revenge of the Fallen." },
     { when: "2011", where: "Cairo", text: "Feature debut, 365 Days of Happiness." },
     { when: "2019–2023", where: "Pan-Arab", text: "The Money, The Deep State." }, // "The Role" dropped 14 Oct 2026
-    { when: "2020", where: "Lebanon", text: "Founds Level 7 Pictures.", l7: true },
+    { when: "2022", where: "Lebanon", text: "Founds Level 7 Pictures.", l7: true },
     { when: "2024", where: "Beirut", text: "The Lebanese Achievement award at BIAF." }, // approved 14 Oct 2026
     { when: "2025–2026", where: "Kuwait", text: "Monsters, Crime of Love, Djinn Wedding." },
     { when: "Oct 2026", where: "Netflix", text: "Obsess premieres on 30 October 2026." },
@@ -64,6 +64,6 @@ export const SAID = {
     { big: "Jury", title: "Mentor Arabia", note: "Repeated service on animation and film panels" },
     { big: "2000", title: "Best Special Effects", note: "For the Mohamad Mounir music video" },
   ],
-  houses: ["S.M Production · Beirut", "Seven Entertainments · Dubai", "Beywood Pictures · Beirut", "Room 11 · post-production, Beirut", "Level 7 Pictures · 2020"],
+  houses: ["S.M Production · Beirut", "Seven Entertainments · Dubai", "Beywood Pictures · Beirut", "Room 11 · post-production, Beirut", "Level 7 Pictures · 2022"],
   also: ["Commercials, including El Abd Patisserie for Saatchi & Saatchi Egypt", "Live concerts across Western Europe", "Reporter for German and Arab TV"],
 };

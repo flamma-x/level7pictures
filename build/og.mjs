@@ -16,8 +16,8 @@ const general = page0(`
 
 <img class="logo" src="/assets/brand/l7-mark-light.png" alt="">
 <div class="txt">
-  <div class="en">ARAB STORIES,<br>MADE FOR EVERY<br>SCREEN.</div>
-  <div class="ar" lang="ar" dir="rtl">حكايات عربية لكل الشاشات</div>
+  <div class="en">STORIES MADE<br>FOR EVERY<br>SCREEN.</div>
+  <div class="ar" lang="ar" dir="rtl">حكايات لكل الشاشات</div>
 </div>
 ${guides ? `<div class="safe"></div>` : ""}`, `
 .v{position:absolute;right:-6px;top:-118px;font:900 780px/1 Alexandria;color:transparent;

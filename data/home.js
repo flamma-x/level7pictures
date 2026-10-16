@@ -1,10 +1,10 @@
 /* Home page copy (V8.1, 13 Oct 2026). Copy pass in progress: edit here, never in the templates. */
 export const HOME = {
   hero: {
-    kick: "Level 7 Pictures · Abu Dhabi · Beirut · Since 2020",
-    title: "Arab stories, made for every screen.",
-    titleAr: "حكايات عربية لكل الشاشات",
-    lead: "A production house founded in Lebanon in 2020. We develop, produce and deliver for regional and global platforms.",
+    kick: "Level 7 Pictures · Abu Dhabi · Beirut · Since 2022",
+    title: "Stories made for every screen.",
+    titleAr: "حكايات لكل الشاشات",
+    lead: "A production house founded in Lebanon in 2022. We develop, produce and deliver for regional and global platforms.",
     cta: { label: "Contact us", href: "/contact" },  // V8.1 §7: one outline button (was "See the productions" + "Brand reel")
     dotsLabel: "Featured titles",
   },
