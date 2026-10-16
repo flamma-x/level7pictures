@@ -4,7 +4,7 @@
 
 export const SITE = {
   name: "Level 7 Pictures",
-  url: "https://level7pictures.com",
+  url: "https://www.levelsevenpictures.com",
   // Share card (og:image / twitter:image) for Home and every general page: 1200×630, built by build/og.mjs.
   // Title pages use /assets/img/og/<slug>.jpg, Said's page his portrait. Never a title Level 7 did not produce.
   share: { src: "/assets/img/og/level7-og.jpg", alt: "Level 7 Pictures: Stories made for every screen. حكايات لكل الشاشات" },
